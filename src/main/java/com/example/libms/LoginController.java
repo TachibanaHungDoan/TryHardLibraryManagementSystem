@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class LoginController {
     private TextField usernameTextField;
     @FXML
     private PasswordField passwordPassWordField;
+    @FXML
+    private Label registerLabel;
 
     public void loginButtonClicked(ActionEvent event) throws IOException {
         if (usernameTextField.getText().isBlank() || passwordPassWordField.getText().isBlank()) {
@@ -39,4 +42,18 @@ public class LoginController {
             loginMessageLabel.setText("Wrong username or password");
         }
     }
+
+    @FXML
+    private void registerLabelClicked(MouseEvent event) throws IOException {
+        try {
+            FXMLLoader loader =  new FXMLLoader(getClass().getResource("register-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) registerLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
