@@ -20,7 +20,7 @@
                <top>
                   <AnchorPane prefHeight="44.0" prefWidth="750.0" styleClass="outbg" stylesheets="@des/books-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="14.0" layoutY="5.0" styleClass="app-name" stylesheets="@des/books-des.css" text="Mahlib">
+                        <Label layoutX="14.0" layoutY="5.0" styleClass="app-name" stylesheets="@des/adminTemplate-des.css" text="Mahlib">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -31,39 +31,39 @@
                <left>
                   <AnchorPane prefHeight="402.0" prefWidth="258.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="-48.0" layoutY="29.0" prefHeight="556.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@des/books-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label layoutX="67.0" layoutY="111.0" styleClass="char-label" stylesheets="@des/books-des.css" text="Welcome," textFill="WHITE">
+                        <AnchorPane layoutX="-48.0" layoutY="29.0" prefHeight="556.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@des/adminTemplate-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="67.0" layoutY="111.0" styleClass="nav-welcome" stylesheets="@des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                            <font>
                               <Font name="Gotham-Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="91.0" layoutY="140.0" styleClass="char-label" stylesheets="@des/books-des.css" text="Username" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="140.0" prefHeight="29.0" prefWidth="192.0" styleClass="nav-username" stylesheets="@des/adminTemplate-des.css" text="Username" textFill="WHITE">
                            <font>
                               <Font name="Gotham-Black" size="18.0" />
                            </font>
                         </Label>
-                        <Line endX="100.0" layoutX="139.0" layoutY="181.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-                        <Button layoutX="21.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/books-des.css" text="Home">
+                        <Line endX="100.0" layoutX="139.0" layoutY="181.0" startX="-129.5" stroke="WHITE" strokeWidth="2.0" />
+                        <Button layoutX="21.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/adminTemplate-des.css" text="Home">
                            <font>
                               <Font name="Gotham-Black" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="21.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/books-des.css" text="Books">
+                        <Button layoutX="21.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/adminTemplate-des.css" text="Books">
                            <font>
                               <Font name="Gotham-Black" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="21.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/books-des.css" text="Readers">
+                        <Button layoutX="21.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/adminTemplate-des.css" text="Readers">
                            <font>
                               <Font name="Gotham-Black" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/books-des.css" text="Issued Books">
+                        <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/adminTemplate-des.css" text="Issued Books">
                            <font>
                               <Font name="Gotham-Black" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="21.0" layoutY="400.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/books-des.css" text="Return Books">
+                        <Button layoutX="21.0" layoutY="400.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/adminTemplate-des.css" text="Return Books">
                            <font>
                               <Font name="Gotham-Black" size="14.0" />
                            </font>
@@ -74,17 +74,17 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="outbg" stylesheets="@des/books-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="-30.0" prefHeight="575.0" prefWidth="804.0" stylesheets="@des/books-des.css">
+                        <AnchorPane layoutX="20.0" layoutY="-30.0" prefHeight="575.0" prefWidth="804.0" stylesheets="@des/adminTemplate-des.css">
                            <styleClass>
                               <String fx:value="bg" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <Label layoutX="14.0" layoutY="45.0" styleClass="content-label" stylesheets="@des/books-des.css" text="Books" />
-                              <Label layoutX="216.0" layoutY="5.0" styleClass="content2-label" stylesheets="@des/books-des.css" text="All books:" />
-                              <Label layoutX="393.0" layoutY="5.0" styleClass="content2-label" stylesheets="@des/books-des.css" text="Remaining books:" />
-                              <Label layoutX="292.0" layoutY="5.0" styleClass="content2-label" stylesheets="@des/books-des.css" text="0" />
-                              <Label layoutX="530.0" layoutY="5.0" styleClass="content2-label" stylesheets="@des/books-des.css" text="0" />
+                              <Label layoutX="14.0" layoutY="45.0" styleClass="content-label" stylesheets="@des/adminTemplate-des.css" text="Books" />
+                              <Label layoutX="216.0" layoutY="5.0" styleClass="smallText-label" stylesheets="@des/books-des.css" text="All books:" />
+                              <Label layoutX="393.0" layoutY="5.0" styleClass="smallText-label" stylesheets="@des/books-des.css" text="Remaining books:" />
+                              <Label layoutX="292.0" layoutY="5.0" styleClass="smallText-label" stylesheets="@des/books-des.css" text="0" />
+                              <Label layoutX="530.0" layoutY="5.0" styleClass="smallText-label" stylesheets="@des/books-des.css" text="0" />
                               <TextField layoutX="257.0" layoutY="51.0" prefHeight="35.0" prefWidth="328.0" promptText="Search" />
                               <Button layoutX="691.0" layoutY="60.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="103.0" styleClass="addbook-btn" stylesheets="@des/books-des.css" text="Add book" />
                               <AnchorPane layoutX="9.0" layoutY="105.0" prefHeight="469.0" prefWidth="790.0">

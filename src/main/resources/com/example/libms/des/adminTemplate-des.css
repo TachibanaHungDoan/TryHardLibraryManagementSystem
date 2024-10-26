@@ -1,0 +1,50 @@
+.app-name {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-font-family: "Gotham Black";
+}
+
+.nav-form {
+    -fx-background-color: linear-gradient(to right, #1db954, #191414);
+}
+
+.nav-welcome {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 24px;
+    -fx-text-fill: #fff;
+}
+
+.nav-username {
+    -fx-text-alignment: center;
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 24px;
+    -fx-text-fill: #fff;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 22px;
+    -fx-text-fill: #fff;
+}
+
+.outbg {
+    -fx-background-color: whitesmoke;
+}
+
+.bg {
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 8px;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.content-label {
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 42px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}
