@@ -1,0 +1,23 @@
+.app-name {
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.nav-form {
+    -fx-background-color: linear-gradient(to right, #1db954, #191414);
+}
+
+.char-label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 24px;
+    -fx-text-fill: #fff;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 22px;
+    -fx-text-fill: #fff;
+}

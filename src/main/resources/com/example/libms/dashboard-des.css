@@ -10,7 +10,7 @@
 
 .char-label {
     -fx-font-family: "Gotham-Light";
-    -fx-font-size: 18px;
+    -fx-font-size: 24px;
     -fx-text-fill: #fff;
 }
 
@@ -18,7 +18,7 @@
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 14px;
+    -fx-font-size: 22px;
     -fx-text-fill: #fff;
 }
 
