@@ -8,20 +8,41 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DashBoardController {
 
     @FXML
-    private Button booksButton;
+    private Label totalBooksLabel;
 
-    public void booksButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("books-view.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void initialize() {
+        int totalBooks = getTotalBooksFromDatabase();
+        totalBooksLabel.setText(String.valueOf(totalBooks));
+    }
+    private int getTotalBooksFromDatabase() {
+        int totalBooks = 0;
+        String query = "SELECT COUNT(*) AS total FROM books";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            if (resultSet.next()) {
+                totalBooks = resultSet.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalBooks;
     }
 
 }
