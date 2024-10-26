@@ -1,5 +1,6 @@
 package com.example.libms;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +26,9 @@ public class RegisterController {
     private PasswordField confirmPassWordPassWordField;
     @FXML
     private Label registerMessageLabel;
+    @FXML
+    private ChoiceBox<String> roleChoiceBox;
+
     public void registerButtonClicked(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
         String password = passWordPassWordField.getText();
@@ -70,6 +75,15 @@ public class RegisterController {
         alert.setContentText(message);
         alert.showAndWait(); // Wait for the user to close the alert
     }
+
+    public void initialize() {
+        String str [] ={"Reader", "Admin"};
+        roleChoiceBox.setItems(FXCollections.observableArrayList(str));
+    }
+    public void ClickChoiceBox(MouseEvent mouseEvent) {
+        roleChoiceBox.show();
+    }
+
     /*public void registerButtonClicked(ActionEvent event) throws IOException {
         if (usernameTextField.getText().isBlank() || passWordPassWordField.getText().isBlank() || confirmPassWordPassWordField.getText().isBlank()) {
             registerMessageLabel.setText("Please enter your username and password!");
