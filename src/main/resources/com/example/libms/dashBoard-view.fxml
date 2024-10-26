@@ -22,7 +22,7 @@
                      <children>
                         <AnchorPane prefHeight="44.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="14.0" layoutY="5.0" styleClass="app-name" stylesheets="@dashboard-des.css" text="Mahlib">
+                              <Label layoutX="14.0" layoutY="5.0" styleClass="app-name" stylesheets="@des/dashboard-des.css" text="Mahlib">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -34,35 +34,35 @@
                <left>
                   <AnchorPane prefHeight="402.0" prefWidth="258.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-24.0" prefHeight="406.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@dashboard-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutY="-24.0" prefHeight="406.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@des/dashboard-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="57.0" layoutY="101.0" styleClass="char-label" stylesheets="@dashboard-des.css" text="Welcome," textFill="WHITE">
+                              <Label layoutX="57.0" layoutY="101.0" styleClass="char-label" stylesheets="@des/dashboard-des.css" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="81.0" layoutY="130.0" styleClass="char-label" stylesheets="@dashboard-des.css" text="Username" textFill="WHITE">
+                              <Label layoutX="81.0" layoutY="130.0" styleClass="char-label" stylesheets="@des/dashboard-des.css" text="Username" textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Black" size="18.0" />
                                  </font>
                               </Label>
                               <Line endX="100.0" layoutX="129.0" layoutY="171.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Button layoutX="21.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@dashboard-des.css" text="Books">
+                              <Button layoutX="21.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/dashboard-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="21.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@dashboard-des.css" text="Readers">
+                              <Button layoutX="21.0" layoutY="250.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/dashboard-des.css" text="Readers">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="21.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@dashboard-des.css" text="Issue Books">
+                              <Button layoutX="21.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/dashboard-des.css" text="Issue Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@dashboard-des.css" text="Return Books">
+                              <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@des/dashboard-des.css" text="Return Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
@@ -74,54 +74,54 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="6.0" layoutY="12.0" prefHeight="524.0" prefWidth="719.0" stylesheets="@dashboard-des.css">
+                        <AnchorPane layoutX="6.0" layoutY="12.0" prefHeight="524.0" prefWidth="719.0" stylesheets="@des/dashboard-des.css">
                            <styleClass>
                               <String fx:value="white-bg" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="137.0" prefWidth="687.0" stylesheets="@dashboard-des.css">
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="137.0" prefWidth="687.0" stylesheets="@des/dashboard-des.css">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="111.0" prefWidth="183.0" styleClass="card" stylesheets="@dashboard-des.css">
+                                    <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="111.0" prefWidth="183.0" styleClass="card" stylesheets="@des/dashboard-des.css">
                                        <children>
-                                          <Label layoutX="62.0" layoutY="84.0" styleClass="card-label" stylesheets="@dashboard-des.css" text="Total Books" textFill="WHITE">
+                                          <Label layoutX="62.0" layoutY="84.0" styleClass="card-label" stylesheets="@des/dashboard-des.css" text="Total Books" textFill="WHITE">
                                              <font>
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="243.0" layoutY="13.0" prefHeight="111.0" prefWidth="194.0" styleClass="card" stylesheets="@dashboard-des.css">
+                                    <AnchorPane layoutX="243.0" layoutY="13.0" prefHeight="111.0" prefWidth="194.0" styleClass="card" stylesheets="@des/dashboard-des.css">
                                        <children>
-                                          <Label layoutX="48.0" layoutY="84.0" styleClass="card-label" stylesheets="@dashboard-des.css" text="Total Readers" textFill="WHITE">
+                                          <Label layoutX="48.0" layoutY="84.0" styleClass="card-label" stylesheets="@des/dashboard-des.css" text="Total Readers" textFill="WHITE">
                                              <font>
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="487.0" layoutY="16.0" prefHeight="111.0" prefWidth="194.0" styleClass="card" stylesheets="@dashboard-des.css">
+                                    <AnchorPane layoutX="487.0" layoutY="16.0" prefHeight="111.0" prefWidth="194.0" styleClass="card" stylesheets="@des/dashboard-des.css">
                                        <children>
-                                          <Label layoutX="56.0" layoutY="80.0" styleClass="card-label" stylesheets="@dashboard-des.css" text="Issued Books" textFill="WHITE">
+                                          <Label layoutX="56.0" layoutY="80.0" styleClass="card-label" stylesheets="@des/dashboard-des.css" text="Issued Books" textFill="WHITE">
                                              <font>
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
