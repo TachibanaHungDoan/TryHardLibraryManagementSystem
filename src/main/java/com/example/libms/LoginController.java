@@ -56,7 +56,7 @@ public class LoginController {
         Connection connectDB = connectNow.getConnection();
 
         // Câu truy vấn SQL sử dụng dấu ? để truyền tham số an toàn
-        String verifyLogin = "SELECT count(1) FROM user_account WHERE username = '" + usernameTextField.getText() + "'AND password = '" + passwordPassWordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM user WHERE username = '" + usernameTextField.getText() + "'AND password = '" + passwordPassWordField.getText() + "'";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
