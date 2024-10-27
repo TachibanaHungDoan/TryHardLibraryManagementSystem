@@ -43,7 +43,7 @@ public class RegisterController {
                 showAlert("Registration Successful", "You have registered successfully!", Alert.AlertType.INFORMATION);
                 // If registration is successful, switch to login view
                 Parent root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage stage = (Stage) registerButton.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
             } else {

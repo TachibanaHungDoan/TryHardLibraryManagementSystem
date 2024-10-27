@@ -20,8 +20,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginController {
-    /*public static final String sampleUserName = "HungDoan";
-    public static final String samplePassword = "31102005";*/
     @FXML
     private Button loginButton;
     @FXML
@@ -73,12 +71,12 @@ public class LoginController {
         }
         return false;
     }
-    public void loginButtonClicked(ActionEvent event) throws IOException {
+    public void loginButtonClicked() throws IOException {
         if (usernameTextField.getText().isBlank() || passwordPassWordField.getText().isBlank()) {
             loginMessageLabel.setText("Please enter your username and password");
         } else if (validateLogin(usernameTextField.getText(), passwordPassWordField.getText())) {
-            Parent root = FXMLLoader.load(getClass().getResource("dashboard-view.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("AdminView/dashboard-view.fxml"));
+            Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

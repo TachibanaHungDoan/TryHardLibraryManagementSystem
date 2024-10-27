@@ -1,3 +1,15 @@
+.home-btn {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+}
+
+.home-btn:hover {
+    -fx-background-color: white;
+}
+
 .card {
     -fx-background-color: linear-gradient(to top, #2b303c, #525968);
     -fx-background-radius: 5px;

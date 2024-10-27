@@ -7,14 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("readers-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("AdminView/dashBoard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("MahLib");
+        stage.setX(150);
+        stage.setY(120);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

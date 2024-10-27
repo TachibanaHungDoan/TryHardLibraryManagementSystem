@@ -1,22 +1,25 @@
-.app-name {
-    -fx-text-fill: black;
+.time-label {
+    -fx-text-fill: #fff;
     -fx-font-size: 24px;
     -fx-font-family: "Gotham Black";
 }
 
 .nav-form {
-    -fx-background-color: linear-gradient(to right, #1db954, #191414);
+    -fx-background-color: black;
+/*linear-gradient(to right, #1db954, #191414);*/
 }
 
 .nav-welcome {
+    -fx-alignment: center;
     -fx-font-family: "Gotham-Light";
     -fx-font-size: 24px;
     -fx-text-fill: #fff;
 }
 
 .nav-username {
-    -fx-text-alignment: center;
+    -fx-alignment: center;
     -fx-font-family: "Gotham Black";
+    -fx-font-weight: bold;
     -fx-font-size: 24px;
     -fx-text-fill: #fff;
 }
@@ -27,6 +30,11 @@
     -fx-font-family: "Gotham";
     -fx-font-size: 22px;
     -fx-text-fill: #fff;
+}
+
+.nav-btn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
 
 .outbg {
