@@ -1,23 +1,51 @@
-.owncontent-label {
+.readers-btn {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+}
+
+.readers-btn:hover {
+    -fx-background-color: white;
+}
+
+.bigText-label {
     -fx-font-family: "Gotham Black";
+    -fx-font-size: 36px;
+    -fx-text-fill: #000;
     -fx-font-weight: bold;
-    -fx-text-fill: #000;
-    -fx-font-size: 24px;
 }
 
-.info-label {
-    -fx-font-family: "Gotham-Light";
+.smallText-label {
+    -fx-alignment: center-right;
+    -fx-font-family: "Gotham-light";
+    -fx-font-size: 16px;
     -fx-text-fill: #000;
-    -fx-font-size: 19px;
 }
 
-.btn {
+.up-btn {
+    -fx-background-color: black;
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Gotham-light";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.up-btn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.down-btn {
     -fx-text-fill: black;
     -fx-font-family: "Gotham-Light";
     -fx-font-size: 14px;
     -fx-cursor: hand;
 }
 
-.btn:hover {
+.down-btn:hover {
     -fx-background-color: linear-gradient(to right, #1db, #184144);
 }

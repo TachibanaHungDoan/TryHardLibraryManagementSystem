@@ -90,7 +90,7 @@ public class DashBoardController {
     }
 
     public void readersButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("readers-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminView/readers-view.fxml"));
         Stage stage = (Stage) readersButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
