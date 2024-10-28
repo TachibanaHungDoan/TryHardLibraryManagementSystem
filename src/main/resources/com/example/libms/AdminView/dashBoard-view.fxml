@@ -94,7 +94,7 @@
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
@@ -108,7 +108,7 @@
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalReadersLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label fx:id="totalReadersLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>
@@ -122,7 +122,7 @@
                                                 <Font name="Gotham-Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="borrowedBooksLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="37.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                          <Label fx:id="borrowedBooksLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="48.0" />
                                              </font>

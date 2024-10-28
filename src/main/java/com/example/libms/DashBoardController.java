@@ -41,7 +41,8 @@ public class DashBoardController {
     @FXML
     private Label borrowedBooksLabel;
 
-    public void initialize() {
+    @FXML
+    void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
         totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
     }
@@ -64,23 +65,28 @@ public class DashBoardController {
         return totalBooks;
     }
 
-    public void booksButtonClicked() throws IOException {
+    @FXML
+    void booksButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
-    public void homeButtonClicked(ActionEvent event) throws IOException {
+    @FXML
+    void homeButtonClicked(ActionEvent event) throws IOException {
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
-    public void readersButtonClicked(ActionEvent event) throws IOException {
+    @FXML
+    void readersButtonClicked(ActionEvent event) throws IOException {
         SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
-    public void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
+    @FXML
+    void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
         SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
-    public void logOutButtonClicked() throws IOException {
+    @FXML
+    void logOutButtonClicked() throws IOException {
         SceneController.switchScene("login-view.fxml", logOutButton);
     }
 }

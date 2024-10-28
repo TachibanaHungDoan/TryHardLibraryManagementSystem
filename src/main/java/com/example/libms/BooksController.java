@@ -1,26 +1,19 @@
 package com.example.libms;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.example.libms.LoginController.userName;
 
 public class BooksController {
     @FXML
@@ -43,7 +36,7 @@ public class BooksController {
     @FXML
     private TableColumn<Book, String> publisherColumn;
     @FXML
-    private TableColumn<Book, String> isbnColumn;
+    private TableColumn<Book, String> ISBNColumn;
     @FXML
     private TableColumn<Book, Date> publishedDateColumn;
     @FXML
@@ -56,6 +49,7 @@ public class BooksController {
     private TableColumn<Book, Integer> remainingColumn;
 
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
+
     @FXML
     private Button borrowedBooksButton;
 
@@ -86,39 +80,43 @@ public class BooksController {
     @FXML
     private Button viewBookButton;
 
-
-    public void initialize() {
+    @FXML
+    void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
+        allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
+        setBooksTable();
+        searchBar.setOnKeyReleased(this::searchBooks);
+    }
 
-        int totalBooks = getTotalBooksFromDatabase();
-        allBooksLabel.setText(String.valueOf(totalBooks));
-        // Liên kết các cột với các thuộc tính của Book
+    private void setBooksTable() {
         bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         publishedDateColumn.setCellValueFactory(new PropertyValueFactory<>("publishedDate"));
         editionColumn.setCellValueFactory(new PropertyValueFactory<>("edition"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
         remainingColumn.setCellValueFactory(new PropertyValueFactory<>("remaining"));
 
-        // Gọi hàm loadDataFromDatabase để lấy dữ liệu từ cơ sở dữ liệu
         loadDataFromDatabase();
-        searchBar.setOnKeyReleased(this::searchBooks);
     }
+
     private void searchBooks(KeyEvent event) {
         String keyword = searchBar.getText().toLowerCase();
 
         // Filter the list based on the keyword
         List<Book> filteredBooks = bookList.stream()
                 .filter(book -> book.getTitle().toLowerCase().contains(keyword) ||
-                        book.getAuthor().toLowerCase().contains(keyword))
+                        book.getAuthor().toLowerCase().contains(keyword) ||
+                        String.valueOf(book.getId()).toLowerCase().contains(keyword) ||
+                        book.getIsbn().contains(keyword))
                 .collect(Collectors.toList());
 
         booksTable.setItems(FXCollections.observableArrayList(filteredBooks));
     }
+
     private int getTotalBooksFromDatabase() {
         int totalBooks = 0;
         String query = "SELECT COUNT(*) AS total FROM books";
@@ -129,13 +127,12 @@ public class BooksController {
             if (resultSet.next()) {
                 totalBooks = resultSet.getInt("total");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return totalBooks;
     }
+
     private void loadDataFromDatabase() {
         String query = "SELECT * FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -161,24 +158,33 @@ public class BooksController {
         }
     }
 
-    public void homeButtonClicked() throws IOException {
+    @FXML
+    void homeButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
-    public void booksButtonClicked() throws IOException {
+    @FXML
+    void booksButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
-    public void readersButtonClicked() throws IOException {
+    @FXML
+    void readersButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
-    public void borrowedBooksButtonClicked() throws IOException {
+    @FXML
+    void borrowedBooksButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
-    public void logOutButtonClicked() throws IOException {
+    @FXML
+    void logOutButtonClicked() throws IOException {
         SceneController.switchScene("login-view.fxml", logOutButton);
     }
 
+    @FXML
+    void addBookButtonClicked() throws IOException {
+        SceneController.switchScene("AdminView/addBooks-view.fxml", addBookButton);
+    }
 }
