@@ -36,11 +36,10 @@
                               <Label layoutY="99.0" prefHeight="35.0" prefWidth="260.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," />
                               <Label fx:id="usernameLabel" layoutY="130.0" prefHeight="29.0" prefWidth="260.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" />
                               <Line endX="97.0" layoutX="139.0" layoutY="181.0" startX="-121.0" stroke="WHITE" />
-                              <Button fx:id="homeButton" layoutY="200.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home" />
-                              <Button fx:id="booksButton" layoutY="250.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="books-btn" stylesheets="@../des/books-des.css" text="Books" />
-                              <Button fx:id="readersButton" layoutY="300.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers" />
-                              <Button fx:id="borrowedBooksButton" layoutY="350.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books" />
-                              <Button fx:id="returnBooksButton" layoutY="400.0" mnemonicParsing="false" onAction="#returnBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Return Books" />
+                              <Button fx:id="homeButton" layoutY="270.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home" />
+                              <Button fx:id="booksButton" layoutY="320.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="books-btn" stylesheets="@../des/books-des.css" text="Books" />
+                              <Button fx:id="readersButton" layoutY="370.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers" />
+                              <Button fx:id="borrowedBooksButton" layoutY="420.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books" />
                               <Button fx:id="logOutButton" layoutY="550.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Log out" />
                            </children>
                         </AnchorPane>

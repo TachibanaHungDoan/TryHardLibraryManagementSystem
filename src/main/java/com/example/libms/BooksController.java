@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BooksController {
-
     @FXML
     private Button addBookButton;
 
@@ -40,9 +39,6 @@ public class BooksController {
 
     @FXML
     private Button readersButton;
-
-    @FXML
-    private Button returnBooksButton;
 
     @FXML
     private TextField searchBar;
@@ -86,14 +82,6 @@ public class BooksController {
     public void borrowedBooksButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("AdminView/borrowedBooks-view.fxml"));
         Stage stage = (Stage) borrowedBooksButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void returnBooksButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminView/returnBooks-view.fxml"));
-        Stage stage = (Stage) returnBooksButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

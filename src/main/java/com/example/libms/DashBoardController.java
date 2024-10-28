@@ -29,9 +29,6 @@ public class DashBoardController {
     private Button readersButton;
 
     @FXML
-    private Button returnBooksButton;
-
-    @FXML
     private Button logOutButton;
 
     @FXML
@@ -82,7 +79,7 @@ public class DashBoardController {
     }
 
     public void homeButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("dashBoard-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminView/dashBoard-view.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -100,14 +97,6 @@ public class DashBoardController {
     public void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("AdminView/borrowedBooks-view.fxml"));
         Stage stage = (Stage) borrowedBooksButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void returnBooksButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("returnBooks-view.fxml"));
-        Stage stage = (Stage) returnBooksButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -47,27 +47,22 @@
                                  </font>
                               </Label>
                               <Line endX="97.0" layoutX="139.0" layoutY="181.0" startX="-121.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Button fx:id="homeButton" layoutY="200.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="home-btn" stylesheets="@../des/dashboard-des.css" text="Home">
+                              <Button fx:id="homeButton" layoutY="270.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="home-btn" stylesheets="@../des/dashboard-des.css" text="Home">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="booksButton" layoutY="250.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
+                              <Button fx:id="booksButton" layoutY="320.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="readersButton" layoutY="300.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers">
+                              <Button fx:id="readersButton" layoutY="370.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="borrowedBooksButton" layoutY="350.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
-                                 <font>
-                                    <Font name="Gotham-Black" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="returnBooksButton" layoutY="400.0" mnemonicParsing="false" onAction="#returnBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Return Books">
+                              <Button fx:id="borrowedBooksButton" layoutY="420.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
