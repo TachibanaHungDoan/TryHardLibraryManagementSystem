@@ -30,25 +30,8 @@ public class LoginController {
     private PasswordField passwordPassWordField;
     @FXML
     private Label registerLabel;
-    /*public void validateLogin(String username, String password){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM user_account WHERE username = '" + usernameTextField.getText() + "'AND password = '" + passwordPassWordField.getText() + "'";
-        try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            while(queryResult.next()) {
-                if(queryResult.getInt(1) == 1) {
-                    loginMessageLabel.setText("Login successful");
-                } else {
-                    loginMessageLabel.setText("Login failed. Please try again");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }*/
+
+    public static String userName;
     public boolean validateLogin(String username, String password) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -75,11 +58,23 @@ public class LoginController {
         if (usernameTextField.getText().isBlank() || passwordPassWordField.getText().isBlank()) {
             loginMessageLabel.setText("Please enter your username and password");
         } else if (validateLogin(usernameTextField.getText(), passwordPassWordField.getText())) {
-            Parent root = FXMLLoader.load(getClass().getResource("AdminView/dashboard-view.fxml"));
+            userName = usernameTextField.getText();
+            Parent root = FXMLLoader.load(getClass().getResource("AdminView/dashBoard-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/dashboard-view.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of BooksView and set the username
+            DashBoardController dashBoardController = loader.getController();
+            dashBoardController.setUsername(usernameTextField.getText());
+
+            // Load the next view
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();*/
         } else {
             loginMessageLabel.setText("Wrong username or password");
         }

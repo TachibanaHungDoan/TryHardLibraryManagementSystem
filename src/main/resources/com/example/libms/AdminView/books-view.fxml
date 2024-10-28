@@ -22,7 +22,7 @@
                      <children>
                         <AnchorPane layoutX="260.0" prefHeight="40.0" prefWidth="840.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label fx:id="timeLabel" layoutX="3.0" layoutY="7.0" prefHeight="29.0" prefWidth="177.0" styleClass="time-label" stylesheets="@../des/adminTemplate-des.css" text="Time" />
+                              <Label fx:id="timeLabel" layoutX="3.0" layoutY="7.0" prefHeight="35.0" prefWidth="410.0" styleClass="time-label" stylesheets="@../des/adminTemplate-des.css" text="Time" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -65,16 +65,16 @@
                               <Button fx:id="addBookButton" layoutX="470.0" layoutY="61.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="Add " />
                               <TableView fx:id="booksTable" layoutX="10.0" layoutY="117.0" prefHeight="417.0" prefWidth="816.0">
                                 <columns>
-                                  <TableColumn prefWidth="67.0" text="BookID" />
-                                  <TableColumn prefWidth="111.0" text="Title" />
-                                    <TableColumn prefWidth="68.33331298828125" text="Author" />
-                                    <TableColumn prefWidth="89.3333740234375" text="Publisher" />
-                                    <TableColumn prefWidth="70.6666259765625" text="ISBN" />
-                                    <TableColumn prefWidth="106.66668701171875" text="PublishedDate" />
-                                    <TableColumn prefWidth="63.0" text="Edition" />
-                                    <TableColumn prefWidth="57.6666259765625" text="Quantity" />
-                                    <TableColumn prefWidth="74.0" text="State" />
-                                    <TableColumn prefWidth="107.3333740234375" text="Remaining" />
+                                  <TableColumn fx:id="bookIDColumn" prefWidth="67.0" text="BookID" />
+                                  <TableColumn fx:id="titleColumn" prefWidth="111.0" text="Title" />
+                                    <TableColumn fx:id="authorColumn" prefWidth="68.33331298828125" text="Author" />
+                                    <TableColumn fx:id="publisherColumn" prefWidth="89.3333740234375" text="Publisher" />
+                                    <TableColumn fx:id="isbnColumn" prefWidth="70.6666259765625" text="ISBN" />
+                                    <TableColumn fx:id="publishedDateColumn" prefWidth="106.66668701171875" text="PublishedDate" />
+                                    <TableColumn fx:id="editionColumn" prefWidth="63.0" text="Edition" />
+                                    <TableColumn fx:id="quantityColumn" prefWidth="57.6666259765625" text="Quantity" />
+                                    <TableColumn fx:id="stateColumn" prefWidth="74.0" text="State" />
+                                    <TableColumn fx:id="remainingColumn" prefWidth="107.3333740234375" text="Remaining" />
                                 </columns>
                               </TableView>
                               <Label layoutX="4.0" layoutY="1.0" styleClass="bigText-label" stylesheets="@../des/books-des.css" text="Book Management" />

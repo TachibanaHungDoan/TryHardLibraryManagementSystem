@@ -1,5 +1,7 @@
 package com.example.libms;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +12,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import javafx.scene.control.Label;
+import javafx.util.Duration;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static com.example.libms.LoginController.userName;
 
 public class DashBoardController {
     @FXML
@@ -46,10 +54,11 @@ public class DashBoardController {
     @FXML
     private Label borrowedBooksLabel;
 
+
     public void initialize() {
         int totalBooks = getTotalBooksFromDatabase();
         totalBooksLabel.setText(String.valueOf(totalBooks));
-       //usernameLabel.setText(getUsername());
+        usernameLabel.setText(userName);
     }
 
     private int getTotalBooksFromDatabase() {
