@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.libms.LoginController.userName;
 
@@ -103,6 +106,18 @@ public class BooksController {
 
         // Gọi hàm loadDataFromDatabase để lấy dữ liệu từ cơ sở dữ liệu
         loadDataFromDatabase();
+        searchBar.setOnKeyReleased(this::searchBooks);
+    }
+    private void searchBooks(KeyEvent event) {
+        String keyword = searchBar.getText().toLowerCase();
+
+        // Filter the list based on the keyword
+        List<Book> filteredBooks = bookList.stream()
+                .filter(book -> book.getTitle().toLowerCase().contains(keyword) ||
+                        book.getAuthor().toLowerCase().contains(keyword))
+                .collect(Collectors.toList());
+
+        booksTable.setItems(FXCollections.observableArrayList(filteredBooks));
     }
     private int getTotalBooksFromDatabase() {
         int totalBooks = 0;
