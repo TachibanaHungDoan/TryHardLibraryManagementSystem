@@ -100,7 +100,7 @@ public class ReadersController {
     }
 
     public void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("issueBooks-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminView/borrowedBooks-view.fxml"));
         Stage stage = (Stage) borrowedBooksButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

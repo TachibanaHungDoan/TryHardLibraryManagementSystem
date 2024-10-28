@@ -1,0 +1,26 @@
+.borrowedbooks-btn{
+    -fx-background-color: white;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+}
+
+.borrowedbooks-btn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.bigText-label {
+    -fx-font-family: "Gotham Black";
+    -fx-text-fill: black;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}
+
+.smallText-label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 22px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}

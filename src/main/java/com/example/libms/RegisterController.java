@@ -68,6 +68,7 @@ public class RegisterController {
             return false;
         }
     }
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -80,20 +81,9 @@ public class RegisterController {
         String str [] ={"Reader", "Admin"};
         roleChoiceBox.setItems(FXCollections.observableArrayList(str));
     }
+
     public void ClickChoiceBox(MouseEvent mouseEvent) {
         roleChoiceBox.show();
     }
 
-    /*public void registerButtonClicked(ActionEvent event) throws IOException {
-        if (usernameTextField.getText().isBlank() || passWordPassWordField.getText().isBlank() || confirmPassWordPassWordField.getText().isBlank()) {
-            registerMessageLabel.setText("Please enter your username and password!");
-        } else if (!passWordPassWordField.getText().equals(confirmPassWordPassWordField.getText())) {
-            registerMessageLabel.setText("Your passwords do not match!");
-        } else {
-            Parent root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-    }*/
 }

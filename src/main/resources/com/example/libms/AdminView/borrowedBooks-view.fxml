@@ -1,14 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.libms.AdminView.BorrowedBooksView"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.BorrowedBooksController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="182.0" layoutY="83.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="40.0" prefWidth="200.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="260.0" prefHeight="40.0" prefWidth="840.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
+                           <children>
+                              <Label fx:id="timeLabel" layoutX="3.0" layoutY="7.0" prefHeight="29.0" prefWidth="177.0" styleClass="time-label" stylesheets="@../des/adminTemplate-des.css" text="Time">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="600.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="-40.0" prefHeight="600.0" prefWidth="260.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
+                           <children>
+                              <Label alignment="CENTER" layoutY="99.0" prefHeight="35.0" prefWidth="260.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
+                                 <font>
+                                    <Font name="Gotham-Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="130.0" prefHeight="29.0" prefWidth="260.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gotham-Black" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="97.0" layoutX="139.0" layoutY="181.0" startX="-121.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Button fx:id="homeButton" layoutY="200.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="booksButton" layoutY="250.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="readersButton" layoutY="300.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="borrowedBooksButton" layoutY="350.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="borrowedbooks-btn" stylesheets="@../des/borrowedbooks-des.css" text="Borrowed Books">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="returnBooksButton" layoutY="400.0" mnemonicParsing="false" onAction="#returnBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Return Books">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="logOutButton" layoutY="550.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Log out">
+                                 <font>
+                                    <Font name="Gotham-Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="outbg" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane prefHeight="549.0" prefWidth="822.0" stylesheets="@../des/adminTemplate-des.css">
+                           <styleClass>
+                              <String fx:value="bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="250.0" layoutY="1.0" styleClass="bigText-label" stylesheets="@../des/borrowedbooks-des.css" text="Borrowed Books" />
+                              <TextField fx:id="searchBar" layoutX="350.0" layoutY="65.0" prefHeight="35.0" prefWidth="253.0" text="Search" />
+                              <TableView fx:id="borrowedBooksTable" layoutX="10.0" layoutY="117.0" prefHeight="417.0" prefWidth="800.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="BorrowedID" />
+                                  <TableColumn prefWidth="75.0" text="Book ISBN" />
+                                    <TableColumn prefWidth="75.0" text="Book Title" />
+                                    <TableColumn prefWidth="75.0" text="ReaderID" />
+                                    <TableColumn prefWidth="87.66668701171875" text="Reader Name" />
+                                    <TableColumn prefWidth="95.3333740234375" text="Date Borrowed" />
+                                    <TableColumn prefWidth="108.6666259765625" text="Date Returned" />
+                                    <TableColumn prefWidth="104.0" text="Number Of Days " />
+                                    <TableColumn prefWidth="104.33331298828125" text="Late Fee" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="6.0" layoutY="65.0" styleClass="smallText-label" stylesheets="@../des/borrowedbooks-des.css" text="All Borrowed Books:" />
+                              <Label fx:id="allBorrowedBooksLabel" layoutX="225.0" layoutY="65.0" prefHeight="32.0" prefWidth="26.0" styleClass="smallText-label" stylesheets="@../des/borrowedbooks-des.css" text="0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
