@@ -1,27 +1,14 @@
 package com.example.libms;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import java.io.IOException;
-
 import javafx.scene.control.Label;
-import javafx.util.Duration;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static com.example.libms.LoginController.userName;
 
 public class DashBoardController {
     @FXML
@@ -54,11 +41,9 @@ public class DashBoardController {
     @FXML
     private Label borrowedBooksLabel;
 
-
     public void initialize() {
-        int totalBooks = getTotalBooksFromDatabase();
-        totalBooksLabel.setText(String.valueOf(totalBooks));
-        usernameLabel.setText(userName);
+        SceneController.setUpScene(usernameLabel, timeLabel);
+        totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
     }
 
     private int getTotalBooksFromDatabase() {
@@ -80,42 +65,22 @@ public class DashBoardController {
     }
 
     public void booksButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminView/books-view.fxml"));
-        Stage stage = (Stage) booksButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     public void homeButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminView/dashBoard-view.fxml"));
-        Stage stage = (Stage) homeButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     public void readersButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminView/readers-view.fxml"));
-        Stage stage = (Stage) readersButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     public void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminView/borrowedBooks-view.fxml"));
-        Stage stage = (Stage) borrowedBooksButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
     public void logOutButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
-        Stage stage = (Stage) logOutButton.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneController.switchScene("login-view.fxml", logOutButton);
     }
 }
