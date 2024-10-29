@@ -12,6 +12,13 @@
     -fx-text-fill: #000;
 }
 
+.anothersmallText-label {
+    -fx-alignment: center-right;
+    -fx-font-family: "Gotham-light";
+    -fx-font-size: 15px;
+    -fx-text-fill: #ff5151;
+}
+
 .btn{
     -fx-background-color: black;
     -fx-background-radius: 8px;

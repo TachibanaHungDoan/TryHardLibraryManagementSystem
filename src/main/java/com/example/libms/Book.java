@@ -3,6 +3,14 @@ package com.example.libms;
 import java.util.Date;
 
 public class Book {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int id;
     private String title;
     private String author;
@@ -15,6 +23,7 @@ public class Book {
     private int remaining;
 
     public Book(int id,String title, String author, String publisher, String isbn, Date publishedDate, int edition, int quantity, int state,int remaining) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -24,14 +33,11 @@ public class Book {
         this.quantity = quantity;
         this.state = state;
         this.remaining = remaining;
-        this.id = id;
     }
-    public int getId() {
-        return id;
+
+    public Book(int id, String title, String author, String publisher, String isbn, String publishedDate, int edition, int quantity, int state, String remaining) {
     }
-    public void setId(int id) {
-        this.id = id;
-    }
+
     public String getTitle() {
         return title;
     }
