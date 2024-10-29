@@ -1,5 +1,6 @@
 package com.example.libms;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddBooksController {
     @FXML
@@ -70,6 +75,12 @@ public class AddBooksController {
     private Label usernameLabel;
 
     @FXML
+    private Label messageLabel;
+
+    private BookDAO bookdao = new BookDAO();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Ensure the date format matches your input
+
+    @FXML
     void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
     }
@@ -100,7 +111,43 @@ public class AddBooksController {
     }
 
     @FXML
-    void cancelButtonClicked() throws IOException {
+    void cancelButtonClicked() throws IOException, SQLException {
         SceneController.switchScene("AdminView/books-view.fxml", cancelButton);
+        bookTitleTextField.clear();
+        authorTextField.clear();
+        publisherTextField.clear();
+        bookISBNTextField.clear();
+        publishedDateTextField.clear();
+        editionTextField.clear();
+        quantityTextField.clear();
+        stateTextField.clear();
+        remainingTextField.clear();
+    }
+
+    public void addButtonClicked(ActionEvent event) {
+        String title = bookTitleTextField.getText();
+        String author = authorTextField.getText();
+        String publisher = publisherTextField.getText();
+        String publishedDateStr = publishedDateTextField.getText();
+        Date publishedDate = null;
+        try {
+            if (!publishedDateStr.isEmpty()) {
+                publishedDate = dateFormat.parse(publishedDateStr);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            messageLabel.setText("Invalid date format.");
+            return; // Exit the method if date parsing fails
+            }
+            String isbn = bookISBNTextField.getText();
+            int edition = Integer.parseInt(editionTextField.getText());
+            int quantity = Integer.parseInt(quantityTextField.getText());
+            int state = Integer.parseInt(stateTextField.getText());
+            int remaining = Integer.parseInt(remainingTextField.getText());
+            Book book = new Book(0,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+            try { bookdao.insert(book);
+                messageLabel.setText("Book added successfully!");
+            } catch (Exception ex) { ex.printStackTrace(); messageLabel.setText("Failed to add book.");
+            }
     }
 }

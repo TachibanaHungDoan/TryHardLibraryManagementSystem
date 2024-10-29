@@ -1,8 +1,6 @@
 package com.example.libms;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class BookDAO implements DAOInterface <Book> {
@@ -11,21 +9,34 @@ public class BookDAO implements DAOInterface <Book> {
     }
     @Override
     public int insert(Book book) throws SQLException {
-        Connection con = DatabaseConnection.getConnection();
-        Statement st = con.createStatement();
         String sql = "INSERT INTO books (title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining) " +
-                "VALUES ('" + book.getTitle() + "', '"
-                + book.getAuthor() + "', '"
-                + book.getPublisher() + "', '"
-                + book.getIsbn() + "', '"
-                + new java.sql.Date(book.getPublishedDate().getTime()) + "', "
-                + book.getEdition() + ", "
-                + book.getQuantity() + ", "
-                + book.getState() + ", "
-                + book.getRemaining() + ");";
-        int ketqua = st.executeUpdate(sql);
-        DatabaseConnection.closeConnection(con);
-        return 0;
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            st.setString(1, book.getTitle());
+            st.setString(2, book.getAuthor());
+            st.setString(3, book.getPublisher());
+            st.setString(4, book.getIsbn());
+            st.setDate(5, book.getPublishedDate() != null ? new java.sql.Date(book.getPublishedDate().getTime()) : null);
+            st.setInt(6, book.getEdition());
+            st.setInt(7, book.getQuantity());
+            st.setInt(8, book.getState());
+            st.setInt(9, book.getRemaining());
+
+            int rowsInserted = st.executeUpdate();
+            if (rowsInserted > 0) {
+                try (ResultSet generatedKeys = st.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        book.setId(generatedKeys.getInt(1));
+                    }
+                }
+                return 1; // Indicate success
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0; // Indicate failure
     }
 
     @Override

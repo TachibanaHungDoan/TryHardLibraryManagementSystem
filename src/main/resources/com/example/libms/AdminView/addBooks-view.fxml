@@ -55,7 +55,7 @@
                               <Label layoutX="3.0" layoutY="4.0" styleClass="bigText-label" stylesheets="@../des/addBook-des.css" text="Add Books" />
                               <Label layoutX="356.0" layoutY="65.0" prefHeight="35.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/addBook-des.css" text="Book Title:" />
                               <TextField fx:id="bookTitleTextField" layoutX="492.0" layoutY="66.0" prefHeight="30.0" prefWidth="243.0" />
-                              <Button fx:id="addButton" layoutX="671.0" layoutY="488.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="100.0" styleClass="btn" stylesheets="@../des/addBook-des.css" text="Add" />
+                              <Button fx:id="addButton" layoutX="671.0" layoutY="488.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="53.0" prefWidth="100.0" styleClass="btn" stylesheets="@../des/addBook-des.css" text="Add" />
                               <Label layoutX="356.0" layoutY="110.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/addBook-des.css" text="Author:" />
                               <TextField fx:id="authorTextField" layoutX="492.0" layoutY="113.0" prefHeight="30.0" prefWidth="243.0" />
                               <Label layoutX="356.0" layoutY="155.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/addBook-des.css" text="Publisher:" />
@@ -83,6 +83,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </AnchorPane>
+                              <Label fx:id="messageLabel" layoutX="229.0" layoutY="31.0" />
                            </children>
                         </AnchorPane>
                      </children>

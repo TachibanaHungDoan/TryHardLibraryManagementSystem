@@ -160,7 +160,7 @@ public class BooksController {
                 int quantity = resultSet.getInt("quantity");
                 int state = resultSet.getInt("state");
                 int remaining = resultSet.getInt("remaining");
-                Book book = new Book(id, title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+                Book book = new Book(id,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
                 bookList.add(book);
             }
             booksTable.setItems(bookList);
