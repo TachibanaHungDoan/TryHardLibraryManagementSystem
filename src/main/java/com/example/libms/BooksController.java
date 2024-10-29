@@ -3,15 +3,9 @@ package com.example.libms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BooksController {
@@ -86,11 +79,6 @@ public class BooksController {
 
     @FXML
     private Button viewBookButton;
-
-    @FXML
-    private void updateBookButtonClicked() throws IOException {
-        SceneController.openDialogPane("AdminView/updateBooks-view.fxml", "UpdateBooks", updateBookButton);
-    }
 
     @FXML
     void initialize() {
@@ -198,5 +186,15 @@ public class BooksController {
     @FXML
     void addBookButtonClicked() throws IOException {
         SceneController.switchScene("AdminView/addBooks-view.fxml", addBookButton);
+    }
+
+    @FXML
+    void updateBookButtonClicked() throws IOException {
+        SceneController.openDialogPane("AdminView/updateBooksInBooks-view.fxml", "UpdateBooks", updateBookButton);
+    }
+
+    @FXML
+    void viewBookButtonClicked() throws IOException {
+        SceneController.openDialogPane("AdminView/viewBooksInBooks-view.fxml", "ViewBook", viewBookButton);
     }
 }

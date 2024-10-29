@@ -1,0 +1,21 @@
+.bigText-label{
+    -fx-alignment: center;
+    -fx-font-family: "Gotham Black";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 45px;
+}
+
+.smallText-label {
+    -fx-alignment: center-right;
+    -fx-font-family: "Gotham-light";
+    -fx-font-size: 21px;
+    -fx-text-fill: #000;
+}
+
+.contentText-label {
+    -fx-alignment: center-left;
+    -fx-font-family: "Gotham-light";
+    -fx-font-size: 21px;
+    -fx-text-fill: #000;
+}
