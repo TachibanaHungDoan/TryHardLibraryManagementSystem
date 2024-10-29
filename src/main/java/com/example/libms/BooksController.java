@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BooksController {
@@ -88,7 +89,7 @@ public class BooksController {
 
     @FXML
     private void updateBookButtonClicked() throws IOException {
-        SceneController.openDialogPane("AdminView/updateBooks-view.fxml", updateBookButton);
+        SceneController.openDialogPane("AdminView/updateBooks-view.fxml", "UpdateBooks", updateBookButton);
     }
 
     @FXML
