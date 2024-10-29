@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<DialogPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.libms.UpdateBooksController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</DialogPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="686.0" stylesheets="@../des/adminTemplate-des.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.UpdateBooksController">
+   <styleClass>
+      <String fx:value="bg" />
+      <String fx:value="shadow" />
+   </styleClass>
+   <children>
+      <BorderPane prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <Label layoutX="59.0" layoutY="29.0" prefHeight="35.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Book Title:" />
+                  <TextField fx:id="bookTitleTextField" layoutX="189.0" layoutY="30.0" prefHeight="30.0" prefWidth="243.0" />
+                  <Label layoutX="59.0" layoutY="74.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Author:" />
+                  <TextField fx:id="authorTextField" layoutX="189.0" layoutY="77.0" prefHeight="30.0" prefWidth="243.0" />
+                  <Label layoutX="59.0" layoutY="119.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Publisher:" />
+                  <Label layoutX="59.0" layoutY="164.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Book ISBN:" />
+                  <Label layoutX="19.0" layoutY="209.0" prefHeight="34.0" prefWidth="161.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Published Date:" />
+                  <Label layoutX="59.0" layoutY="254.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Edition:" />
+                  <Label layoutX="59.0" layoutY="299.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Quantity:" />
+                  <Label layoutX="59.0" layoutY="344.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="State:" />
+                  <Label layoutX="59.0" layoutY="389.0" prefHeight="34.0" prefWidth="120.0" styleClass="smallText-label" stylesheets="@../des/updateBooks-des.css" text="Remaining:" />
+                  <TextField fx:id="publisherTextField" layoutX="189.0" layoutY="123.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="bookISBNTextField" layoutX="189.0" layoutY="167.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="publishedDateTextField" layoutX="189.0" layoutY="212.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="editionTextField" layoutX="189.0" layoutY="257.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="quantityTextField" layoutX="189.0" layoutY="301.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="stateTextField" layoutX="189.0" layoutY="345.0" prefHeight="30.0" prefWidth="243.0" />
+                  <TextField fx:id="remainingTextField" layoutX="189.0" layoutY="394.0" prefHeight="30.0" prefWidth="243.0" />
+               </children>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="450.0" prefWidth="204.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="450.0" prefWidth="204.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutY="262.0" prefHeight="43.0" prefWidth="204.0" styleClass="bigText-label" stylesheets="@../des/updateBooks-des.css" text="Book" />
+                        <Label layoutY="228.0" prefHeight="43.0" prefWidth="204.0" styleClass="bigText-label" stylesheets="@../des/updateBooks-des.css" text="Update" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

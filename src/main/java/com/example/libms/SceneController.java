@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -36,7 +37,7 @@ public class SceneController {
 
     protected static void openDialogPane(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
-        DialogPane dialogPane = fxmlLoader.load();
+        AnchorPane dialogPane = fxmlLoader.load();
 
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Update Book");
