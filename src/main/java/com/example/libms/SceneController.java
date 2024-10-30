@@ -44,13 +44,21 @@ public class SceneController {
         }
     }
 
+    protected static void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     protected static void setUpScene(Label usernameLabel, Label timeLabel) {
         usernameLabel.setText(userName);
         setUpTimeLabel(timeLabel);
     }
 
     private static void setUpTimeLabel (Label timeLabel) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event ->

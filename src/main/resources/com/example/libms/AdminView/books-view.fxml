@@ -65,16 +65,16 @@
                               <Button fx:id="addBookButton" layoutX="470.0" layoutY="61.0" mnemonicParsing="false" onAction="#addBookButtonClicked" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="Add " />
                               <TableView fx:id="booksTable" layoutX="10.0" layoutY="117.0" prefHeight="417.0" prefWidth="816.0">
                                 <columns>
-                                  <TableColumn fx:id="bookIDColumn" prefWidth="67.0" text="BookID" />
-                                  <TableColumn fx:id="titleColumn" prefWidth="111.0" text="Title" />
-                                    <TableColumn fx:id="authorColumn" prefWidth="68.33331298828125" text="Author" />
-                                    <TableColumn fx:id="publisherColumn" prefWidth="89.3333740234375" text="Publisher" />
-                                    <TableColumn fx:id="ISBNColumn" prefWidth="70.6666259765625" text="ISBN" />
-                                    <TableColumn fx:id="publishedDateColumn" prefWidth="106.66668701171875" text="PublishedDate" />
-                                    <TableColumn fx:id="editionColumn" prefWidth="63.0" text="Edition" />
-                                    <TableColumn fx:id="quantityColumn" prefWidth="57.6666259765625" text="Quantity" />
-                                    <TableColumn fx:id="stateColumn" prefWidth="74.0" text="State" />
-                                    <TableColumn fx:id="remainingColumn" prefWidth="107.3333740234375" text="Remaining" />
+                                  <TableColumn fx:id="bookIDColumn" prefWidth="47.5" text="BookID" />
+                                  <TableColumn fx:id="titleColumn" prefWidth="121.5" text="Title" />
+                                    <TableColumn fx:id="authorColumn" prefWidth="99.5" text="Author" />
+                                    <TableColumn fx:id="publisherColumn" prefWidth="91.0" text="Publisher" />
+                                    <TableColumn fx:id="ISBNColumn" prefWidth="79.0" text="ISBN" />
+                                    <TableColumn fx:id="publishedDateColumn" prefWidth="116.0" text="PublishedDate" />
+                                    <TableColumn fx:id="editionColumn" prefWidth="56.0" text="Edition" />
+                                    <TableColumn fx:id="quantityColumn" prefWidth="60.5" text="Quantity" />
+                                    <TableColumn fx:id="stateColumn" prefWidth="76.0" text="State" />
+                                    <TableColumn fx:id="remainingColumn" prefWidth="69.5" text="Remaining" />
                                 </columns>
                               </TableView>
                               <Label layoutX="4.0" layoutY="1.0" styleClass="bigText-label" stylesheets="@../des/books-des.css" text="Book Management" />

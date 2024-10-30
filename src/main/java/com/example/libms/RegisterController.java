@@ -39,12 +39,13 @@ public class RegisterController {
             registerMessageLabel.setText("Your passwords do not match!");
         } else {
             if (registerUser(username, password)) {
-                showAlert("Registration Successful", "You have registered successfully!", Alert.AlertType.INFORMATION);
-                // If registration is successful, switch to login view
-                Parent root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
-                Stage stage = (Stage) registerButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+                SceneController.showAlert("Registration Successful"
+                                                ,null
+                                                ,"You have registered successfully!"
+                                                ,Alert.AlertType.INFORMATION);
+
+                SceneController.switchScene("login-view.fxml", registerButton);
+
             } else {
                 registerMessageLabel.setText("Registration failed. Try again.");
             }
@@ -66,14 +67,6 @@ public class RegisterController {
             e.printStackTrace();
             return false;
         }
-    }
-
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null); // No header text
-        alert.setContentText(message);
-        alert.showAndWait(); // Wait for the user to close the alert
     }
 
     public void initialize() {
