@@ -147,7 +147,10 @@ public class BooksController {
                 Date publishedDate = resultSet.getDate("publishedDate");
                 int edition = resultSet.getInt("edition");
                 int quantity = resultSet.getInt("quantity");
-                int state = resultSet.getInt("state");
+
+                String stateString = resultSet.getString("state");
+                Book.BookState state = Book.BookState.valueOf(stateString.toLowerCase());
+
                 int remaining = resultSet.getInt("remaining");
                 Book book = new Book(id,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
                 bookList.add(book);

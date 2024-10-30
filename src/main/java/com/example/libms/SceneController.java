@@ -61,10 +61,9 @@ public class SceneController {
     }
 
     protected static void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
+        Alert alert = new Alert(alertType, message, ButtonType.OK);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
-        alert.setContentText(message);
         alert.showAndWait();
     }
 

@@ -1,6 +1,7 @@
 package com.example.libms;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -80,7 +81,7 @@ public class AddBooksController {
     private Label messageLabel;
 
     private BookDAO bookdao = new BookDAO();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Ensure the date format matches your input
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @FXML
     void initialize() {
@@ -116,7 +117,6 @@ public class AddBooksController {
 
     @FXML
     void cancelButtonClicked() throws IOException, SQLException {
-        SceneController.switchScene("AdminView/books-view.fxml", cancelButton);
         bookTitleTextField.clear();
         authorTextField.clear();
         publisherTextField.clear();
@@ -126,12 +126,14 @@ public class AddBooksController {
         quantityTextField.clear();
         stateTextField.clear();
         remainingTextField.clear();
+        SceneController.switchScene("AdminView/books-view.fxml", cancelButton);
     }
 
     private void addBook() {
         String title = bookTitleTextField.getText();
         String author = authorTextField.getText();
         String publisher = publisherTextField.getText();
+
         String publishedDateStr = publishedDateTextField.getText();
         Date publishedDate = null;
         try {
@@ -140,19 +142,36 @@ public class AddBooksController {
             }
         } catch (ParseException e) {
             e.printStackTrace();
-            messageLabel.setText("Invalid date format.");
+            SceneController.showAlert(null, null, "Invalid date format.", Alert.AlertType.ERROR);
             return; // Exit the method if date parsing fails
-            }
-            String isbn = bookISBNTextField.getText();
-            int edition = Integer.parseInt(editionTextField.getText());
-            int quantity = Integer.parseInt(quantityTextField.getText());
-            int state = Integer.parseInt(stateTextField.getText());
-            int remaining = Integer.parseInt(remainingTextField.getText());
-            Book book = new Book(0,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
-            try { bookdao.insert(book);
-                messageLabel.setText("Book added successfully!");
-            } catch (Exception ex) { ex.printStackTrace(); messageLabel.setText("Failed to add book.");
-            }
+        }
+
+        String isbn = bookISBNTextField.getText();
+        int edition = Integer.parseInt(editionTextField.getText());
+        int quantity = Integer.parseInt(quantityTextField.getText());
+        //int state = Integer.parseInt(stateTextField.getText());
+
+        String stateString = stateTextField.getText().toLowerCase();
+        Book.BookState state;
+        try {
+            state = Book.BookState.valueOf(stateString);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            SceneController.showAlert(null, null, "Invalid state value. Use AVAILABLE or UNAVAILABLE.", Alert.AlertType.ERROR);
+            return;
+        }
+
+        int remaining = Integer.parseInt(remainingTextField.getText());
+
+        Book book = new Book(0,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+
+        try {
+            bookdao.insert(book);
+            SceneController.showAlert(null,null,"Book added successfully!", Alert.AlertType.INFORMATION);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            SceneController.showAlert(null, null, "Failed to add book.", Alert.AlertType.ERROR);
+        }
     }
 
     private void importImage() {

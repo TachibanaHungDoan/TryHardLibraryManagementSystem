@@ -1,0 +1,60 @@
+.black-label {
+    -fx-text-fill: #000;
+    -fx-alignment: center-left;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Gotham Black";
+}
+
+.blackSmall-label {
+    -fx-text-fill: #000;
+    -fx-alignment: center;
+    -fx-font-family: Gotham-light;
+    -fx-font-size: 14px;
+}
+
+.white-label {
+    -fx-text-fill: #fff;
+    -fx-alignment: center-left;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Gotham Black";
+}
+
+.whiteSmall-label {
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-font-family: Gotham-light;
+    -fx-font-size: 16px;
+}
+
+.bgLogin {
+    -fx-background-color: #000;
+}
+
+.login-btn {
+    -fx-background-color: black;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 15px;
+    -fx-text-fill: #fff;
+}
+
+.login-btn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #000;
+}
+
+.createAccount-btn {
+    -fx-border-color: white;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 15px;
+    -fx-text-fill: #fff;
+}
+
+.createAccount-btn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #000;
+}

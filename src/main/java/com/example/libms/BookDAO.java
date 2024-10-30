@@ -21,7 +21,8 @@ public class BookDAO implements DAOInterface <Book> {
             st.setDate(5, book.getPublishedDate() != null ? new java.sql.Date(book.getPublishedDate().getTime()) : null);
             st.setInt(6, book.getEdition());
             st.setInt(7, book.getQuantity());
-            st.setInt(8, book.getState());
+            //st.setInt(8, book.getState().ordinal());
+            st.setString(8, book.getState().name());
             st.setInt(9, book.getRemaining());
 
             int rowsInserted = st.executeUpdate();
