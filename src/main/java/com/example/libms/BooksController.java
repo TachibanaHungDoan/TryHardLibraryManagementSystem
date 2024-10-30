@@ -180,7 +180,12 @@ public class BooksController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchScene("login-view.fxml", logOutButton);
+        SceneController.switchSceneWithAlert("login-view.fxml"
+                , logOutButton
+                , null
+                , null
+                ,"Do you want to log out?"
+                , Alert.AlertType.CONFIRMATION);
     }
 
     @FXML

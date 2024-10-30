@@ -2,11 +2,7 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -95,7 +91,12 @@ public class ReadersController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchScene("login-view.fxml", logOutButton);
+        SceneController.switchSceneWithAlert("login-view.fxml"
+                , logOutButton
+                , null
+                , null
+                ,"Do you want to log out?"
+                , Alert.AlertType.CONFIRMATION);
     }
 
 }

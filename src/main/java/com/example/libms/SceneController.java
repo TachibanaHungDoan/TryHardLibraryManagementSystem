@@ -32,6 +32,22 @@ public class SceneController {
         stage.show();
     }
 
+    protected static void switchSceneWithAlert(String fxmlViewFile, Button button, String title, String headerText, String message, Alert.AlertType alertType) throws IOException {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(message);
+
+        ButtonType okButton = new ButtonType("OK");
+        ButtonType cancelButton = new ButtonType("Cancel");
+        alert.getButtonTypes().setAll(okButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == okButton) {
+            switchScene(fxmlViewFile, button);
+        }
+    }
+
     protected static void openDialogPane(String fxmlViewFile, String title, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
         DialogPane dialogPane = fxmlLoader.load();
