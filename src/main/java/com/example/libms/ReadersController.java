@@ -32,7 +32,7 @@ public class ReadersController {
     private TextField readerEmailTextField;
 
     @FXML
-    private ComboBox<?> readerGenderChoiceBox;
+    private ChoiceBox readerGenderChoiceBox;
 
     @FXML
     private TextField readerIDTextField;
@@ -91,12 +91,9 @@ public class ReadersController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("login-view.fxml"
-                , logOutButton
-                , null
-                , null
-                ,"Do you want to log out?"
-                , Alert.AlertType.CONFIRMATION);
+        SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
+                , null, null
+                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
     }
 
 }

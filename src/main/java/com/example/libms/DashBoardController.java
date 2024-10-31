@@ -46,11 +46,12 @@ public class DashBoardController {
     void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
         totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
+        totalReadersLabel.setText(String.valueOf(getTotalReadersFromDatabase()));
     }
 
     private int getTotalBooksFromDatabase() {
         int totalBooks = 0;
-        String query = "SELECT COUNT(*) AS total FROM books";
+        String query = "SELECT COUNT(bookID) AS total FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
@@ -64,6 +65,23 @@ public class DashBoardController {
         }
 
         return totalBooks;
+    }
+
+    private int getTotalReadersFromDatabase() {
+        int totalReaders = 0;
+        String query = "SELECT COUNT(readerID) AS total FROM readers";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            if (resultSet.next()) {
+                totalReaders = resultSet.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalReaders;
     }
 
     @FXML
@@ -88,11 +106,8 @@ public class DashBoardController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("login-view.fxml"
-                                            , logOutButton
-                                            , null
-                                            , null
-                                            ,"Do you want to log out?"
-                                            , Alert.AlertType.CONFIRMATION);
+        SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
+                                            , null, null
+                                            ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
     }
 }

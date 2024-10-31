@@ -3,16 +3,10 @@ package com.example.libms;
 import java.util.Date;
 
 public class Book {
+
     public enum BookState {
         available,
         unavailable
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     private int id;
@@ -39,7 +33,12 @@ public class Book {
         this.remaining = remaining;
     }
 
-    public Book(int id, String title, String author, String publisher, String isbn, String publishedDate, int edition, int quantity, int state, String remaining) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

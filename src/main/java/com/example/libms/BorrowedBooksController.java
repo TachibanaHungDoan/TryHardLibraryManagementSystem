@@ -64,12 +64,9 @@ public class BorrowedBooksController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("login-view.fxml"
-                , logOutButton
-                , null
-                , null
-                ,"Do you want to log out?"
-                , Alert.AlertType.CONFIRMATION);
+        SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
+                , null, null
+                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
     }
 
 }

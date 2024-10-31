@@ -42,7 +42,7 @@ public class BooksController {
     @FXML
     private TableColumn<Book, Integer> editionColumn;
     @FXML
-    private TableColumn<Book, Integer> quantityColumn;
+    private TableColumn<Book, String> quantityColumn;
     @FXML
     private TableColumn<Book, Integer> stateColumn;
     @FXML
@@ -183,12 +183,9 @@ public class BooksController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("login-view.fxml"
-                , logOutButton
-                , null
-                , null
-                ,"Do you want to log out?"
-                , Alert.AlertType.CONFIRMATION);
+        SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
+                , null, null
+                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
     }
 
     @FXML
