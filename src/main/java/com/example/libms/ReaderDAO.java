@@ -3,6 +3,7 @@ package com.example.libms;
 import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReaderDAO implements DAOInterface <Reader>{
 
@@ -48,7 +49,7 @@ public class ReaderDAO implements DAOInterface <Reader>{
     }
 
     @Override
-    public ArrayList<Reader> selectAll() {
+    public List<Reader> getAllBooks() {
         return null;
     }
 

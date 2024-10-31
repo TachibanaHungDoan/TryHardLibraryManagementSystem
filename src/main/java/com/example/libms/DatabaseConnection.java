@@ -1,8 +1,6 @@
 package com.example.libms;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /*public class DatabaseConnection {
     public Connection databaseLink;
@@ -48,6 +46,16 @@ public class DatabaseConnection {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void closeStatement(Statement stmt) {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

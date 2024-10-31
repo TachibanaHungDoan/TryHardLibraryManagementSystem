@@ -2,6 +2,7 @@ package com.example.libms;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BookDAO implements DAOInterface <Book> {
     public static BookDAO getInstance() {
@@ -68,13 +69,54 @@ public class BookDAO implements DAOInterface <Book> {
 
     @Override
     public int delete(Book book) {
-        return 0;
+        String sql = "DELETE FROM books WHERE bookID = ?";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
+
+            st.setInt(1, book.getId()); // Assuming 'id' is the primary key for identifying the book record
+
+            int rowsDeleted = st.executeUpdate();
+            return rowsDeleted; // Returns the number of rows deleted, 0 if no rows were affected
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0; // Indicate failure
+        }
     }
 
     @Override
-    public ArrayList<Book> selectAll() {
-        return null;
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM books"; // Replace 'books' with your actual table name
+
+        try (Connection conn = DatabaseConnection.getConnection(); // Ensure you have a Database class to handle connections
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                // Create Book object based on ResultSet
+                int id = rs.getInt("bookID"); // Replace 'id' with your actual column name
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String isbn = rs.getString("isbn");
+                Date publishedDate = rs.getDate("publishedDate"); // Adjust according to your DB column type
+                int edition = rs.getInt("edition");
+                int quantity = rs.getInt("quantity");
+                String stateString = rs.getString("state"); // Assuming you store the state as a string in DB
+                Book.BookState state = Book.BookState.valueOf(stateString); // Convert string to enum
+                int remaining = rs.getInt("remaining");
+
+                // Create Book instance
+                Book book = new Book(id, title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+                books.add(book); // Add to list
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books; // Return the list of books
     }
+
 
     @Override
     public Book selectById(Book book) {
@@ -85,4 +127,22 @@ public class BookDAO implements DAOInterface <Book> {
     public ArrayList<Book> selectByCondition(String condition) {
         return null;
     }
+    public int deleteBookById(int bookID) {
+        Connection conn = null;
+        PreparedStatement deleteStmt = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String deleteQuery = "DELETE FROM books WHERE bookID = ?";
+            deleteStmt = conn.prepareStatement(deleteQuery);
+            deleteStmt.setInt(1, bookID);
+            return deleteStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            DatabaseConnection.closeStatement(deleteStmt);
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
+
 }

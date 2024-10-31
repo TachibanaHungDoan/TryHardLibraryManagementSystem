@@ -78,7 +78,7 @@
                                 </columns>
                               </TableView>
                               <Label layoutX="4.0" layoutY="1.0" styleClass="bigText-label" stylesheets="@../des/books-des.css" text="Book Management" />
-                              <Button fx:id="deleteBookButton" layoutX="280.0" layoutY="61.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="Delete " />
+                              <Button fx:id="deleteBookButton" layoutX="280.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteBookButtonClicked" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="Delete " />
                               <Button fx:id="updateBookButton" layoutX="375.0" layoutY="61.0" mnemonicParsing="false" onAction="#updateBookButtonClicked" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="Update" />
                               <Button fx:id="viewBookButton" layoutX="185.0" layoutY="61.0" mnemonicParsing="false" onAction="#viewBookButtonClicked" prefHeight="35.0" prefWidth="85.0" styleClass="addbook-btn" stylesheets="@../des/books-des.css" text="View " />
                            </children>

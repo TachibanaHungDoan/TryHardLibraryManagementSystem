@@ -224,4 +224,47 @@ public class BooksController {
     void viewBookButtonClicked() throws IOException {
         SceneController.openDialogPane("AdminView/viewBooksInBooks-view.fxml", "ViewBook", viewBookButton);
     }
+    @FXML
+    private void deleteBookButtonClicked() {
+        Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
+
+        if (selectedBook != null) {
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Delete Book");
+            confirmAlert.setHeaderText("Are you sure you want to delete the selected book?");
+            confirmAlert.setContentText("This action cannot be undone.");
+
+            Optional<ButtonType> result = confirmAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                BookDAO bookDAO = new BookDAO();
+
+                // Assume selectedBook has an accessible field `id` as the primary key
+                int deleteResult = bookDAO.deleteBookById(selectedBook.getId());
+
+                if (deleteResult > 0) {
+                    loadBooks();  // Reload table to show updated book list
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Delete Success");
+                    successAlert.setContentText("The book was successfully deleted.");
+                    successAlert.showAndWait();
+                } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Delete Failed");
+                    errorAlert.setContentText("Failed to delete the book. Please try again.");
+                    errorAlert.showAndWait();
+                }
+            }
+        } else {
+            Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+            warningAlert.setTitle("No Selection");
+            warningAlert.setContentText("Please select a book to delete.");
+            warningAlert.showAndWait();
+        }
+    }
+    @FXML
+    private void loadBooks() {
+        BookDAO bookDAO = new BookDAO();
+        ObservableList<Book> books = FXCollections.observableArrayList(bookDAO.getAllBooks());
+        booksTable.setItems(books);
+    }
 }
