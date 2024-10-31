@@ -1,6 +1,9 @@
 package com.example.libms;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class UpdateBooksController {
@@ -31,8 +34,10 @@ public class UpdateBooksController {
 
     @FXML
     private TextField stateTextField;
+
     private Book book;
     private final BookDAO bookDao = new BookDAO();
+    private BooksController booksController;
 
     public void setBookData(Book book) {
         this.book = book;
@@ -45,6 +50,10 @@ public class UpdateBooksController {
         quantityTextField.setText(String.valueOf(book.getQuantity()));
         stateTextField.setText(book.getState().name());
         remainingTextField.setText(String.valueOf(book.getRemaining()));
+    }
+
+    public void setBooksController(BooksController booksController) {
+        this.booksController = booksController;
     }
 
     // Method to save updated book data
@@ -68,12 +77,29 @@ public class UpdateBooksController {
 
             if (rowsUpdated > 0) {
                 System.out.println("Book updated successfully!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Update Success");
+                alert.setHeaderText("Book Updated Successfully");
+                alert.setContentText("The book was updated successfully.");
+                alert.showAndWait();
+                if (booksController != null) {
+                    booksController.loadBooks();
+                }
             } else {
-                System.out.println("No book was updated. Please check the input.");
+                // Show alert for no update
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update Failed");
+                alert.setHeaderText("No Book Updated");
+                alert.setContentText("No book was updated. Please check the input.");
+                alert.showAndWait();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error updating book. Please check the input fields.");
+        }catch(Exception e){
+                e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Error");
+            alert.setHeaderText("Error Updating Book");
+            alert.setContentText("There was an error updating the book. Please check the input fields.");
+            alert.showAndWait();
         }
     }
 }

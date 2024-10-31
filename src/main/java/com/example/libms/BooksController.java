@@ -49,9 +49,6 @@ public class BooksController {
     private TableColumn<Book, Integer> stateColumn;
     @FXML
     private TableColumn<Book, Integer> remainingColumn;
-
-    private ObservableList<Book> bookList = FXCollections.observableArrayList();
-
     @FXML
     private Button borrowedBooksButton;
 
@@ -89,6 +86,7 @@ public class BooksController {
         setBooksTable();
         searchBar.setOnKeyReleased(this::searchBooks);
     }
+    private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
     private void setBooksTable() {
         bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -205,6 +203,8 @@ public class BooksController {
             UpdateBooksController updateBookController = loader.getController();
             updateBookController.setBookData(selectedBook);
 
+            //pass the BooksController to the UpdateBooksController
+            updateBookController.setBooksController(this);
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("Update Book");
@@ -213,9 +213,14 @@ public class BooksController {
             Optional<ButtonType> result = dialog.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 updateBookController.saveUpdatedBook();
+                this.loadBooks();
             }
         } else {
-            System.out.println("No book selected for update.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Book Selected");
+            alert.setContentText("Please select a book to update.");
+            alert.showAndWait();
         }
         //SceneController.openDialogPane("AdminView/updateBooksInBooks-view.fxml", "UpdateBooks", updateBookButton);
     }
@@ -243,6 +248,7 @@ public class BooksController {
 
                 if (deleteResult > 0) {
                     loadBooks();  // Reload table to show updated book list
+                    allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Delete Success");
                     successAlert.setContentText("The book was successfully deleted.");
@@ -262,9 +268,8 @@ public class BooksController {
         }
     }
     @FXML
-    private void loadBooks() {
-        BookDAO bookDAO = new BookDAO();
-        ObservableList<Book> books = FXCollections.observableArrayList(bookDAO.getAllBooks());
-        booksTable.setItems(books);
+    public void loadBooks() {
+        bookList.clear();
+        loadBooksDataFromDatabase();
     }
 }
