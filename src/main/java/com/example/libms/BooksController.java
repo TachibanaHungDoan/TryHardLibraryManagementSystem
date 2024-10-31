@@ -3,6 +3,7 @@ package com.example.libms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BooksController {
@@ -195,7 +197,27 @@ public class BooksController {
 
     @FXML
     void updateBookButtonClicked() throws IOException {
-        SceneController.openDialogPane("AdminView/updateBooksInBooks-view.fxml", "UpdateBooks", updateBookButton);
+        Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/updateBooksInBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            UpdateBooksController updateBookController = loader.getController();
+            updateBookController.setBookData(selectedBook);
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("Update Book");
+
+            // Show dialog and wait for user action
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                updateBookController.saveUpdatedBook();
+            }
+        } else {
+            System.out.println("No book selected for update.");
+        }
+        //SceneController.openDialogPane("AdminView/updateBooksInBooks-view.fxml", "UpdateBooks", updateBookButton);
     }
 
     @FXML
