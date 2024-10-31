@@ -102,11 +102,11 @@
                                     </TextField>
                                     <TableView fx:id="readersTable" layoutX="6.0" layoutY="105.0" prefHeight="272.0" prefWidth="742.0">
                                       <columns>
-                                        <TableColumn prefWidth="87.0" text="ReaderID" />
-                                        <TableColumn prefWidth="186.5" text="Name" />
-                                          <TableColumn prefWidth="80.5" text="Gender" />
-                                          <TableColumn prefWidth="147.0" text="Phone Number" />
-                                          <TableColumn prefWidth="204.0" text="Email" />
+                                        <TableColumn fx:id="readerIDColumn" prefWidth="82.0" text="ReaderID" />
+                                        <TableColumn fx:id="readerNameColumn" prefWidth="191.5" text="Name" />
+                                          <TableColumn fx:id="genderColumn" prefWidth="80.5" text="Gender" />
+                                          <TableColumn fx:id="phoneNumberColumn" prefWidth="163.5" text="Phone Number" />
+                                          <TableColumn fx:id="emailColumn" prefWidth="223.0" text="Email" />
                                       </columns>
                                     </TableView>
                                     <Button fx:id="viewReaderButton" layoutX="660.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" styleClass="up-btn" stylesheets="@../des/readers-des.css" text="View" />

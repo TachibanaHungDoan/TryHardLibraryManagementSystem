@@ -100,7 +100,7 @@ public class BooksController {
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
         remainingColumn.setCellValueFactory(new PropertyValueFactory<>("remaining"));
 
-        loadDataFromDatabase();
+        loadBooksDataFromDatabase();
     }
 
     private void searchBooks(KeyEvent event) {
@@ -133,7 +133,7 @@ public class BooksController {
         return totalBooks;
     }
 
-    private void loadDataFromDatabase() {
+    private void loadBooksDataFromDatabase() {
         String query = "SELECT * FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);

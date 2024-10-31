@@ -157,7 +157,8 @@ public class AddBooksController {
             state = Book.BookState.valueOf(stateString);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            SceneController.showAlert(null, null, "Invalid state value. Use AVAILABLE or UNAVAILABLE.", Alert.AlertType.ERROR);
+            SceneController.showAlert(null, null,
+                            "Invalid State Filling. You must entered available or unavailable!", Alert.AlertType.ERROR);
             return;
         }
 

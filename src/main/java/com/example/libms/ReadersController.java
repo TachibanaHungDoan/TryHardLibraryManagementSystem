@@ -1,10 +1,20 @@
 package com.example.libms;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReadersController {
     @FXML
@@ -47,7 +57,24 @@ public class ReadersController {
     private Button readersButton;
 
     @FXML
-    private TableView<?> readersTable;
+    private TableView<Reader> readersTable;
+
+    @FXML
+    private TableColumn<Reader, String> emailColumn;
+
+    @FXML
+    private TableColumn<Reader, String> genderColumn;
+
+    @FXML
+    private TableColumn<Reader, Integer> phoneNumberColumn;
+
+    @FXML
+    private TableColumn<Reader, Integer> readerIDColumn;
+
+    @FXML
+    private TableColumn<Reader, String> readerNameColumn;
+
+    private ObservableList<Reader> readersList = FXCollections.observableArrayList();
 
     @FXML
     private TextField searchBar;
@@ -67,6 +94,52 @@ public class ReadersController {
     @FXML
     void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
+        setReadersTable();
+        searchBar.setOnKeyReleased(this::searchReaders);
+    }
+
+    private void setReadersTable() {
+        readerIDColumn.setCellValueFactory(new PropertyValueFactory<>("readerID"));
+        readerNameColumn.setCellValueFactory(new PropertyValueFactory<>("readerName"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+
+        loadReadersDataFromDatabase();
+    }
+
+    private void loadReadersDataFromDatabase() {
+        String query = "SELECT * FROM readers";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int readerID = resultSet.getInt("readerID");
+                String readerName = resultSet.getString("readerName");
+                String genderString = resultSet.getString("Gender");
+                Reader.ReaderGender gender = Reader.ReaderGender.valueOf(genderString.toLowerCase());
+                int phoneNumber = resultSet.getInt("PhoneNumber");
+                String email = resultSet.getString("Email");
+
+                Reader reader = new Reader(readerID, readerName, gender, phoneNumber, email);
+                readersList.add(reader);
+            }
+            readersTable.setItems(readersList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void searchReaders(KeyEvent event) {
+        String keyword = searchBar.getText().toLowerCase();
+
+        List<Reader> filteredReaders = readersList.stream()
+                .filter(reader -> reader.getReaderName().toLowerCase().contains(keyword) ||
+                        String.valueOf(reader.getReaderID()).contains(keyword))
+                .collect(Collectors.toList());
+        readersTable.setItems(FXCollections.observableArrayList(filteredReaders));
     }
 
     @FXML
