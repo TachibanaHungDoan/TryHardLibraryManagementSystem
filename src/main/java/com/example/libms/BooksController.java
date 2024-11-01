@@ -4,9 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -78,13 +81,17 @@ public class BooksController {
 
     @FXML
     private Button viewBookButton;
-
+    private Book selectedBook;
     @FXML
     void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
         allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
         setBooksTable();
         searchBar.setOnKeyReleased(this::searchBooks);
+        booksTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selectedBook = newValue;
+        });
+
     }
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
@@ -227,7 +234,34 @@ public class BooksController {
 
     @FXML
     void viewBookButtonClicked() throws IOException {
-        SceneController.openDialogPane("AdminView/viewBooksInBooks-view.fxml", "ViewBook", viewBookButton);
+        if (selectedBook != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/viewBooksInBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            // Pass the book data to the controller
+            ViewBooksController controller = loader.getController();
+            controller.setBookData(selectedBook);
+
+            // Show dialog
+            /*Stage dialogStage = new Stage();
+            dialogStage.setTitle("UH");
+            dialogStage.setScene(new Scene(dialogPane));
+            dialogStage.showAndWait();*/
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("View Book Details");
+
+            // Show the dialog and handle the OK/Cancel result
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+                // Close dialog on OK or Cancel
+                dialog.close();
+            }
+
+        } else {
+            // Optionally, display an alert if no row is selected
+            System.out.println("Please select a book to view its details.");
+        }
     }
     @FXML
     private void deleteBookButtonClicked() {
