@@ -31,6 +31,7 @@ public class ViewBooksController {
 
     @FXML
     private Label stateLabel;
+
     public void setBookData(Book book) {
         bookTitleLabel.setText(book.getTitle());
         authorLabel.setText(book.getAuthor());

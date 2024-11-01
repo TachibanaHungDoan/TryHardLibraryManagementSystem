@@ -77,29 +77,16 @@ public class UpdateBooksController {
 
             if (rowsUpdated > 0) {
                 System.out.println("Book updated successfully!");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Update Success");
-                alert.setHeaderText("Book Updated Successfully");
-                alert.setContentText("The book was updated successfully.");
-                alert.showAndWait();
+                SceneController.showAlert("Update Success", "Book Updated Successfully", "The book was updated successfully", Alert.AlertType.INFORMATION);
                 if (booksController != null) {
                     booksController.loadBooks();
                 }
             } else {
-                // Show alert for no update
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Update Failed");
-                alert.setHeaderText("No Book Updated");
-                alert.setContentText("No book was updated. Please check the input.");
-                alert.showAndWait();
+                SceneController.showAlert("Update Failed", "No Book Updated", "Please check the input.", Alert.AlertType.ERROR);
             }
         }catch(Exception e){
-                e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Error");
-            alert.setHeaderText("Error Updating Book");
-            alert.setContentText("There was an error updating the book. Please check the input fields.");
-            alert.showAndWait();
+            e.printStackTrace();
+            SceneController.showAlert("Update Error", "Error Updating Book", "Please check the input.", Alert.AlertType.ERROR);
         }
     }
 }

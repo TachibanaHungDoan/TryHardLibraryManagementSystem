@@ -24,14 +24,6 @@ public class SceneController {
         stage.show();
     }
 
-    protected static void switchScene(String fxmlViewFile, Label label) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
-        Parent root =fxmlLoader.load();
-        Stage stage = (Stage) label.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
     protected static void switchSceneWithAlert(String fxmlViewFile, Button button, String title, String headerText, String message, Alert.AlertType alertType) throws IOException {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

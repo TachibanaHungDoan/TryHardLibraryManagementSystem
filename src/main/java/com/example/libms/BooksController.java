@@ -81,6 +81,7 @@ public class BooksController {
 
     @FXML
     private Button viewBookButton;
+
     private Book selectedBook;
     @FXML
     void initialize() {
@@ -223,13 +224,9 @@ public class BooksController {
                 this.loadBooks();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Book Selected");
-            alert.setContentText("Please select a book to update.");
-            alert.showAndWait();
+            SceneController.showAlert("No selection", "No Book Selected",
+                             "Please select a book to update", Alert.AlertType.WARNING);
         }
-        //SceneController.openDialogPane("AdminView/updateBooksInBooks-view.fxml", "UpdateBooks", updateBookButton);
     }
 
     @FXML
@@ -242,11 +239,6 @@ public class BooksController {
             ViewBooksController controller = loader.getController();
             controller.setBookData(selectedBook);
 
-            // Show dialog
-            /*Stage dialogStage = new Stage();
-            dialogStage.setTitle("UH");
-            dialogStage.setScene(new Scene(dialogPane));
-            dialogStage.showAndWait();*/
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("View Book Details");
@@ -254,15 +246,15 @@ public class BooksController {
             // Show the dialog and handle the OK/Cancel result
             Optional<ButtonType> result = dialog.showAndWait();
             if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
-                // Close dialog on OK or Cancel
                 dialog.close();
             }
 
         } else {
-            // Optionally, display an alert if no row is selected
-            System.out.println("Please select a book to view its details.");
+            SceneController.showAlert("No selection", "No Book Selected",
+                                "Please select a book to view its details.", Alert.AlertType.WARNING);
         }
     }
+
     @FXML
     private void deleteBookButtonClicked() {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
@@ -283,22 +275,15 @@ public class BooksController {
                 if (deleteResult > 0) {
                     loadBooks();  // Reload table to show updated book list
                     allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
-                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Delete Success");
-                    successAlert.setContentText("The book was successfully deleted.");
-                    successAlert.showAndWait();
+                    SceneController.showAlert("Delete Success", null,
+                                        "The book was successfully deleted.", Alert.AlertType.INFORMATION);
                 } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Delete Failed");
-                    errorAlert.setContentText("Failed to delete the book. Please try again.");
-                    errorAlert.showAndWait();
+                    SceneController.showAlert("Delete Failed", null,
+                                        "Failed to delete the book. Please try again.", Alert.AlertType.ERROR);
                 }
             }
         } else {
-            Alert warningAlert = new Alert(Alert.AlertType.WARNING);
-            warningAlert.setTitle("No Selection");
-            warningAlert.setContentText("Please select a book to delete.");
-            warningAlert.showAndWait();
+            SceneController.showAlert("No selection", null, "Please select a book to delete.", Alert.AlertType.WARNING);
         }
     }
     @FXML
