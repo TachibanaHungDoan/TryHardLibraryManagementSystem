@@ -109,7 +109,6 @@
                                           <TableColumn fx:id="emailColumn" prefWidth="223.0" text="Email" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="viewReaderButton" layoutX="660.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" styleClass="up-btn" stylesheets="@../des/readers-des.css" text="View" />
                                  </children>
                               </AnchorPane>
                               <Label layoutX="19.0" layoutY="412.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="ReaderID:" />
@@ -126,7 +125,7 @@
                               <TextField fx:id="readerPhoneTextField" layoutX="369.0" layoutY="412.0" prefHeight="25.0" prefWidth="157.0" />
                               <Label layoutX="294.0" layoutY="448.0" prefHeight="25.0" prefWidth="66.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Email:" />
                               <TextField fx:id="readerEmailTextField" layoutX="369.0" layoutY="448.0" prefHeight="25.0" prefWidth="157.0" />
-                              <Button fx:id="addReaderButton" layoutX="647.0" layoutY="406.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Add">
+                              <Button fx:id="addReaderButton" layoutX="647.0" layoutY="406.0" mnemonicParsing="false" onAction="#addReaderButtonClicked" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Add">
                                  <styleClass>
                                     <String fx:value="down-btn" />
                                     <String fx:value="shadow" />
