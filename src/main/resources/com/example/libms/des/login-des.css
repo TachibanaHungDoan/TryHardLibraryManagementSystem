@@ -1,16 +1,16 @@
 .black-label {
-    -fx-text-fill: #000;
+    -fx-text-fill: #333;
     -fx-alignment: center-left;
-    -fx-font-size: 20px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-font-family: "Gotham Black";
+    -fx-font-family: 'Roboto Slab', serif;
 }
 
 .blackSmall-label {
-    -fx-text-fill: #000;
-    -fx-alignment: center;
+    -fx-text-fill: #555;
+    -fx-alignment: center-left;
     -fx-font-family: Gotham-light;
-    -fx-font-size: 14px;
+    -fx-font-size: 18px;
 }
 
 .white-label {
@@ -18,31 +18,50 @@
     -fx-alignment: center-left;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-font-family: "Gotham Black";
+    -fx-font-family: "Roboto Slab", serif;
 }
 
 .whiteSmall-label {
     -fx-text-fill: #fff;
     -fx-alignment: center;
     -fx-font-family: Gotham-light;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
+}
+
+.centerWhite-label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Roboto Slab", serif;
+    -fx-alignment: center;
+}
+
+.wbg{
+    /*-fx-background-color: #F2F4F1;*/
+    -fx-background-color: #F0FBF9;
 }
 
 .bgLogin {
-    -fx-background-color: #000;
+    /*-fx-background-color: linear-gradient(to right, #2A9FD6, #1B6CA8);*/
+    /*-fx-background-color: linear-gradient(to bottom, #66b2e0, #1b3f73, #0f1f4f);*/
+    -fx-background-color: linear-gradient(#CCFFAA, #1E5B53);
 }
 
 .login-btn {
-    -fx-background-color: black;
+    -fx-background-color: #1E5B53;
     -fx-cursor: hand;
     -fx-font-family: "Gotham Black";
-    -fx-font-size: 15px;
+    -fx-font-size: 18px;
     -fx-text-fill: #fff;
 }
 
+
 .login-btn:hover {
-    -fx-background-color: white;
-    -fx-text-fill: #000;
+    -fx-background-color: #3D7A6A;
+    -fx-text-fill: #fff;
+    -fx-border-color: #3D7A6A;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #1E5B53, 5, 0.3, 0, 0);
 }
 
 .createAccount-btn {
@@ -50,11 +69,24 @@
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-font-family: "Gotham Black";
-    -fx-font-size: 15px;
+    -fx-font-size: 17px;
     -fx-text-fill: #fff;
 }
 
 .createAccount-btn:hover {
-    -fx-background-color: white;
-    -fx-text-fill: #000;
+    -fx-background-color: #1E5B53;
+    -fx-text-fill: #fff;
+}
+
+.text-field, .password-field {
+    -fx-font-family: 'Roboto', sans-serif; /* Dùng 'Roboto' cho các ô nhập liệu */
+    -fx-font-size: 14px;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #1E5B53; /* Khi focus vào ô nhập liệu, đổi màu viền */
 }

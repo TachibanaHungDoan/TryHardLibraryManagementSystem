@@ -18,6 +18,8 @@ import java.sql.Statement;
 public class LoginController {
 
     @FXML
+    private Label changingLabel;
+    @FXML
     private Button alrButton;
 
     @FXML
@@ -121,8 +123,9 @@ public class LoginController {
         TranslateTransition slider = new TranslateTransition();
         if (event.getSource() == sideSignUpButton) {
             slider.setNode(sideForm);
-            slider.setToX(300);
+            slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
+            changingLabel.setText("Already have account? Sign in now");
             slider.setOnFinished((ActionEvent e) -> {
                 alrButton.setVisible(true);
                 sideSignUpButton.setVisible(false);
@@ -132,6 +135,7 @@ public class LoginController {
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
+            changingLabel.setText("New to our platform? Sign up now");
             slider.setOnFinished((ActionEvent e) -> {
                 alrButton.setVisible(false);
                 sideSignUpButton.setVisible(true);

@@ -42,7 +42,7 @@ public class ReadersController {
     private TextField readerEmailTextField;
 
     @FXML
-    private ChoiceBox readerGenderChoiceBox;
+    private ChoiceBox<Reader.ReaderGender> readerGenderChoiceBox;
 
     @FXML
     private TextField readerIDTextField;
@@ -89,13 +89,11 @@ public class ReadersController {
     private Label usernameLabel;
 
     @FXML
-    private Button viewReaderButton;
-
-    @FXML
     void initialize() {
         SceneController.setUpScene(usernameLabel, timeLabel);
         setReadersTable();
         searchBar.setOnKeyReleased(this::searchReaders);
+        readerGenderChoiceBox.setItems(FXCollections.observableArrayList(Reader.ReaderGender.values()));
     }
 
     private void setReadersTable() {
@@ -168,5 +166,60 @@ public class ReadersController {
                 , null, null
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
     }
+    @FXML
+    void addReaderButtonClicked() {
+        // Get data from input fields
+        String readerName = readerNameTextField.getText().trim();
+        String email = readerEmailTextField.getText().trim();
+        Reader.ReaderGender gender = readerGenderChoiceBox.getValue(); // Get the selected gender
+        int phoneNumber;
 
+        // Validate phone number input
+        try {
+            phoneNumber = Integer.parseInt(readerPhoneTextField.getText().trim());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Input Error");
+            alert.setHeaderText("Phone number must be a valid integer.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Check if all fields are filled correctly
+        if (readerName.isEmpty() || email.isEmpty() || gender == null || phoneNumber <= 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Input Error");
+            alert.setHeaderText("Please fill all fields correctly.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Insert new reader into the database
+        String insertQuery = "INSERT INTO readers (readerName, Gender, PhoneNumber, Email) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+
+            statement.setString(1, readerName);
+            statement.setString(2, gender.name()); // Save the gender as a String
+            statement.setInt(3, phoneNumber);
+            statement.setString(4, email);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Reader added successfully.");
+                alert.showAndWait();
+                loadReadersDataFromDatabase(); // Refresh the table
+            }
+
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setHeaderText("Could not add reader to the database.");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
 }
