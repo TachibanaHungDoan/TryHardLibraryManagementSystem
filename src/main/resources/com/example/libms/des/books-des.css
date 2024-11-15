@@ -1,13 +1,20 @@
 .books-btn {
-    -fx-background-color: white;
+    -fx-background-color: #2C8C6A;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 22px;
-    -fx-text-fill: black;
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-border-color: #2C8C6A;
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
 }
 
 .books-btn:hover {
-    -fx-background-color: white;
+    -fx-background-color: #3D7A6A;
+    -fx-text-fill: white;
+    -fx-border-color: #3D7A6A;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #1E5B53, 10, 0.3, 0, 0);
 }
 
 .smallText-label {

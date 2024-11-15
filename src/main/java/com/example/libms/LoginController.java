@@ -128,7 +128,7 @@ public class LoginController {
             slider.setNode(sideForm);
             slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
-            changingLabel.setText("Already have account? Sign in now");
+            changingLabel.setText("Already have account?");
             slider.setOnFinished((ActionEvent e) -> {
                 alrButton.setVisible(true);
                 sideSignUpButton.setVisible(false);
@@ -139,7 +139,7 @@ public class LoginController {
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
-            changingLabel.setText("New to our platform? Sign up now");
+            changingLabel.setText("New to our platform?");
             slider.setOnFinished((ActionEvent e) -> {
                 alrButton.setVisible(false);
                 sideSignUpButton.setVisible(true);

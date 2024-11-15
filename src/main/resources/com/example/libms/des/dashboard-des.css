@@ -1,19 +1,19 @@
 .home-btn {
-    -fx-background-color: #2C8C6A; /* Màu nền xanh lá đậm vừa phải */
+    -fx-background-color: #2C8C6A;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 22px;
-    -fx-text-fill: white; /* Chữ trắng nổi bật */
-    -fx-border-color: #2C8C6A; /* Viền màu giống với nền */
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-border-color: #2C8C6A;
     -fx-border-width: 2px;
     -fx-background-radius: 5px;
 }
 
 .home-btn:hover {
-    -fx-background-color: #3D7A6A; /* Màu nền khi hover thay đổi thành màu xanh sáng hơn để nổi bật */
-    -fx-text-fill: white; /* Chữ vẫn giữ màu trắng */
-    -fx-border-color: #3D7A6A; /* Viền khi hover có màu tương tự nền */
-    -fx-border-width: 2px; /* Đảm bảo viền không thay đổi kích thước */
+    -fx-background-color: #3D7A6A;
+    -fx-text-fill: white;
+    -fx-border-color: #3D7A6A;
+    -fx-border-width: 2px;
     -fx-effect: dropshadow(gaussian, #1E5B53, 10, 0.3, 0, 0);
 }
 

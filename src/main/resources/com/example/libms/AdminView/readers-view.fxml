@@ -7,73 +7,110 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.ReadersController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.ReadersController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane layoutX="160.0" layoutY="67.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <AnchorPane prefHeight="40.0" prefWidth="750.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="80.0" prefWidth="1300.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="260.0" prefHeight="40.0" prefWidth="840.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutX="360.0" prefHeight="80.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label fx:id="timeLabel" layoutX="3.0" layoutY="7.0" prefHeight="29.0" prefWidth="177.0" styleClass="time-label" stylesheets="@../des/adminTemplate-des.css" text="Time">
+                              <Label fx:id="timeLabel" layoutX="96.0" layoutY="7.0" prefHeight="35.0" prefWidth="278.0" styleClass="footer-label" stylesheets="@../des/adminTemplate-des.css" text="Time">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="25.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/time.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
                </top>
                <left>
-                  <AnchorPane prefHeight="600.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-40.0" prefHeight="600.0" prefWidth="260.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label alignment="CENTER" layoutY="99.0" prefHeight="35.0" prefWidth="260.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="190.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="130.0" prefHeight="29.0" prefWidth="260.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
+                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="233.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Black" size="18.0" />
                                  </font>
                               </Label>
-                              <Line endX="97.0" layoutX="139.0" layoutY="181.0" startX="-121.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Button fx:id="homeButton" layoutY="270.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home">
+                              <Line endX="139.0" layoutX="203.0" layoutY="296.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Button fx:id="homeButton" layoutY="340.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="booksButton" layoutY="320.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
+                              <Button fx:id="booksButton" layoutY="410.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="readersButton" layoutY="370.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="readers-btn" stylesheets="@../des/readers-des.css" text="Readers">
+                              <Button fx:id="readersButton" layoutY="480.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="readers-btn" stylesheets="@../des/readers-des.css" text="Readers">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="borrowedBooksButton" layoutY="420.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
+                              <Button fx:id="borrowedBooksButton" layoutY="560.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="logOutButton" layoutY="550.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="50.0" prefWidth="260.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Log out">
+                              <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="106.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/user.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/home.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/book.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="69.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/reader.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="17.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/borrowedBook.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="82.0" layoutY="665.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/TempIcon/logout.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -82,9 +119,9 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="outbg" stylesheets="@../des/adminTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane prefHeight="555.0" prefWidth="836.0" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/adminTemplate-des.css">
                            <styleClass>
-                              <String fx:value="bg" />
+                              <String fx:value="content-form" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>

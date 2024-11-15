@@ -14,8 +14,8 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Libriscope");
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("Icon/appIcon.png"))));
-        stage.setX(150);
-        stage.setY(120);
+        stage.setX(35);
+        stage.setY(60);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
