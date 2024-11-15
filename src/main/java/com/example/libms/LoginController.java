@@ -44,13 +44,7 @@ public class LoginController {
     private Button signInButton;
 
     @FXML
-    private AnchorPane signInForm;
-
-    @FXML
     private Button signUpButton;
-
-    @FXML
-    private AnchorPane signUpForm;
 
     @FXML
     private PasswordField signUpPassWordPassWordField;
@@ -62,6 +56,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
+        //SceneController.playBackGroundMusic();
         roleChoiceBox.setItems(FXCollections.observableArrayList(new String[] { "Admin", "Reader" }));
     }
 
@@ -71,12 +66,15 @@ public class LoginController {
 
     public void loginButtonClicked() throws IOException {
         if (loginUsernameTextField.getText().isBlank() || loginPassWordPassWordField.getText().isBlank()) {
+            SceneController.alertSoundPlay();
             SceneController.showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
         } else if (validateLogin(loginUsernameTextField.getText(), loginPassWordPassWordField.getText())) {
+            SceneController.playButtonClickSound();
             userName = loginUsernameTextField.getText();
             SceneController.showAlert(null, null, "Login successfully", Alert.AlertType.CONFIRMATION);
             SceneController.switchScene("AdminView/dashBoard-view.fxml", signInButton);
         } else {
+            SceneController.alertSoundPlay();
             SceneController.showAlert(null, null, "Invalid username or password", Alert.AlertType.WARNING);
         }
     }
@@ -87,16 +85,20 @@ public class LoginController {
         String confirmPassword = confirmPassWordPassWordField.getText();
 
         if (username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+            SceneController.alertSoundPlay();
             SceneController.showAlert(null, null, "Please enter your username and password!", Alert.AlertType.WARNING);
         } else if (!password.equals(confirmPassword)) {
+            SceneController.alertSoundPlay();
             SceneController.showAlert(null, null, "Your passwords do not match!", Alert.AlertType.WARNING);
         } else {
             if (registerUser(username, password)) {
+                SceneController.playButtonClickSound();
                 SceneController.showAlert("Registration Successful"
                         ,null
                         ,"You have registered successfully!"
                         ,Alert.AlertType.INFORMATION);
             } else {
+                SceneController.alertSoundPlay();
                 SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
             }
         }
@@ -122,6 +124,7 @@ public class LoginController {
     public void switchForm(ActionEvent event) {
         TranslateTransition slider = new TranslateTransition();
         if (event.getSource() == sideSignUpButton) {
+            SceneController.playButtonClickSound();
             slider.setNode(sideForm);
             slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
@@ -132,6 +135,7 @@ public class LoginController {
             });
             slider.play();
         } else if (event.getSource() == alrButton) {
+            SceneController.playButtonClickSound();
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -16,6 +17,24 @@ import java.util.Optional;
 import static com.example.libms.LoginController.userName;
 
 public class SceneController {
+
+    /*protected static void playBackGroundMusic() {
+        Media bgMusic = new Media(App.class.getResource("Sound").toExternalForm());
+        MediaPlayer bgMusicPlayer = new MediaPlayer(bgMusic);
+        bgMusicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        bgMusicPlayer.setAutoPlay(true);
+    }*/
+
+    protected static void alertSoundPlay() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/alert.mp3").toExternalForm());
+        sound.play();
+    }
+
+    protected static void playButtonClickSound() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound.mp3").toExternalForm());
+        sound.play();
+    }
+
     protected static void switchScene(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
         Parent root =fxmlLoader.load();
