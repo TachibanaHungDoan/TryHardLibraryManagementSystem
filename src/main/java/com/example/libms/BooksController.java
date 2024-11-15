@@ -171,21 +171,25 @@ public class BooksController {
 
     @FXML
     void homeButtonClicked() throws IOException {
+        SceneController.playButtonClickSound1();
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     @FXML
     void booksButtonClicked() throws IOException {
+        SceneController.bookFlipSound();
         SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     @FXML
     void readersButtonClicked() throws IOException {
+        SceneController.playButtonClickSound2();
         SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked() throws IOException {
+        SceneController.bookFlipSound();
         SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
@@ -194,10 +198,12 @@ public class BooksController {
         SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
                 , null, null
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        SceneController.logOutSound();
     }
 
     @FXML
     void addBookButtonClicked() throws IOException {
+        SceneController.bookshelfSound();
         SceneController.switchScene("AdminView/addBooks-view.fxml", addBookButton);
     }
 
@@ -205,6 +211,7 @@ public class BooksController {
     void updateBookButtonClicked() throws IOException {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
+            SceneController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/updateBooksInBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -224,6 +231,7 @@ public class BooksController {
                 this.loadBooks();
             }
         } else {
+            SceneController.alertSoundPlay();
             SceneController.showAlert("No selection", "No Book Selected",
                              "Please select a book to update", Alert.AlertType.WARNING);
         }
@@ -232,6 +240,7 @@ public class BooksController {
     @FXML
     void viewBookButtonClicked() throws IOException {
         if (selectedBook != null) {
+            SceneController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/viewBooksInBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -250,6 +259,7 @@ public class BooksController {
             }
 
         } else {
+            SceneController.alertSoundPlay();
             SceneController.showAlert("No selection", "No Book Selected",
                                 "Please select a book to view its details.", Alert.AlertType.WARNING);
         }
@@ -260,6 +270,7 @@ public class BooksController {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
 
         if (selectedBook != null) {
+            SceneController.playButtonClickSound2();
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Delete Book");
             confirmAlert.setHeaderText("Are you sure you want to delete the selected book?");
@@ -278,11 +289,13 @@ public class BooksController {
                     SceneController.showAlert("Delete Success", null,
                                         "The book was successfully deleted.", Alert.AlertType.INFORMATION);
                 } else {
+                    SceneController.alertSoundPlay();
                     SceneController.showAlert("Delete Failed", null,
                                         "Failed to delete the book. Please try again.", Alert.AlertType.ERROR);
                 }
             }
         } else {
+            SceneController.alertSoundPlay();
             SceneController.showAlert("No selection", null, "Please select a book to delete.", Alert.AlertType.WARNING);
         }
     }

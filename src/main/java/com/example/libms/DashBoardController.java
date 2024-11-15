@@ -86,21 +86,25 @@ public class DashBoardController {
 
     @FXML
     void booksButtonClicked() throws IOException {
+        SceneController.bookFlipSound();
         SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException {
+        SceneController.playButtonClickSound1();
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     @FXML
     void readersButtonClicked(ActionEvent event) throws IOException {
+        SceneController.playButtonClickSound2();
         SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
+        SceneController.bookFlipSound();
         SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
@@ -109,5 +113,6 @@ public class DashBoardController {
         SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
                                             , null, null
                                             ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        SceneController.logOutSound();
     }
 }

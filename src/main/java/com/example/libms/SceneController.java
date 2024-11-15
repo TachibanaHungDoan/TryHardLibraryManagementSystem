@@ -30,8 +30,24 @@ public class SceneController {
         sound.play();
     }
 
-    protected static void playButtonClickSound() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound.mp3").toExternalForm());
+    protected static void playButtonClickSound1() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound1.mp3").toExternalForm());
+        sound.play();
+    }
+    protected static void playButtonClickSound2() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound2.mp3").toExternalForm());
+        sound.play();
+    }
+    protected static void bookFlipSound() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/bookFlipSound.mp3").toExternalForm());
+        sound.play();
+    }
+    protected static void bookshelfSound() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/bookshelfSound.mp3").toExternalForm());
+        sound.play();
+    }
+    protected static void logOutSound() {
+        AudioClip sound = new AudioClip(App.class.getResource("Sound/logOutSound.mp3").toExternalForm());
         sound.play();
     }
 

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -117,6 +118,7 @@ public class AddBooksController {
 
     @FXML
     void cancelButtonClicked() throws IOException, SQLException {
+        SceneController.playButtonClickSound2();
         bookTitleTextField.clear();
         authorTextField.clear();
         publisherTextField.clear();
@@ -129,6 +131,7 @@ public class AddBooksController {
         SceneController.switchScene("AdminView/books-view.fxml", cancelButton);
     }
 
+    //Lưu ý cần thêm xử lý ngoại lệ khi các ô bị thiếu.
     private void addBook() {
         String title = bookTitleTextField.getText();
         String author = authorTextField.getText();

@@ -69,7 +69,7 @@ public class LoginController {
             SceneController.alertSoundPlay();
             SceneController.showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
         } else if (validateLogin(loginUsernameTextField.getText(), loginPassWordPassWordField.getText())) {
-            SceneController.playButtonClickSound();
+            SceneController.playButtonClickSound1();
             userName = loginUsernameTextField.getText();
             SceneController.showAlert(null, null, "Login successfully", Alert.AlertType.CONFIRMATION);
             SceneController.switchScene("AdminView/dashBoard-view.fxml", signInButton);
@@ -92,7 +92,7 @@ public class LoginController {
             SceneController.showAlert(null, null, "Your passwords do not match!", Alert.AlertType.WARNING);
         } else {
             if (registerUser(username, password)) {
-                SceneController.playButtonClickSound();
+                SceneController.playButtonClickSound1();
                 SceneController.showAlert("Registration Successful"
                         ,null
                         ,"You have registered successfully!"
@@ -124,7 +124,7 @@ public class LoginController {
     public void switchForm(ActionEvent event) {
         TranslateTransition slider = new TranslateTransition();
         if (event.getSource() == sideSignUpButton) {
-            SceneController.playButtonClickSound();
+            SceneController.playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
@@ -135,7 +135,7 @@ public class LoginController {
             });
             slider.play();
         } else if (event.getSource() == alrButton) {
-            SceneController.playButtonClickSound();
+            SceneController.playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
