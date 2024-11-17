@@ -94,6 +94,16 @@ public class ReadersController {
         setReadersTable();
         searchBar.setOnKeyReleased(this::searchReaders);
         readerGenderChoiceBox.setItems(FXCollections.observableArrayList(Reader.ReaderGender.values()));
+        readersTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                readerIDTextField.setText(String.valueOf(newValue.getReaderID()));
+                readerNameTextField.setText(String.valueOf(newValue.getReaderName()));
+                readerGenderChoiceBox.setValue(newValue.getGender());
+                readerPhoneTextField.setText(String.valueOf(newValue.getPhoneNumber()));
+                readerEmailTextField.setText(String.valueOf(newValue.getEmail()));
+            }
+        });
+        clearInformationButton.setOnAction(event -> clearInformationButtonClicked());
     }
 
     private void setReadersTable() {
@@ -171,6 +181,17 @@ public class ReadersController {
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
         SceneController.logOutSound();
     }
+
+    @FXML
+    void clearInformationButtonClicked() {
+        readerIDTextField.clear();
+        readerNameTextField.clear();
+        readerGenderChoiceBox.setValue(null);
+        readerPhoneTextField.clear();
+        readerEmailTextField.clear();
+        searchBar.clear();
+    }
+
     @FXML
     void addReaderButtonClicked() {
         // Get data from input fields

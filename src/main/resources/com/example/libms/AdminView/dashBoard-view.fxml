@@ -44,17 +44,17 @@
                      <children>
                         <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label alignment="CENTER" layoutY="190.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="172.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="233.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
+                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="215.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Black" size="18.0" />
                                  </font>
                               </Label>
-                              <Line endX="139.0" layoutX="203.0" layoutY="296.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Line endX="139.0" layoutX="203.0" layoutY="278.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
                               <Button fx:id="homeButton" layoutY="340.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="home-btn" stylesheets="@../des/dashboard-des.css" text="Home">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
@@ -80,7 +80,7 @@
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="106.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="110.0" fitWidth="118.0" layoutX="125.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/user.png" />
                                  </image>

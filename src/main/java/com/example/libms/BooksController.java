@@ -92,7 +92,6 @@ public class BooksController {
         booksTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedBook = newValue;
         });
-
     }
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
