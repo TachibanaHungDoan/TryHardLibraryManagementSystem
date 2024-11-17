@@ -189,7 +189,6 @@ public class ReadersController {
         readerGenderChoiceBox.setValue(null);
         readerPhoneTextField.clear();
         readerEmailTextField.clear();
-        searchBar.clear();
     }
 
     @FXML

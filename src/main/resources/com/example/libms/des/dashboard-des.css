@@ -2,11 +2,14 @@
     -fx-background-color: #2C8C6A;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 23px;
+    -fx-font-size: 24px;
     -fx-text-fill: white;
     -fx-border-color: #2C8C6A;
     -fx-border-width: 2px;
     -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px; /* Giảm padding bên trái để lùi chữ */
+    -fx-alignment: center-left; /* Đảm bảo chữ được căn trái */
+    -fx-spacing: 80px;
 }
 
 .home-btn:hover {
@@ -18,13 +21,13 @@
 }
 
 .card {
-    -fx-background-color: linear-gradient(to top, #2b303c, #525968);
+    -fx-background-color: linear-gradient(to top, #3a3f47, #525c66);
     -fx-background-radius: 5px;
 }
 
 .card-label {
     -fx-font-family: "Gotham";
-    -fx-font-size: 23px;
+    -fx-font-size: 22px;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }

@@ -1,6 +1,7 @@
 package com.example.libms;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -77,9 +78,6 @@ public class AddBooksController {
 
     @FXML
     private Label usernameLabel;
-
-    @FXML
-    private Label messageLabel;
 
     private BookDAO bookdao = new BookDAO();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

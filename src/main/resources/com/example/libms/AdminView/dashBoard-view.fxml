@@ -44,33 +44,33 @@
                      <children>
                         <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label alignment="CENTER" layoutY="172.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="159.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="215.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
+                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="202.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Black" size="18.0" />
                                  </font>
                               </Label>
-                              <Line endX="139.0" layoutX="203.0" layoutY="278.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Button fx:id="homeButton" layoutY="340.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="home-btn" stylesheets="@../des/dashboard-des.css" text="Home">
+                              <Line endX="139.0" layoutX="203.0" layoutY="265.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Button fx:id="homeButton" layoutY="307.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="home-btn" stylesheets="@../des/dashboard-des.css" text="Home">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="booksButton" layoutY="410.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
+                              <Button fx:id="booksButton" layoutY="367.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="readersButton" layoutY="480.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers">
+                              <Button fx:id="readersButton" layoutY="427.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Readers">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="borrowedBooksButton" layoutY="560.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
+                              <Button fx:id="borrowedBooksButton" layoutY="487.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
@@ -80,32 +80,32 @@
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="110.0" fitWidth="118.0" layoutX="125.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="95.0" fitWidth="100.0" layoutX="133.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/user.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/home.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/book.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="69.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/reader.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="17.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/borrowedBook.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="82.0" layoutY="665.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="43.0" layoutX="32.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/logout.png" />
                                  </image>
@@ -131,11 +131,16 @@
                                           <Font name="Gotham-Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                    <Label fx:id="totalBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="83.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                        <font>
                                           <Font size="48.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="90.0" fitWidth="108.0" layoutX="119.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/AdminIcon/dashBoardIcon/booksCard.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="369.0" layoutY="38.0" prefHeight="135.0" prefWidth="230.0" styleClass="card" stylesheets="@../des/dashboard-des.css">
@@ -145,11 +150,16 @@
                                           <Font name="Gotham-Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="totalReadersLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                    <Label fx:id="totalReadersLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="83.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                        <font>
                                           <Font size="48.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="82.0" fitWidth="98.0" layoutX="133.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/AdminIcon/dashBoardIcon/readerCard.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="669.0" layoutY="38.0" prefHeight="135.0" prefWidth="230.0" styleClass="card" stylesheets="@../des/dashboard-des.css">
@@ -159,11 +169,16 @@
                                           <Font name="Gotham-Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="borrowedBooksLabel" layoutX="23.0" layoutY="8.0" prefHeight="70.0" prefWidth="65.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
+                                    <Label fx:id="borrowedBooksLabel" layoutX="25.0" layoutY="8.0" prefHeight="70.0" prefWidth="83.0" styleClass="card-number" stylesheets="@../des/dashboard-des.css" text="0" textFill="WHITE">
                                        <font>
                                           <Font size="48.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="90.0" fitWidth="108.0" layoutX="123.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/AdminIcon/dashBoardIcon/borrowBookCard.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <BarChart fx:id="bnrBarChart" layoutX="73.0" layoutY="210.0" prefHeight="381.0" prefWidth="789.0" title="Books and Readers">

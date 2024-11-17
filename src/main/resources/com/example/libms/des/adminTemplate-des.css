@@ -31,8 +31,11 @@
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 20px;
+    -fx-font-size: 24px;
     -fx-text-fill: #fff;
+    -fx-padding: 0 80px 0 80px; /* Giảm padding bên trái để lùi chữ */
+    -fx-alignment: center-left; /* Đảm bảo chữ được căn trái */
+    -fx-spacing: 80px;
 }
 
 .nav-btn:hover {
