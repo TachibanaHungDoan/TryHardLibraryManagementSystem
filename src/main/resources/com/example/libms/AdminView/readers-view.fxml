@@ -45,33 +45,33 @@
                      <children>
                         <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label alignment="CENTER" layoutY="190.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="159.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="233.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
+                              <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="202.0" prefHeight="29.0" prefWidth="360.0" styleClass="nav-username" stylesheets="@../des/adminTemplate-des.css" text="Username" textFill="WHITE">
                                  <font>
                                     <Font name="Gotham-Black" size="18.0" />
                                  </font>
                               </Label>
-                              <Line endX="139.0" layoutX="203.0" layoutY="296.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Button fx:id="homeButton" layoutY="340.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home">
+                              <Line endX="139.0" layoutX="203.0" layoutY="265.0" startX="-170.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Button fx:id="homeButton" layoutY="307.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Home">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="booksButton" layoutY="410.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
+                              <Button fx:id="booksButton" layoutY="367.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="readersButton" layoutY="480.0" mnemonicParsing="false" onAction="#readersButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="readers-btn" stylesheets="@../des/readers-des.css" text="Readers">
+                              <Button layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="readers-btn" stylesheets="@../des/readers-des.css" text="Readers">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="borrowedBooksButton" layoutY="560.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
+                              <Button fx:id="borrowedBooksButton" layoutY="487.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
@@ -81,32 +81,32 @@
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="106.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="95.0" fitWidth="100.0" layoutX="133.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/user.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/home.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="81.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/book.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="69.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/reader.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="49.0" layoutX="17.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="22.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/borrowedBook.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="82.0" layoutY="665.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="43.0" layoutX="32.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/logout.png" />
                                  </image>
@@ -125,62 +125,49 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="394.0" prefWidth="794.0" stylesheets="@../des/adminTemplate-des.css">
-                                 <styleClass>
-                                    <String fx:value="bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
+                              <AnchorPane prefHeight="620.0" prefWidth="534.0">
                                  <children>
-                                    <Label layoutX="4.0" layoutY="2.0" prefHeight="43.0" prefWidth="407.0" styleClass="bigText-label" stylesheets="@../des/readers-des.css" text="Readers Management" />
-                                    <TextField fx:id="searchBar" layoutX="6.0" layoutY="54.0" prefHeight="35.0" prefWidth="290.0" promptText="Search">
+                                    <Label layoutX="14.0" layoutY="7.0" prefHeight="43.0" prefWidth="407.0" styleClass="bigText-label" stylesheets="@../des/readers-des.css" text="Readers Management" />
+                                    <TextField fx:id="searchBar" layoutX="121.0" layoutY="63.0" prefHeight="35.0" prefWidth="290.0" promptText="Search">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </TextField>
-                                    <TableView fx:id="readersTable" layoutX="6.0" layoutY="105.0" prefHeight="272.0" prefWidth="742.0">
+                                    <TableView fx:id="readersTable" layoutX="6.0" layoutY="114.0" prefHeight="498.0" prefWidth="507.0">
                                       <columns>
-                                        <TableColumn fx:id="readerIDColumn" prefWidth="82.0" text="ReaderID" />
-                                        <TableColumn fx:id="readerNameColumn" prefWidth="191.5" text="Name" />
-                                          <TableColumn fx:id="genderColumn" prefWidth="80.5" text="Gender" />
-                                          <TableColumn fx:id="phoneNumberColumn" prefWidth="163.5" text="Phone Number" />
-                                          <TableColumn fx:id="emailColumn" prefWidth="223.0" text="Email" />
+                                        <TableColumn fx:id="readerIDColumn" prefWidth="63.333343505859375" text="ReaderID" />
+                                        <TableColumn fx:id="readerNameColumn" prefWidth="173.8333740234375" text="Name" />
+                                          <TableColumn fx:id="genderColumn" prefWidth="105.8333740234375" text="Gender" />
+                                          <TableColumn fx:id="phoneNumberColumn" prefWidth="161.83331298828125" text="Phone Number" />
+                                          <TableColumn fx:id="emailColumn" prefWidth="238.16668701171875" text="Email" />
                                       </columns>
                                     </TableView>
+                                    <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="86.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/TempIcon/search.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
-                              <Label layoutX="19.0" layoutY="412.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="ReaderID:" />
-                              <Button fx:id="clearInformationButton" layoutX="485.0" layoutY="494.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Clear">
-                                 <styleClass>
-                                    <String fx:value="down-btn" />
-                                    <String fx:value="shadow" />
-                                 </styleClass></Button>
-                              <TextField fx:id="readerIDTextField" layoutX="94.0" layoutY="410.0" prefHeight="25.0" prefWidth="157.0" />
-                              <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="448.0" prefHeight="25.0" prefWidth="70.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Name:" />
-                              <TextField fx:id="readerNameTextField" layoutX="94.0" layoutY="448.0" prefHeight="25.0" prefWidth="157.0" />
-                              <Label alignment="TOP_LEFT" layoutX="19.0" layoutY="484.0" prefHeight="25.0" prefWidth="70.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Gender:" />
-                              <Label layoutX="294.0" layoutY="412.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Phone #:" />
-                              <TextField fx:id="readerPhoneTextField" layoutX="369.0" layoutY="412.0" prefHeight="25.0" prefWidth="157.0" />
-                              <Label layoutX="294.0" layoutY="448.0" prefHeight="25.0" prefWidth="66.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Email:" />
-                              <TextField fx:id="readerEmailTextField" layoutX="369.0" layoutY="448.0" prefHeight="25.0" prefWidth="157.0" />
-                              <Button fx:id="addReaderButton" layoutX="647.0" layoutY="406.0" mnemonicParsing="false" onAction="#addReaderButtonClicked" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Add">
-                                 <styleClass>
-                                    <String fx:value="down-btn" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="updateReaderButton" layoutX="647.0" layoutY="450.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Update">
-                                 <styleClass>
-                                    <String fx:value="down-btn" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="deleteReaderButton" layoutX="647.0" layoutY="494.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="82.0" stylesheets="@../des/readers-des.css" text="Delete">
-                                 <styleClass>
-                                    <String fx:value="down-btn" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                              </Button>
-                              <ChoiceBox fx:id="readerGenderChoiceBox" layoutX="98.0" layoutY="484.0" prefWidth="150.0" />
+                              <Label layoutX="541.0" layoutY="139.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="ReaderID:" />
+                              <Button fx:id="clearInformationButton" layoutX="584.0" layoutY="441.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Clear" />
+                              <TextField fx:id="readerIDTextField" layoutX="659.0" layoutY="137.0" prefHeight="32.0" prefWidth="242.0" />
+                              <Label alignment="TOP_LEFT" layoutX="541.0" layoutY="196.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Name:" />
+                              <TextField fx:id="readerNameTextField" layoutX="659.0" layoutY="194.0" prefHeight="32.0" prefWidth="242.0" />
+                              <Label alignment="TOP_LEFT" layoutX="541.0" layoutY="253.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Gender:" />
+                              <Label layoutX="541.0" layoutY="310.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Phone #:" />
+                              <TextField fx:id="readerPhoneTextField" layoutX="659.0" layoutY="307.0" prefHeight="32.0" prefWidth="242.0" />
+                              <Label layoutX="541.0" layoutY="367.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Email:" />
+                              <TextField fx:id="readerEmailTextField" layoutX="659.0" layoutY="365.0" prefHeight="32.0" prefWidth="242.0" />
+                              <Button fx:id="addReaderButton" layoutX="752.0" layoutY="529.0" mnemonicParsing="false" onAction="#addReaderButtonClicked" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Add" />
+                              <Button fx:id="updateReaderButton" layoutX="752.0" layoutY="441.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Update" />
+                              <Button fx:id="deleteReaderButton" layoutX="584.0" layoutY="529.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Delete" />
+                              <ChoiceBox fx:id="readerGenderChoiceBox" layoutX="659.0" layoutY="254.0" prefHeight="32.0" prefWidth="114.0" />
+                              <ImageView fitHeight="90.0" fitWidth="146.0" layoutX="804.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/AdminIcon/readersIcon/knowMore.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>

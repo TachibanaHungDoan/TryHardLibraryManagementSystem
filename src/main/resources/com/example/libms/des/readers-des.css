@@ -2,11 +2,14 @@
     -fx-background-color: #2C8C6A;
     -fx-cursor: hand;
     -fx-font-family: "Gotham";
-    -fx-font-size: 28px;
+    -fx-font-size: 24px;
     -fx-text-fill: white;
     -fx-border-color: #2C8C6A;
     -fx-border-width: 2px;
     -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px;
+    -fx-alignment: center-left;
+    -fx-spacing: 80px;
 }
 
 .readers-btn:hover {
@@ -27,32 +30,25 @@
 .smallText-label {
     -fx-alignment: center-right;
     -fx-font-family: "Gotham-light";
-    -fx-font-size: 16px;
+    -fx-font-size: 22px;
     -fx-text-fill: #000;
 }
 
-.up-btn {
-    -fx-background-color: black;
-    -fx-background-radius: 8px;
+.content-btn {
     -fx-text-fill: white;
-    -fx-font-family: "Gotham-light";
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-cursor: hand;
-}
-
-.up-btn:hover {
-    -fx-background-color: white;
-    -fx-text-fill: black;
-}
-
-.down-btn {
-    -fx-text-fill: black;
     -fx-font-family: "Gotham-Light";
-    -fx-font-size: 14px;
+    -fx-font-size: 20px;
     -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to right, #68B68C, #3A7D66);
+    -fx-border-color: #3A7D66;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 16px;
 }
 
-.down-btn:hover {
-    -fx-background-color: linear-gradient(to right, #1db, #184144);
+.content-btn:hover {
+    -fx-background-color: linear-gradient(to right, #3A7D66, #68B68C);
+    -fx-text-fill: white;
+    -fx-border-color: #2C8C6A;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #2C8C6A, 5, 0.2, 0, 0);
 }

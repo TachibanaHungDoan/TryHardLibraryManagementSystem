@@ -60,7 +60,7 @@
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="booksButton" layoutY="367.0" mnemonicParsing="false" onAction="#booksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="books-btn" stylesheets="@../des/books-des.css" text="Books">
+                              <Button layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="books-btn" stylesheets="@../des/books-des.css" text="Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>

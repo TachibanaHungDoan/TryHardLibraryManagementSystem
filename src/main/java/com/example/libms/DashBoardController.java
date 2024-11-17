@@ -16,9 +16,6 @@ public class DashBoardController {
     private Button booksButton;
 
     @FXML
-    private Button homeButton;
-
-    @FXML
     private Button borrowedBooksButton;
 
     @FXML
@@ -88,12 +85,6 @@ public class DashBoardController {
     void booksButtonClicked() throws IOException {
         SceneController.bookFlipSound();
         SceneController.switchScene("AdminView/books-view.fxml", booksButton);
-    }
-
-    @FXML
-    void homeButtonClicked(ActionEvent event) throws IOException {
-        SceneController.playButtonClickSound1();
-        SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     @FXML

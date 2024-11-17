@@ -54,9 +54,6 @@ public class ReadersController {
     private TextField readerPhoneTextField;
 
     @FXML
-    private Button readersButton;
-
-    @FXML
     private TableView<Reader> readersTable;
 
     @FXML
@@ -160,12 +157,6 @@ public class ReadersController {
     void homeButtonClicked(ActionEvent event) throws IOException {
         SceneController.playButtonClickSound1();
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
-    }
-
-    @FXML
-    void readersButtonClicked(ActionEvent event) throws IOException {
-        SceneController.playButtonClickSound2();
-        SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     @FXML

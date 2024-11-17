@@ -70,7 +70,7 @@
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="borrowedBooksButton" layoutY="560.0" mnemonicParsing="false" onAction="#borrowedBooksButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
+                              <Button layoutY="560.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/adminTemplate-des.css" text="Borrowed Books">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>

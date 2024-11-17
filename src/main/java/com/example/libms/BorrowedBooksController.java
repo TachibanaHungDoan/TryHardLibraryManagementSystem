@@ -14,9 +14,6 @@ public class BorrowedBooksController {
     private Button booksButton;
 
     @FXML
-    private Button borrowedBooksButton;
-
-    @FXML
     private TableView<?> borrowedBooksTable;
 
     @FXML
@@ -58,12 +55,6 @@ public class BorrowedBooksController {
     void readersButtonClicked(ActionEvent event) throws IOException {
         SceneController.playButtonClickSound2();
         SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
-    }
-
-    @FXML
-    void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
     @FXML

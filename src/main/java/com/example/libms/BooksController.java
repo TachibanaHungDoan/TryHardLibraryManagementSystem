@@ -28,9 +28,6 @@ public class BooksController {
     private Label allBooksLabel;
 
     @FXML
-    private Button booksButton;
-
-    @FXML
     private TableView<Book> booksTable;
     @FXML
     private TableColumn<Book, Integer> bookIDColumn;
@@ -172,12 +169,6 @@ public class BooksController {
     void homeButtonClicked() throws IOException {
         SceneController.playButtonClickSound1();
         SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
-    }
-
-    @FXML
-    void booksButtonClicked() throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     @FXML
