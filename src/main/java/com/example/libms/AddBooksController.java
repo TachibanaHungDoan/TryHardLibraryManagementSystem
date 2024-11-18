@@ -32,28 +32,16 @@ public class AddBooksController {
     private TextField bookTitleTextField;
 
     @FXML
-    private Button booksButton;
-
-    @FXML
-    private Button borrowedBooksButton;
-
-    @FXML
-    private Button cancelButton;
+    private Button clearButton;
 
     @FXML
     private TextField editionTextField;
-
-    @FXML
-    private Button homeButton;
 
     @FXML
     private ImageView imageImageView;
 
     @FXML
     private Button importImageButton;
-
-    @FXML
-    private Button logOutButton;
 
     @FXML
     private TextField publishedDateTextField;
@@ -65,57 +53,24 @@ public class AddBooksController {
     private TextField quantityTextField;
 
     @FXML
-    private Button readersButton;
-
-    @FXML
     private TextField remainingTextField;
 
     @FXML
     private TextField stateTextField;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label usernameLabel;
 
     private BookDAO bookdao = new BookDAO();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @FXML
     void initialize() {
-        SceneController.setUpScene(usernameLabel, timeLabel);
         importImageButton.setOnAction(event -> importImage());
         addButton.setOnAction(event -> addBook());
+        clearButton.setOnAction(event -> clearButtonClicked());
     }
 
-    @FXML
-    void booksButtonClicked() throws IOException {
-        SceneController.switchScene("AdminView/books-view.fxml", booksButton);
-    }
 
     @FXML
-    void borrowedBooksButtonClicked() throws IOException {
-        SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
-    }
-
-    @FXML
-    void homeButtonClicked() throws IOException {
-        SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
-    }
-
-    @FXML
-    void logOutButtonClicked() throws IOException {
-        SceneController.switchScene("login-view.fxml", logOutButton);
-    }
-
-    @FXML
-    void readersButtonClicked() throws IOException {
-        SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
-    }
-
-    @FXML
-    void cancelButtonClicked() throws IOException, SQLException {
+    void clearButtonClicked() {
         SceneController.playButtonClickSound2();
         bookTitleTextField.clear();
         authorTextField.clear();
@@ -126,7 +81,6 @@ public class AddBooksController {
         quantityTextField.clear();
         stateTextField.clear();
         remainingTextField.clear();
-        SceneController.switchScene("AdminView/books-view.fxml", cancelButton);
     }
 
     //Lưu ý cần thêm xử lý ngoại lệ khi các ô bị thiếu.

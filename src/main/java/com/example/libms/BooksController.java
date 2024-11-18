@@ -194,7 +194,19 @@ public class BooksController {
     @FXML
     void addBookButtonClicked() throws IOException {
         SceneController.bookshelfSound();
-        SceneController.switchScene("AdminView/addBooks-view.fxml", addBookButton);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/addBooksInBooks-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        AddBooksController controller = loader.getController();
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Add Book Details");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+            dialog.close();
+        }
     }
 
     @FXML
@@ -234,7 +246,6 @@ public class BooksController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/viewBooksInBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
-            // Pass the book data to the controller
             ViewBooksController controller = loader.getController();
             controller.setBookData(selectedBook);
 
@@ -242,7 +253,6 @@ public class BooksController {
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("View Book Details");
 
-            // Show the dialog and handle the OK/Cancel result
             Optional<ButtonType> result = dialog.showAndWait();
             if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
                 dialog.close();
