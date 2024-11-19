@@ -12,6 +12,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.example.libms.LoginController.userName;
@@ -25,30 +27,42 @@ public abstract class SceneController {
         bgMusicPlayer.setAutoPlay(true);
     }*/
 
-    protected static void alertSoundPlay() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/alert.mp3").toExternalForm());
+    private static final Map<String, AudioClip> soundCache = new HashMap<>();
+
+    private static final Timeline timeLine = new Timeline(
+            new KeyFrame(Duration.seconds(1), event -> {
+                String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+            })
+    );
+
+    private static void playSound(String soundFileName) {
+        AudioClip sound = soundCache.computeIfAbsent(soundFileName, file -> new AudioClip
+                (SceneController.class.getResource("Sound/" + soundFileName).toExternalForm()));
         sound.play();
     }
 
+    protected static void alertSoundPlay() {
+        playSound("alert.mp3");
+    }
+
     protected static void playButtonClickSound1() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound1.mp3").toExternalForm());
-        sound.play();
+        playSound("buttonClickSound1.mp3");
     }
+
     protected static void playButtonClickSound2() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/buttonClickSound2.mp3").toExternalForm());
-        sound.play();
+        playSound("buttonClickSound2.mp3");
     }
+
     protected static void bookFlipSound() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/bookFlipSound.mp3").toExternalForm());
-        sound.play();
+        playSound("bookFlipSound.mp3");
     }
+
     protected static void bookshelfSound() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/bookshelfSound.mp3").toExternalForm());
-        sound.play();
+        playSound("bookshelfSound.mp3");
     }
+
     protected static void logOutSound() {
-        AudioClip sound = new AudioClip(App.class.getResource("Sound/logOutSound.mp3").toExternalForm());
-        sound.play();
+        playSound("logOutSound.mp3");
     }
 
     protected static void switchScene(String fxmlViewFile, Button button) throws IOException {
@@ -75,18 +89,6 @@ public abstract class SceneController {
         }
     }
 
-    protected static void openDialogPane(String fxmlViewFile, String title, Button button) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
-        DialogPane dialogPane = fxmlLoader.load();
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setDialogPane(dialogPane);
-        dialog.setTitle(title);
-        Optional<ButtonType> result = dialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            System.out.println("Good");
-        }
-    }
-
     protected static void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
         alert.setTitle(title);
@@ -99,20 +101,12 @@ public abstract class SceneController {
         setUpTimeLabel(timeLabel);
     }
 
-    private static void setUpTimeLabel (Label timeLabel) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), event ->
-                {
-
-                    String currentTime = LocalTime.now().format(formatter);
-
-                    timeLabel.setText(currentTime);
-                })
-        );
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+    protected static void setUpTimeLabel (Label timeLabel) {
+        timeLine.getKeyFrames().setAll(new KeyFrame(Duration.seconds(1), event -> {
+            String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+            timeLabel.setText(currentTime);
+        }));
+        timeLine.setCycleCount(Timeline.INDEFINITE);
+        timeLine.play();
     }
 }

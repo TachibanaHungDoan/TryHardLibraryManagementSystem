@@ -82,7 +82,7 @@ public class LoginController {
     }
 
     public void registerButtonClicked(ActionEvent event) throws IOException {
-        String username = signUpUsernameTextField.getText();
+        /*String username = signUpUsernameTextField.getText();
         String password = signUpPassWordPassWordField.getText();
         String confirmPassword = confirmPassWordPassWordField.getText();
 
@@ -103,9 +103,9 @@ public class LoginController {
                 SceneController.alertSoundPlay();
                 SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
             }
-        }
+        }*/
 
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
         DialogPane dialogPane = loader.load();
 
         RInformationFillController controller = loader.getController();
@@ -119,7 +119,7 @@ public class LoginController {
             dialog.close();
         } else if (result.isPresent() && result.get() == ButtonType.OK) {
             SceneController.switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
-        }*/
+        }
     }
 
     private boolean registerUser(String username, String password) {

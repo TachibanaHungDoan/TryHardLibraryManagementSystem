@@ -2,6 +2,7 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
@@ -56,7 +57,9 @@ public class RDashBoardSceneController extends SceneController{
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchScene("login-view.fxml", logOutButton);
+        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
+                null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        logOutSound();
     }
 
 }

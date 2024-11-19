@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -10,25 +9,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RDashBoardSceneController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <BorderPane layoutX="231.0" layoutY="188.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane layoutX="378.0" layoutY="100.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
                   <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Dashboard" />
                               <ImageView fitHeight="239.0" fitWidth="251.0" layoutX="52.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/appIcon.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
+                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
+                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="allbooks-btn" stylesheets="@../des/rAllBooks-des.css" text="All Books" />
                               <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
                               <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Games" />
                               <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
@@ -61,8 +59,7 @@
                                     <Image url="@../Icon/ReaderIcon/DashboardIcon/game.png" />
                                  </image>
                               </ImageView>
-                           </children>
-                        </AnchorPane>
+                           </children></AnchorPane>
                      </children>
                   </AnchorPane>
                </left>
@@ -100,49 +97,6 @@
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
                            </styleClass>
-                           <children>
-                              <AnchorPane layoutX="39.0" layoutY="48.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
-                                 <children>
-                                    <ImageView fitHeight="114.0" fitWidth="109.0" layoutX="11.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Icon/loginIcon/opened-book-with-a-magnifier.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutX="121.0" layoutY="12.0" prefHeight="22.0" prefWidth="309.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="The Most Borrowed Book" />
-                                    <Button fx:id="mbrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" />
-                                    <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="381.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Icon/ReaderIcon/DashboardIcon/info.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="mbbLabel" layoutX="139.0" layoutY="56.0" prefHeight="30.0" prefWidth="289.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="Label" />
-                                 </children>
-                              </AnchorPane>
-                              <PieChart layoutX="513.0" layoutY="17.0" prefHeight="393.0" prefWidth="376.0" title="Pie" />
-                              <AnchorPane layoutX="39.0" layoutY="239.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
-                                 <children>
-                                    <ImageView fitHeight="114.0" fitWidth="109.0" layoutX="5.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Icon/AdminIcon/dashBoardIcon/borrowBookCard.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutX="83.0" layoutY="12.0" prefHeight="22.0" prefWidth="345.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="The Book You Borrowed Recently" />
-                                    <Button fx:id="bybrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" />
-                                    <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="381.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Icon/ReaderIcon/DashboardIcon/info.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="bybrLabel" layoutX="136.0" layoutY="56.0" prefHeight="30.0" prefWidth="292.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="Label" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="43.0" layoutY="446.0" prefHeight="154.0" prefWidth="826.0" styleClass="quote-pane" stylesheets="@../des/rDashBoard-des.css">
-                                 <children>
-                                    <Text fx:id="quoteText" fill="WHITE" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="quote-text" text="&quot;Both reading and writing are experiences – lifelong – in the course of which we who encounter words used in certain ways are persuaded by them to be brought mind and heart within the presence, the power, of the imagination.&quot;" wrappingWidth="783.3333740234375" />
-                                    <Label fx:id="quoteAuthorLabel" layoutX="456.0" layoutY="106.0" prefHeight="31.0" prefWidth="278.0" styleClass="quote-label" stylesheets="@../des/rDashBoard-des.css" text="- Eudora Welty -" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>

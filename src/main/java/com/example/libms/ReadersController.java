@@ -119,6 +119,8 @@ public class ReadersController {
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
 
+            readersList.clear();
+
             while (resultSet.next()) {
                 int readerID = resultSet.getInt("readerID");
                 String readerName = resultSet.getString("readerName");
@@ -167,7 +169,7 @@ public class ReadersController {
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("login-view.fxml", logOutButton
+        SceneController.switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
                 , null, null
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
         SceneController.logOutSound();

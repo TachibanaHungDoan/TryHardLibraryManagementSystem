@@ -1,0 +1,21 @@
+.allbooks-btn {
+    -fx-background-color: #4a9bb1; /* Màu xanh dương nhẹ hơn */
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-border-color: #4a9bb1; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px;
+    -fx-alignment: center-left;
+    -fx-spacing: 80px;
+}
+
+.allbooks-btn:hover {
+    -fx-background-color: #3b85a0; /* Màu xanh dương đậm hơn */
+    -fx-text-fill: white;
+    -fx-border-color: #3b85a0; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #3b85a0, 8, 0.3, 0, 0);
+}
