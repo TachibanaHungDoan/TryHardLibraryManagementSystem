@@ -238,4 +238,118 @@ public class ReadersController {
             alert.showAndWait();
         }
     }
+    @FXML
+    void updateReaderButtonClicked() {
+        // Lấy dữ liệu từ các trường nhập
+        String readerIDText = readerIDTextField.getText().trim();
+        String readerName = readerNameTextField.getText().trim();
+        String email = readerEmailTextField.getText().trim();
+        Reader.ReaderGender gender = readerGenderChoiceBox.getValue();
+        int phoneNumber;
+
+        // Kiểm tra xem Reader ID có hợp lệ không
+        int readerID;
+        try {
+            readerID = Integer.parseInt(readerIDText);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.WARNING, "Input Error", "Reader ID must be a valid integer.");
+            return;
+        }
+
+        // Kiểm tra số điện thoại có hợp lệ không
+        try {
+            phoneNumber = Integer.parseInt(readerPhoneTextField.getText().trim());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.WARNING, "Input Error", "Phone number must be a valid integer.");
+            return;
+        }
+
+        // Kiểm tra xem các trường có đầy đủ dữ liệu không
+        if (readerName.isEmpty() || email.isEmpty() || gender == null || phoneNumber <= 0) {
+            showAlert(Alert.AlertType.WARNING, "Input Error", "Please fill all fields correctly.");
+            return;
+        }
+
+        // Tạo câu truy vấn để cập nhật dữ liệu
+        String updateQuery = "UPDATE readers SET readerName = ?, Gender = ?, PhoneNumber = ?, Email = ? WHERE readerID = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+
+            // Truyền giá trị vào câu lệnh SQL
+            statement.setString(1, readerName);
+            statement.setString(2, gender.name());
+            statement.setInt(3, phoneNumber);
+            statement.setString(4, email);
+            statement.setInt(5, readerID);
+
+            // Thực thi cập nhật
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Reader updated successfully.");
+                refreshTableData(); // Làm mới bảng dữ liệu
+                clearInformationButtonClicked(); // Xóa các trường sau khi cập nhật
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Update Failed", "No reader found with the given ID.");
+            }
+
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not update reader data. \n" + e.getMessage());
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String headerText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    // Làm mới dữ liệu hiển thị trên bảng
+    private void refreshTableData() {
+        readersList.clear(); // Xóa danh sách hiện tại
+        loadReadersDataFromDatabase(); // Tải dữ liệu mới từ cơ sở dữ liệu
+    }
+    @FXML
+    void deleteReaderButtonClicked() {
+        // Lấy Reader được chọn trong bảng
+        Reader selectedReader = readersTable.getSelectionModel().getSelectedItem();
+
+        // Kiểm tra nếu không có dòng nào được chọn
+        if (selectedReader == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a reader to delete.");
+            return;
+        }
+
+        // Hiển thị xác nhận trước khi xóa
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm Deletion");
+        confirmationAlert.setHeaderText("Are you sure you want to delete this reader?");
+        confirmationAlert.setContentText("Reader Name: " + selectedReader.getReaderName());
+
+        // Chờ người dùng xác nhận
+        if (confirmationAlert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            // Xóa Reader trong cơ sở dữ liệu
+            String deleteQuery = "DELETE FROM readers WHERE readerID = ?";
+
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+
+                statement.setInt(1, selectedReader.getReaderID()); // Sử dụng ID để xác định dòng cần xóa
+                int rowsAffected = statement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    // Xóa thành công, hiển thị thông báo
+                    showAlert(Alert.AlertType.INFORMATION, "Success", "Reader deleted successfully.");
+                    // Xóa Reader khỏi danh sách hiển thị và cập nhật bảng
+                    readersList.remove(selectedReader);
+                    readersTable.refresh();
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete the selected reader.");
+                }
+            } catch (SQLException e) {
+                showAlert(Alert.AlertType.ERROR, "Database Error", "Error while deleting reader: " + e.getMessage());
+            }
+        }
+    }
 }

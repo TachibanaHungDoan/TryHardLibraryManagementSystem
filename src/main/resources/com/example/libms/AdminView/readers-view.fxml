@@ -160,8 +160,8 @@
                               <Label layoutX="541.0" layoutY="367.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Email:" />
                               <TextField fx:id="readerEmailTextField" layoutX="659.0" layoutY="365.0" prefHeight="32.0" prefWidth="242.0" />
                               <Button fx:id="addReaderButton" layoutX="752.0" layoutY="529.0" mnemonicParsing="false" onAction="#addReaderButtonClicked" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Add" />
-                              <Button fx:id="updateReaderButton" layoutX="752.0" layoutY="441.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Update" />
-                              <Button fx:id="deleteReaderButton" layoutX="584.0" layoutY="529.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Delete" />
+                              <Button fx:id="updateReaderButton" layoutX="752.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateReaderButtonClicked" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Update" />
+                              <Button fx:id="deleteReaderButton" layoutX="584.0" layoutY="529.0" mnemonicParsing="false" onAction="#deleteReaderButtonClicked" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Delete" />
                               <ChoiceBox fx:id="readerGenderChoiceBox" layoutX="659.0" layoutY="254.0" prefHeight="32.0" prefWidth="114.0" />
                               <ImageView fitHeight="90.0" fitWidth="146.0" layoutX="804.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
