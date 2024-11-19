@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static com.example.libms.LoginController.userName;
 
-public class SceneController {
+public abstract class SceneController {
 
     /*protected static void playBackGroundMusic() {
         Media bgMusic = new Media(App.class.getResource("Sound").toExternalForm());

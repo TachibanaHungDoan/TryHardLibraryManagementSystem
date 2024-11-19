@@ -1,0 +1,57 @@
+/* Nút Dashboard */
+.dashboard-btn {
+    -fx-background-color: #4a9bb1; /* Màu xanh dương nhẹ hơn */
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-border-color: #4a9bb1; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px;
+    -fx-alignment: center-left;
+    -fx-spacing: 80px;
+}
+
+.dashboard-btn:hover {
+    -fx-background-color: #3b85a0; /* Màu xanh dương đậm hơn */
+    -fx-text-fill: white;
+    -fx-border-color: #3b85a0; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #3b85a0, 8, 0.3, 0, 0);
+}
+
+/* Các thẻ thông tin */
+.card-pane {
+    -fx-background-color: #f1f8fa; /* Xanh nhạt, hòa hợp với gradient */
+    -fx-background-radius: 5px;
+    -fx-border-color: #4a9bb1; /* Màu viền xanh dương nhẹ để phù hợp với theme */
+    -fx-border-width: 2px; /* Độ dày viền vừa phải */
+    -fx-border-radius: 8px; /* Bo góc của viền */
+}
+
+.card-label {
+    -fx-font-family: "Gotham";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/* Trích dẫn */
+.quote-pane {
+    -fx-background-color: linear-gradient(to top, #4a6f7c, #6b8d98); /* Màu gradient với tông xanh xám */
+    -fx-background-radius: 5px;
+}
+
+.quote-text {
+    -fx-font-family: "Roboto Condensed", sans-serif;
+    -fx-font-size: 21px;
+    -fx-text-fill: white;
+}
+
+.quote-label {
+    -fx-font-family: "Roboto Condensed", sans-serif;
+    -fx-font-size: 21px;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}

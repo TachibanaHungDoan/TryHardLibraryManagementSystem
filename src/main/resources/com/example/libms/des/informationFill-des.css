@@ -1,0 +1,22 @@
+.nav-Label {
+    -fx-alignment: center;
+    -fx-font-family: "Gotham Black";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.contentheader-label {
+    -fx-alignment: center;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.content-label {
+    -fx-alignment: center-right;
+    -fx-font-family: "Roboto Condensed", sans-serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}

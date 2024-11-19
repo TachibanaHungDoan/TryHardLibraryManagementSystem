@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class LoginController {
 
@@ -102,6 +104,22 @@ public class LoginController {
                 SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
             }
         }
+
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        RInformationFillController controller = loader.getController();
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Fill Information Form");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+            dialog.close();
+        } else if (result.isPresent() && result.get() == ButtonType.OK) {
+            SceneController.switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
+        }*/
     }
 
     private boolean registerUser(String username, String password) {
