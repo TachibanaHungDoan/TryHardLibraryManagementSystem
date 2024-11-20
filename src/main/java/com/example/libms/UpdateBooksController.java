@@ -1,12 +1,10 @@
 package com.example.libms;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class UpdateBooksController {
+public class UpdateBooksController extends SceneController {
 
     @FXML
     private TextField authorTextField;
@@ -77,16 +75,16 @@ public class UpdateBooksController {
 
             if (rowsUpdated > 0) {
                 System.out.println("Book updated successfully!");
-                SceneController.showAlert("Update Success", "Book Updated Successfully", "The book was updated successfully", Alert.AlertType.INFORMATION);
+                showAlert("Update Success", "Book Updated Successfully", "The book was updated successfully", Alert.AlertType.INFORMATION);
                 if (booksController != null) {
                     booksController.loadBooks();
                 }
             } else {
-                SceneController.showAlert("Update Failed", "No Book Updated", "Please check the input.", Alert.AlertType.ERROR);
+                showAlert("Update Failed", "No Book Updated", "Please check the input.", Alert.AlertType.ERROR);
             }
         }catch(Exception e){
             e.printStackTrace();
-            SceneController.showAlert("Update Error", "Error Updating Book", "Please check the input.", Alert.AlertType.ERROR);
+            showAlert("Update Error", "Error Updating Book", "Please check the input.", Alert.AlertType.ERROR);
         }
     }
 }

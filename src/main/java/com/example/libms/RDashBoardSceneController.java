@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class RDashBoardSceneController extends SceneController{
+public class RDashBoardSceneController extends SceneController {
 
     @FXML
     private Button allBooksButton;

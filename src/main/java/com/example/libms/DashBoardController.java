@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DashBoardController {
+public class DashBoardController extends SceneController {
     @FXML
     private Button booksButton;
 
@@ -41,7 +41,7 @@ public class DashBoardController {
 
     @FXML
     void initialize() {
-        SceneController.setUpScene(usernameLabel, timeLabel);
+        setUpScene(usernameLabel, timeLabel);
         totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
         totalReadersLabel.setText(String.valueOf(getTotalReadersFromDatabase()));
     }
@@ -83,27 +83,27 @@ public class DashBoardController {
 
     @FXML
     void booksButtonClicked() throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/books-view.fxml", booksButton);
+        bookFlipSound();
+        switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     @FXML
     void readersButtonClicked(ActionEvent event) throws IOException {
-        SceneController.playButtonClickSound2();
-        SceneController.switchScene("AdminView/readers-view.fxml", readersButton);
+        playButtonClickSound2();
+        switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
+        bookFlipSound();
+        switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
+        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
                                             , null, null
                                             ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        SceneController.logOutSound();
+        logOutSound();
     }
 }

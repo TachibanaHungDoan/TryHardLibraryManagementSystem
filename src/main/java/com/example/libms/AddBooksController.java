@@ -1,24 +1,19 @@
 package com.example.libms;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.AudioClip;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddBooksController {
+public class AddBooksController extends SceneController {
     @FXML
     private Button addButton;
 
@@ -71,7 +66,7 @@ public class AddBooksController {
 
     @FXML
     void clearButtonClicked() {
-        SceneController.playButtonClickSound2();
+        playButtonClickSound2();
         bookTitleTextField.clear();
         authorTextField.clear();
         publisherTextField.clear();

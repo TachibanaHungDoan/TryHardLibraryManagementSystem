@@ -1,4 +1,4 @@
 package com.example.libms;
 
-public class RInformationFillController {
+public class RInformationFillController extends SceneController {
 }

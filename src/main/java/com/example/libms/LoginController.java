@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Optional;
 
-public class LoginController {
+public class LoginController extends SceneController {
 
     @FXML
     private Label changingLabel;
@@ -66,16 +66,16 @@ public class LoginController {
 
     public void loginButtonClicked() throws IOException {
         if (loginUsernameTextField.getText().isBlank() || loginPassWordPassWordField.getText().isBlank()) {
-            SceneController.alertSoundPlay();
-            SceneController.showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
+            alertSoundPlay();
+            showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
         } else if (validateLogin(loginUsernameTextField.getText(), loginPassWordPassWordField.getText())) {
-            SceneController.playButtonClickSound1();
-            SceneController.setUsername(loginUsernameTextField.getText());
-            SceneController.showAlert(null, null, "Login successfully", Alert.AlertType.CONFIRMATION);
-            SceneController.switchScene("AdminView/dashBoard-view.fxml", signInButton);
+            playButtonClickSound1();
+            setUsername(loginUsernameTextField.getText());
+            showAlert(null, null, "Login successfully", Alert.AlertType.CONFIRMATION);
+            switchScene("AdminView/dashBoard-view.fxml", signInButton);
         } else {
-            SceneController.alertSoundPlay();
-            SceneController.showAlert(null, null, "Invalid username or password", Alert.AlertType.WARNING);
+            alertSoundPlay();
+            showAlert(null, null, "Invalid username or password", Alert.AlertType.WARNING);
         }
     }
 
@@ -116,7 +116,7 @@ public class LoginController {
         if (result.isPresent() && result.get() == ButtonType.CANCEL) {
             dialog.close();
         } else if (result.isPresent() && result.get() == ButtonType.OK) {
-            SceneController.switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
+            switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
         }
     }
 
@@ -140,7 +140,7 @@ public class LoginController {
     public void switchForm(ActionEvent event) {
         TranslateTransition slider = new TranslateTransition();
         if (event.getSource() == sideSignUpButton) {
-            SceneController.playButtonClickSound1();
+            playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
@@ -151,7 +151,7 @@ public class LoginController {
             });
             slider.play();
         } else if (event.getSource() == alrButton) {
-            SceneController.playButtonClickSound1();
+           playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));

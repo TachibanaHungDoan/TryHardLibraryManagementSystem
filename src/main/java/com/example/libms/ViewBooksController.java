@@ -3,7 +3,7 @@ package com.example.libms;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ViewBooksController {
+public class ViewBooksController extends SceneController {
 
     @FXML
     private Label ISBNLabel;

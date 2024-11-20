@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -106,18 +105,10 @@ public abstract class SceneController {
     }
 
     protected static void setUpTimeLabel (Label timeLabel) {
-        /*timeLine.getKeyFrames().setAll(new KeyFrame(Duration.seconds(1), event -> {
-            String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
-            timeLabel.setText(currentTime);
-        }));
-        timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();*/
         if (timeService == null) {
-            // Khởi tạo TimeService chỉ một lần
             timeService = new TimeService(timeLabel);
-            timeService.start();  // Bắt đầu TimeService
+            timeService.start();
         }
-        // Đảm bảo timeLabel được cập nhật từ TimeService
         timeLabel.setText(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 }

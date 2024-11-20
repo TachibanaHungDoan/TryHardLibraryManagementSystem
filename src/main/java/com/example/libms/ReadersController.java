@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReadersController {
+public class ReadersController extends SceneController {
     @FXML
     private Button addReaderButton;
 
@@ -87,7 +87,7 @@ public class ReadersController {
 
     @FXML
     void initialize() {
-        SceneController.setUpScene(usernameLabel, timeLabel);
+        setUpScene(usernameLabel, timeLabel);
         setReadersTable();
         searchBar.setOnKeyReleased(this::searchReaders);
         readerGenderChoiceBox.setItems(FXCollections.observableArrayList(Reader.ReaderGender.values()));
@@ -151,28 +151,28 @@ public class ReadersController {
 
     @FXML
     void booksButtonClicked() throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/books-view.fxml", booksButton);
+        bookFlipSound();
+        switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException {
-        SceneController.playButtonClickSound1();
-        SceneController.switchScene("AdminView/dashBoard-view.fxml", homeButton);
+        playButtonClickSound1();
+        switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        SceneController.bookFlipSound();
-        SceneController.switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
+        bookFlipSound();
+        switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
     }
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        SceneController.switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
+        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
                 , null, null
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        SceneController.logOutSound();
+        logOutSound();
     }
 
     @FXML
