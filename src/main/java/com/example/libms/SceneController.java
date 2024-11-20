@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.example.libms.LoginController.userName;
-
 public abstract class SceneController {
 
     /*protected static void playBackGroundMusic() {
@@ -29,11 +27,17 @@ public abstract class SceneController {
 
     private static final Map<String, AudioClip> soundCache = new HashMap<>();
 
-    private static final Timeline timeLine = new Timeline(
-            new KeyFrame(Duration.seconds(1), event -> {
-                String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
-            })
-    );
+    private static TimeService timeService;
+
+    private static String username;
+
+    protected static void setUsername(String userName) {
+        username = userName;
+    }
+
+    private static String getUsername() {
+        return username;
+    }
 
     private static void playSound(String soundFileName) {
         AudioClip sound = soundCache.computeIfAbsent(soundFileName, file -> new AudioClip
@@ -97,16 +101,23 @@ public abstract class SceneController {
     }
 
     protected static void setUpScene(Label usernameLabel, Label timeLabel) {
-        usernameLabel.setText(userName);
+        usernameLabel.setText(getUsername());
         setUpTimeLabel(timeLabel);
     }
 
     protected static void setUpTimeLabel (Label timeLabel) {
-        timeLine.getKeyFrames().setAll(new KeyFrame(Duration.seconds(1), event -> {
+        /*timeLine.getKeyFrames().setAll(new KeyFrame(Duration.seconds(1), event -> {
             String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
             timeLabel.setText(currentTime);
         }));
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
+        timeLine.play();*/
+        if (timeService == null) {
+            // Khởi tạo TimeService chỉ một lần
+            timeService = new TimeService(timeLabel);
+            timeService.start();  // Bắt đầu TimeService
+        }
+        // Đảm bảo timeLabel được cập nhật từ TimeService
+        timeLabel.setText(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 }

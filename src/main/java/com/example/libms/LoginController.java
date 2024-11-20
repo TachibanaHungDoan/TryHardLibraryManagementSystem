@@ -54,8 +54,6 @@ public class LoginController {
     @FXML
     private TextField signUpUsernameTextField;
 
-    public static String userName;
-
     @FXML
     void initialize() {
         //SceneController.playBackGroundMusic();
@@ -72,7 +70,7 @@ public class LoginController {
             SceneController.showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
         } else if (validateLogin(loginUsernameTextField.getText(), loginPassWordPassWordField.getText())) {
             SceneController.playButtonClickSound1();
-            userName = loginUsernameTextField.getText();
+            SceneController.setUsername(loginUsernameTextField.getText());
             SceneController.showAlert(null, null, "Login successfully", Alert.AlertType.CONFIRMATION);
             SceneController.switchScene("AdminView/dashBoard-view.fxml", signInButton);
         } else {
