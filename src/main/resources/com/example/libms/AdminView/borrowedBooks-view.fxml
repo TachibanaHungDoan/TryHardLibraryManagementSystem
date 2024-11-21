@@ -125,7 +125,7 @@
                            </styleClass>
                            <children>
                               <Label layoutX="250.0" layoutY="3.0" styleClass="bigText-label" stylesheets="@../des/borrowedbooks-des.css" text="Borrowed Books" />
-                              <TextField fx:id="searchBar" layoutX="640.0" layoutY="82.0" prefHeight="35.0" prefWidth="253.0" text="Search" />
+                              <TextField fx:id="searchBar" layoutX="640.0" layoutY="82.0" prefHeight="35.0" prefWidth="253.0" promptText="Search" />
                               <TableView fx:id="borrowedBooksTable" layoutX="10.0" layoutY="137.0" prefHeight="474.0" prefWidth="883.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="BorrowedID" />

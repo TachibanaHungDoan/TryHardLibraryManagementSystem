@@ -133,13 +133,13 @@
                                           <Font size="15.0" />
                                        </font>
                                     </TextField>
-                                    <TableView fx:id="readersTable" layoutX="6.0" layoutY="114.0" prefHeight="498.0" prefWidth="507.0">
+                                    <TableView fx:id="readersTable" layoutX="6.0" layoutY="114.0" prefHeight="498.0" prefWidth="513.0">
                                       <columns>
-                                        <TableColumn fx:id="readerIDColumn" prefWidth="63.333343505859375" text="ReaderID" />
-                                        <TableColumn fx:id="readerNameColumn" prefWidth="173.8333740234375" text="Name" />
-                                          <TableColumn fx:id="genderColumn" prefWidth="105.8333740234375" text="Gender" />
-                                          <TableColumn fx:id="phoneNumberColumn" prefWidth="161.83331298828125" text="Phone Number" />
-                                          <TableColumn fx:id="emailColumn" prefWidth="238.16668701171875" text="Email" />
+                                        <TableColumn fx:id="readerIDColumn" prefWidth="70.0" text="ReaderID" />
+                                        <TableColumn fx:id="readerNameColumn" prefWidth="115.5" text="Name" />
+                                          <TableColumn fx:id="genderColumn" prefWidth="59.5" text="Gender" />
+                                          <TableColumn fx:id="phoneNumberColumn" prefWidth="114.5" text="Phone Number" />
+                                          <TableColumn fx:id="emailColumn" prefWidth="152.5" text="Email" />
                                       </columns>
                                     </TableView>
                                     <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="86.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
