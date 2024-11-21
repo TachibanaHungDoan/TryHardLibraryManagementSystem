@@ -196,19 +196,13 @@ public class ReadersController extends SceneController {
         try {
             phoneNumber = Integer.parseInt(readerPhoneTextField.getText().trim());
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Input Error");
-            alert.setHeaderText("Phone number must be a valid integer.");
-            alert.showAndWait();
+            showAlert("Input Error", "Phone number must be a valid integer.", null, Alert.AlertType.WARNING);
             return;
         }
 
         // Check if all fields are filled correctly
         if (readerName.isEmpty() || email.isEmpty() || gender == null || phoneNumber <= 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Input Error");
-            alert.setHeaderText("Please fill all fields correctly.");
-            alert.showAndWait();
+            showAlert("Input Error", "Please fill all fields correctly", null, Alert.AlertType.WARNING);
             return;
         }
 
@@ -254,7 +248,7 @@ public class ReadersController extends SceneController {
         try {
             readerID = Integer.parseInt(readerIDText);
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.WARNING, "Input Error", "Reader ID must be a valid integer.");
+            showAlert(null, "Input Error", "Reader ID must be a valid integer.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -262,13 +256,13 @@ public class ReadersController extends SceneController {
         try {
             phoneNumber = Integer.parseInt(readerPhoneTextField.getText().trim());
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.WARNING, "Input Error", "Phone number must be a valid integer.");
+            showAlert(null, "Input Error", "Phone number must be a valid integer.", Alert.AlertType.WARNING);
             return;
         }
 
         // Kiểm tra xem các trường có đầy đủ dữ liệu không
         if (readerName.isEmpty() || email.isEmpty() || gender == null || phoneNumber <= 0) {
-            showAlert(Alert.AlertType.WARNING, "Input Error", "Please fill all fields correctly.");
+            showAlert(null, "Input Error", "Please fill all fields correctly.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -288,24 +282,25 @@ public class ReadersController extends SceneController {
             // Thực thi cập nhật
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Reader updated successfully.");
-                refreshTableData(); // Làm mới bảng dữ liệu
-                clearInformationButtonClicked(); // Xóa các trường sau khi cập nhật
+                showAlert(null, "Success", "Reader updated successfully.", Alert.AlertType.INFORMATION);
+                refreshTableData();
+                clearInformationButtonClicked();
             } else {
-                showAlert(Alert.AlertType.WARNING, "Update Failed", "No reader found with the given ID.");
+                showAlert(null, "Update Failed", "No reader found with the given ID.", Alert.AlertType.WARNING);
             }
 
         } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not update reader data. \n" + e.getMessage());
+            showAlert(null, "Database Error", "Could not update the database. \n" + e.getMessage(), Alert.AlertType.ERROR);
+
         }
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String headerText) {
+    /*private void showAlert(Alert.AlertType alertType, String title, String headerText) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
         alert.showAndWait();
-    }
+    }*/
 
     // Làm mới dữ liệu hiển thị trên bảng
     private void refreshTableData() {
@@ -319,7 +314,7 @@ public class ReadersController extends SceneController {
 
         // Kiểm tra nếu không có dòng nào được chọn
         if (selectedReader == null) {
-            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a reader to delete.");
+            showAlert(null, "No Selection", "Please select a reader to delete.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -342,15 +337,15 @@ public class ReadersController extends SceneController {
 
                 if (rowsAffected > 0) {
                     // Xóa thành công, hiển thị thông báo
-                    showAlert(Alert.AlertType.INFORMATION, "Success", "Reader deleted successfully.");
+                    showAlert(null, "Success", "Reader deleted successfully.", Alert.AlertType.INFORMATION);
                     // Xóa Reader khỏi danh sách hiển thị và cập nhật bảng
                     readersList.remove(selectedReader);
                     readersTable.refresh();
                 } else {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete the selected reader.");
+                    showAlert(null, "Error", "Failed to delete the selected reader.", Alert.AlertType.ERROR);
                 }
             } catch (SQLException e) {
-                showAlert(Alert.AlertType.ERROR, "Database Error", "Error while deleting reader: " + e.getMessage());
+                showAlert(null, "Database Error", "Could not delete the database. \n" + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }

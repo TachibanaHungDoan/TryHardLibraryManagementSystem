@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class RDashBoardSceneController extends SceneController {
+public class RDashBoardController extends SceneController {
 
     @FXML
     private Button allBooksButton;
@@ -60,6 +60,31 @@ public class RDashBoardSceneController extends SceneController {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
                 null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
         logOutSound();
+    }
+
+    @FXML
+    void rAllBooksButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rBYBRButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rBooksInventoryButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rGamesButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rMBRButtonClicked(ActionEvent event) {
+
     }
 
 }

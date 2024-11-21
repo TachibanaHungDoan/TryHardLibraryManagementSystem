@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RDashBoardSceneController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RDashBoardController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -28,9 +28,9 @@
                                     <Image url="@../Icon/appIcon.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
-                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
-                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Games" />
+                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" onAction="#rAllBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
+                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" onAction="#rBooksInventoryButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
+                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" onAction="#rGamesButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Games" />
                               <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
@@ -109,7 +109,7 @@
                                        </image>
                                     </ImageView>
                                     <Label layoutX="121.0" layoutY="12.0" prefHeight="22.0" prefWidth="309.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="The Most Borrowed Book" />
-                                    <Button fx:id="mbrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" />
+                                    <Button fx:id="mbrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" onAction="#rMBRButtonClicked" prefHeight="31.0" prefWidth="69.0" />
                                     <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="381.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Icon/ReaderIcon/DashboardIcon/info.png" />
@@ -127,7 +127,7 @@
                                        </image>
                                     </ImageView>
                                     <Label layoutX="83.0" layoutY="12.0" prefHeight="22.0" prefWidth="345.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="The Book You Borrowed Recently" />
-                                    <Button fx:id="bybrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" />
+                                    <Button fx:id="bybrButton" layoutX="362.0" layoutY="102.0" mnemonicParsing="false" onAction="#rBYBRButtonClicked" prefHeight="31.0" prefWidth="69.0" />
                                     <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="381.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Icon/ReaderIcon/DashboardIcon/info.png" />

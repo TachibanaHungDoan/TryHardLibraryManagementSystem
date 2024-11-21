@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RAllBooksController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RGameController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -26,9 +26,9 @@
                                  </image>
                               </ImageView>
                               <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" onAction="#rHomeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
-                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="All Books" />
+                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" onAction="#rAllBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
                               <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" onAction="#rBooksInventoryButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
-                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" onAction="#rGamesButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Games" />
+                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Games" />
                               <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
