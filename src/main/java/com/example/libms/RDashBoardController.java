@@ -63,28 +63,29 @@ public class RDashBoardController extends SceneController {
     }
 
     @FXML
-    void rAllBooksButtonClicked(ActionEvent event) {
-
+    void rAllBooksButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
     }
 
     @FXML
-    void rBYBRButtonClicked(ActionEvent event) {
-
+    void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rBooksInventory-view.fxml",booksInventoryButton);
     }
 
     @FXML
-    void rBooksInventoryButtonClicked(ActionEvent event) {
-
+    void rGamesButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rGame-view.fxml", gamesButton);
     }
 
-    @FXML
-    void rGamesButtonClicked(ActionEvent event) {
-
-    }
-
+    //nút sách mượn nhiều nhất
     @FXML
     void rMBRButtonClicked(ActionEvent event) {
 
     }
 
+    //Nút sách đã mượn gần đây.
+    @FXML
+    void rBYBRButtonClicked(ActionEvent event) {
+
+    }
 }

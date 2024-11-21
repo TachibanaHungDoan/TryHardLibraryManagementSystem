@@ -2,8 +2,11 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class RBooksInventoryController extends SceneController {
 
@@ -29,23 +32,25 @@ public class RBooksInventoryController extends SceneController {
     private Label usernameLabel;
 
     @FXML
-    void logOutButtonClicked(ActionEvent event) {
-
+    void logOutButtonClicked(ActionEvent event) throws IOException {
+        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
+                null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        logOutSound();
     }
 
     @FXML
-    void rAllBooksButtonClicked(ActionEvent event) {
-
+    void rAllBooksButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
     }
 
     @FXML
-    void rGamesButtonClicked(ActionEvent event) {
-
+    void rGamesButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rGame-view.fxml", gamesButton);
     }
 
     @FXML
-    void rHomeButtonClicked(ActionEvent event) {
-
+    void rHomeButtonClicked(ActionEvent event) throws IOException {
+        switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
     }
 
 }
