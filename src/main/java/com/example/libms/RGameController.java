@@ -40,16 +40,19 @@ public class RGameController extends SceneController {
 
     @FXML
     void rAllBooksButtonClicked(ActionEvent event) throws IOException {
+        bookFlipSound();
         switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
     }
 
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event)  throws IOException {
+        bookshelfSound();
         switchScene("ReaderView/rBooksInventory-view.fxml",booksInventoryButton);
     }
 
     @FXML
     void rHomeButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound1();
         switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
     }
 
