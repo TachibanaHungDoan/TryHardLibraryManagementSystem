@@ -64,6 +64,10 @@ public abstract class SceneController {
         playSound("bookshelfSound.mp3");
     }
 
+    protected static void deleteConfirm() {
+        playSound("DeleteConfirm.mp3");
+    }
+
     protected static void logOutSound() {
         playSound("logOutSound.mp3");
     }
