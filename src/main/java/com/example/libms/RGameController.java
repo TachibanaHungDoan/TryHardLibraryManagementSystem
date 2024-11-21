@@ -32,6 +32,11 @@ public class RGameController extends SceneController {
     private Label usernameLabel;
 
     @FXML
+    void initialize() {
+        setUpScene(usernameLabel, timeLabel);
+    }
+
+    @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
                 null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);

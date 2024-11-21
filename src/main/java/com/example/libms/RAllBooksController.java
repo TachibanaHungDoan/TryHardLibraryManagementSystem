@@ -2,22 +2,44 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
 public class RAllBooksController extends SceneController {
 
     @FXML
+    private TableColumn<?, ?> ISBNColumn;
+
+    @FXML
+    private Button acquireButton;
+
+    @FXML
+    private Button addToCartButton;
+
+    @FXML
     private Button allBooksButton;
+
+    @FXML
+    private Label allBooksLabel;
+
+    @FXML
+    private TableColumn<?, ?> authorColumn;
+
+    @FXML
+    private TableColumn<?, ?> bookIDColumn;
 
     @FXML
     private Button booksInventoryButton;
 
     @FXML
+    private TableView<?> booksTable;
+
+    @FXML
     private Button dashBoardButton;
+
+    @FXML
+    private TableColumn<?, ?> editionColumn;
 
     @FXML
     private Button gamesButton;
@@ -26,10 +48,40 @@ public class RAllBooksController extends SceneController {
     private Button logOutButton;
 
     @FXML
+    private TableColumn<?, ?> publishedDateColumn;
+
+    @FXML
+    private TableColumn<?, ?> publisherColumn;
+
+    @FXML
+    private TableColumn<?, ?> quantityColumn;
+
+    @FXML
+    private TableColumn<?, ?> remainingColumn;
+
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private TableColumn<?, ?> stateColumn;
+
+    @FXML
     private Label timeLabel;
 
     @FXML
+    private TableColumn<?, ?> titleColumn;
+
+    @FXML
     private Label usernameLabel;
+
+    @FXML
+    private Button viewBookButton;
+
+
+    @FXML
+    void initialize() {
+        setUpScene(usernameLabel, timeLabel);
+    }
 
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
