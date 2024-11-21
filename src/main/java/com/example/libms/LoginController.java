@@ -64,7 +64,7 @@ public class LoginController extends SceneController {
         roleChoiceBox.show();
     }
 
-    public void loginButtonClicked() throws IOException {
+    /*public void loginButtonClicked() throws IOException {
         if (loginUsernameTextField.getText().isBlank() || loginPassWordPassWordField.getText().isBlank()) {
             alertSoundPlay();
             showAlert(null,null,"Please enter your username and password", Alert.AlertType.WARNING);
@@ -77,10 +77,35 @@ public class LoginController extends SceneController {
             alertSoundPlay();
             showAlert(null, null, "Invalid username or password", Alert.AlertType.WARNING);
         }
+    }*/
+    public void loginButtonClicked() throws IOException {
+        String username = loginUsernameTextField.getText();
+        String password = loginPassWordPassWordField.getText();
+
+        if (username.isBlank() || password.isBlank()) {
+            alertSoundPlay();
+            showAlert(null, null, "Please enter your username and password", Alert.AlertType.WARNING);
+        } else if (username.equals("admin") && password.equals("0")) {
+            // Admin credentials
+            playButtonClickSound1();
+            setUsername(username); // Set username globally if needed
+            showAlert(null, null, "Admin login successful", Alert.AlertType.CONFIRMATION);
+            switchScene("AdminView/dashBoard-view.fxml", signInButton);
+        } else if (validateLogin(username, password)) {
+            // Regular user credentials
+            playButtonClickSound1();
+            setUsername(username); // Set username globally if needed
+            showAlert(null, null, "Login successful", Alert.AlertType.CONFIRMATION);
+            switchScene("ReaderView/rDashBoard-view.fxml", signInButton);
+        } else {
+            // Invalid credentials
+            alertSoundPlay();
+            showAlert(null, null, "Invalid username or password", Alert.AlertType.WARNING);
+        }
     }
 
-    public void registerButtonClicked(ActionEvent event) throws IOException {
-        /*String username = signUpUsernameTextField.getText();
+    /*public void registerButtonClicked(ActionEvent event) throws IOException {
+        String username = signUpUsernameTextField.getText();
         String password = signUpPassWordPassWordField.getText();
         String confirmPassword = confirmPassWordPassWordField.getText();
 
@@ -101,9 +126,9 @@ public class LoginController extends SceneController {
                 SceneController.alertSoundPlay();
                 SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
             }
-        }*/
+        }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
         DialogPane dialogPane = loader.load();
 
         RInformationFillController controller = loader.getController();
@@ -117,6 +142,64 @@ public class LoginController extends SceneController {
             dialog.close();
         } else if (result.isPresent() && result.get() == ButtonType.OK) {
             switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
+        }
+    }*/
+    public void registerButtonClicked(ActionEvent event) throws IOException {
+        String username = signUpUsernameTextField.getText();
+        String password = signUpPassWordPassWordField.getText();
+        String confirmPassword = confirmPassWordPassWordField.getText();
+
+        // Validate username and password fields
+        if (username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+            SceneController.alertSoundPlay();
+            SceneController.showAlert(null, null, "Please enter your username and password!", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            SceneController.alertSoundPlay();
+            SceneController.showAlert(null, null, "Your passwords do not match!", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Load information fill form
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/informationFill-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        RInformationFillController controller = loader.getController();
+
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Fill Information Form");
+
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Process the information form
+            if (controller.processForm()) {
+                // If both registration and information fill are successful, add the user credentials to the database
+                if (registerUser(username, password)) {
+                    SceneController.playButtonClickSound1();
+                    SceneController.showAlert(
+                            "Registration Successful",
+                            null,
+                            "You have registered successfully!",
+                            Alert.AlertType.INFORMATION
+                    );
+                    // Optionally switch to a different view, like the Reader dashboard
+                    switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
+                } else {
+                    SceneController.alertSoundPlay();
+                    SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
+                }
+            } else {
+                SceneController.alertSoundPlay();
+                SceneController.showAlert(null, null, "Failed to fill out the information form.", Alert.AlertType.WARNING);
+            }
+        } else {
+            SceneController.alertSoundPlay();
+            SceneController.showAlert(null, null, "Information form was canceled.", Alert.AlertType.WARNING);
         }
     }
 

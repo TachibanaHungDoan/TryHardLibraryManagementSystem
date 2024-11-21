@@ -30,7 +30,7 @@ public abstract class SceneController {
 
     private static String username;
 
-    protected static void setUsername(String userName) {
+    protected void setUsername(String userName) {
         username = userName;
     }
 
