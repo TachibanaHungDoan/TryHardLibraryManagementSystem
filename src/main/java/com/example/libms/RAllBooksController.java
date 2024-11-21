@@ -33,7 +33,7 @@ public class RAllBooksController extends SceneController {
 
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
-        switchScene("ReaderView/rBooksInventory-view.fxml",booksInventoryButton);
+        switchScene("ReaderView/rBooksInventory-view.fxml", booksInventoryButton);
     }
 
     @FXML
@@ -43,14 +43,23 @@ public class RAllBooksController extends SceneController {
 
     @FXML
     void rHomeButtonClicked(ActionEvent event) throws IOException {
-        switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
+        switchScene("ReaderView/rDashBoard-view.fxml", dashBoardButton);
     }
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+                null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
         logOutSound();
     }
 
+    @FXML
+    void rViewBookButtonClicked(ActionEvent event) throws IOException {
+
+    }
+
+    @FXML
+    void rAcquireButtonClicked(ActionEvent event) throws IOException {
+
+    }
 }

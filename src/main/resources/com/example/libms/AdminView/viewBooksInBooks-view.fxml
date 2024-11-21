@@ -42,7 +42,7 @@
                      <left>
                         <AnchorPane prefHeight="450.0" prefWidth="204.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane prefHeight="450.0" prefWidth="204.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane prefHeight="473.0" prefWidth="204.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label layoutY="126.0" prefHeight="43.0" prefWidth="204.0" styleClass="bigText-label" stylesheets="@../des/viewBooks-des.css" text="Book" />
                                     <Label layoutY="87.0" prefHeight="43.0" prefWidth="204.0" styleClass="bigText-label" stylesheets="@../des/viewBooks-des.css" text="View" />
