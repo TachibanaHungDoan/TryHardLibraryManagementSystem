@@ -1,0 +1,41 @@
+.normal-btn {
+    -fx-background-color: linear-gradient(to right, #6b8d98, #4a9bb1); /* Gradient nhẹ từ xanh xám nhạt đến xanh dương sáng */
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+/* Khi hover trên normal-btn */
+.normal-btn:hover {
+    -fx-background-color: linear-gradient(to right, #5a7f8f, #3b85a0); /* Gradient đậm hơn khi hover */
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+/* Button switch-btn - đậm hơn normal-btn với hiệu ứng bóng */
+.switch-btn {
+    -fx-background-color: linear-gradient(to right, #3b5f68, #2c6a85); /* Gradient đậm hơn, từ xanh xám đậm đến xanh dương đậm */
+    -fx-background-radius: 12px; /* Bo góc mạnh mẽ hơn */
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 2, 2); /* Thêm bóng đổ để nổi bật hơn */
+}
+
+/* Khi hover trên switch-btn - Thêm hiệu ứng biến đổi */
+.switch-btn:hover {
+    -fx-background-color: linear-gradient(to right, #2f5059, #1f5f7a); /* Đậm hơn nữa khi hover */
+    -fx-background-radius: 12px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 12, 0, 3, 3); /* Bóng đổ đậm hơn khi hover */
+    -fx-transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}

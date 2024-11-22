@@ -2,6 +2,8 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -115,6 +117,5 @@ public class RAllBooksController extends SceneController {
 
     @FXML
     void rAcquireButtonClicked(ActionEvent event) throws IOException {
-
     }
 }

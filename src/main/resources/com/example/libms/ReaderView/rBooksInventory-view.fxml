@@ -18,7 +18,7 @@
          <children>
             <BorderPane layoutX="378.0" layoutY="100.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="640.0" prefWidth="360.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
@@ -92,7 +92,7 @@
                   </AnchorPane>
                </top>
                <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
@@ -100,30 +100,32 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <Button layoutX="35.0" layoutY="23.0" mnemonicParsing="false" text="Button" />
-                              <Button layoutX="108.0" layoutY="23.0" mnemonicParsing="false" text="Button" />
-                              <AnchorPane layoutX="35.0" layoutY="124.0" prefHeight="400.0" prefWidth="381.0">
-                                 <children>
-                                    <TableView layoutX="25.0" layoutY="136.0" prefHeight="200.0" prefWidth="200.0">
-                                      <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
-                                      </columns>
-                                    </TableView>
-                                    <Button layoutX="125.0" layoutY="52.0" mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="450.0" layoutY="133.0" prefHeight="400.0" prefWidth="381.0">
-                                 <children>
-                                    <TableView layoutX="25.0" layoutY="136.0" prefHeight="200.0" prefWidth="200.0">
-                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
-                                       </columns>
-                                    </TableView>
-                                    <Button layoutX="125.0" layoutY="52.0" mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </AnchorPane>
+                              <TableView layoutX="31.0" layoutY="78.0" prefHeight="522.0" prefWidth="751.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
+                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
+                              <Button layoutX="411.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane disable="true" layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css" visible="false">
+                           <styleClass>
+                              <String fx:value="content-form" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <TableView layoutX="240.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                              <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
+                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
+                              <Button layoutX="114.0" layoutY="238.0" mnemonicParsing="false" text="Button" />
                            </children>
                         </AnchorPane>
                      </children>

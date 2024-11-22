@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <DialogPane prefWidth="726.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RAcquireController">
    <content>
       <AnchorPane prefHeight="450.0" prefWidth="690.0">
@@ -38,13 +37,13 @@
                      <children>
                         <AnchorPane prefHeight="450.0" prefWidth="545.0" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <TableView layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="500.0">
+                              <TableView layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="513.0">
                                 <columns>
                                   <TableColumn prefWidth="48.5" text="BookID" />
                                   <TableColumn prefWidth="129.0" text="Title" />
                                     <TableColumn prefWidth="116.5" text="Author" />
                                     <TableColumn prefWidth="120.5" text="Publisher" />
-                                    <TableColumn prefWidth="84.5" text="ISBN" />
+                                    <TableColumn prefWidth="96.5" text="ISBN" />
                                 </columns>
                               </TableView>
                               <Button fx:id="cancelButton" layoutX="232.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancelButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Cancel" />
@@ -52,10 +51,15 @@
                               <Button fx:id="confirmButton" layoutX="455.0" layoutY="381.0" mnemonicParsing="false" onAction="#confirmButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Confirm" />
                               <AnchorPane layoutX="14.0" layoutY="374.0" prefHeight="55.0" prefWidth="210.0" styleClass="content-field" stylesheets="@../des/rAcquireAllBooks-des.css">
                                  <children>
-                                    <Label layoutX="39.0" layoutY="6.0" styleClass="smallRightText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Total books:" />
-                                    <Label layoutX="39.0" layoutY="28.0" prefHeight="20.0" prefWidth="82.0" styleClass="smallRightText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Due Date:" />
-                                    <Label fx:id="dueDateLabel" layoutX="130.0" layoutY="28.0" prefHeight="20.0" prefWidth="75.0" styleClass="smallLeftText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Date" />
-                                    <Label fx:id="totalBooksLabel" layoutX="129.0" layoutY="6.0" prefHeight="20.0" prefWidth="56.0" styleClass="smallLeftText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Num" />
+                                    <Label layoutX="39.0" layoutY="6.0" styleClass="right-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Total books:" />
+                                    <Label layoutX="39.0" layoutY="28.0" prefHeight="20.0" prefWidth="82.0" styleClass="right-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Due Date:" />
+                                    <Label fx:id="dueDateLabel" layoutX="130.0" layoutY="28.0" prefHeight="20.0" prefWidth="75.0" styleClass="left-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Date" />
+                                    <Label fx:id="totalBooksLabel" layoutX="129.0" layoutY="6.0" prefHeight="20.0" prefWidth="56.0" styleClass="left-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Num" />
+                                    <ImageView fitHeight="30.0" fitWidth="58.0" layoutX="7.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/ReaderIcon/DashboardIcon/shoppingBag.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </children>
