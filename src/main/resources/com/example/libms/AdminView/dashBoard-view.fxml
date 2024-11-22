@@ -183,10 +183,10 @@
                               </AnchorPane>
                               <BarChart fx:id="bnrBarChart" layoutX="73.0" layoutY="210.0" prefHeight="381.0" prefWidth="789.0" title="Books and Readers">
                                  <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
+                                    <CategoryAxis label="Category" side="BOTTOM" fx:id="xAxis" />
                                  </xAxis>
                                  <yAxis>
-                                    <NumberAxis side="LEFT" />
+                                    <NumberAxis fx:id="yAxis" label="Count" side="LEFT" />
                                  </yAxis>
                               </BarChart>
                            </children>

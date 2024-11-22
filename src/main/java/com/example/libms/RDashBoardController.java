@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Random;
 
 public class RDashBoardController extends SceneController {
 
@@ -58,20 +59,7 @@ public class RDashBoardController extends SceneController {
 
     @FXML
     private Label usernameLabel;
-    private static class Quote {
-        private final String quote;
-        private final String author;
-        public Quote(String quote, String author) {
-            this.quote = quote;
-            this.author = author;
-        }
-        public String getQuote() {
-            return quote;
-        }
-        public String getAuthor() {
-            return author;
-        }
-    }
+
 
     private List<Quote> quotes = new ArrayList<>();
     private int currentQuoteIndex = 0;
@@ -86,6 +74,7 @@ public class RDashBoardController extends SceneController {
             System.err.println("File not found: Quote/Quotes.txt");
         }
         startQuoteTimeline();
+        showRandomQuote();
     }
 
     private void loadQuotes(String filePath) {
@@ -106,8 +95,6 @@ public class RDashBoardController extends SceneController {
         }
     }
 
-
-
     private void startQuoteTimeline() {
         if (quotes.isEmpty()) return;
 
@@ -121,8 +108,19 @@ public class RDashBoardController extends SceneController {
         if (quotes.isEmpty()) return;
         Quote quote = quotes.get(currentQuoteIndex);
         quoteText.setText(quote.getQuote());
-        quoteAuthorLabel.setText("-" + quote.author + "-");
+        quoteAuthorLabel.setText("-" + quote.getAuthor() + "-");
         currentQuoteIndex = (currentQuoteIndex + 1) % quotes.size();
+    }
+
+    Random random = new Random();
+
+    private void showRandomQuote() {
+        if (!quotes.isEmpty()) {
+            int randomIndex = random.nextInt(quotes.size());
+            Quote randomQuote = quotes.get(randomIndex);
+            quoteText.setText(randomQuote.getQuote());
+            quoteAuthorLabel.setText("-" + randomQuote.getAuthor() + "-");
+        }
     }
 
     @FXML
