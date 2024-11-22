@@ -1,7 +1,12 @@
 package com.example.libms;
 
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import java.io.IOException;
@@ -38,12 +43,34 @@ public class DashBoardController extends SceneController {
 
     @FXML
     private Label borrowedBooksLabel;
+    @FXML
+    private BarChart<String, Number> bnrBarChart;
+    @FXML
+    private CategoryAxis xAxis;
+    @FXML
+    private NumberAxis yAxis;
 
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
         totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
         totalReadersLabel.setText(String.valueOf(getTotalReadersFromDatabase()));
+        borrowedBooksLabel.setText("0"); //Sau sẽ sử dụng hàm lấy số sách đã mượn từ CSDL
+        initializeBarChart();
+    }
+
+    private void initializeBarChart() {
+        xAxis.setLabel("Category");
+        yAxis.setLabel("Count");
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Library Statistics");
+        int numberOfBooks = getTotalBooksFromDatabase();
+        int numberOfReaders = getTotalReadersFromDatabase();
+        int booksBorrowed = 0; // Sau sẽ thêm hàm lấy số sách mượn từ CSDL
+        series.getData().add(new XYChart.Data<>("Total Books", numberOfBooks));
+        series.getData().add(new XYChart.Data<>("Total Readers", numberOfReaders));
+        series.getData().add(new XYChart.Data<>("Total Borrowed Books", booksBorrowed));
+        bnrBarChart.getData().add(series);
     }
 
     private int getTotalBooksFromDatabase() {
