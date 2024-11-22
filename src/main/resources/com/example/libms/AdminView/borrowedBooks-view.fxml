@@ -128,15 +128,15 @@
                               <TextField fx:id="searchBar" layoutX="640.0" layoutY="82.0" prefHeight="35.0" prefWidth="253.0" promptText="Search" />
                               <TableView fx:id="borrowedBooksTable" layoutX="10.0" layoutY="137.0" prefHeight="474.0" prefWidth="883.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="BorrowedID" />
-                                  <TableColumn prefWidth="75.0" text="Book ISBN" />
-                                    <TableColumn prefWidth="98.0" text="Book Title" />
-                                    <TableColumn prefWidth="66.0" text="ReaderID" />
-                                    <TableColumn prefWidth="121.0" text="Reader Name" />
-                                    <TableColumn prefWidth="109.5" text="Date Borrowed" />
-                                    <TableColumn prefWidth="113.5" text="Date Returned" />
-                                    <TableColumn prefWidth="109.5" text="Number Of Days " />
-                                    <TableColumn prefWidth="113.5" text="Late Fee" />
+                                  <TableColumn fx:id="borrowedIDColumn" prefWidth="75.0" text="BorrowedID" />
+                                  <TableColumn fx:id="bookISBNColumn" prefWidth="75.0" text="Book ISBN" />
+                                    <TableColumn fx:id="bookTitleColumn" prefWidth="98.0" text="Book Title" />
+                                    <TableColumn fx:id="readerIDColumn" prefWidth="66.0" text="ReaderID" />
+                                    <TableColumn fx:id="readerNameColumn" prefWidth="121.0" text="Reader Name" />
+                                    <TableColumn fx:id="borrowedDateColumn" prefWidth="109.5" text="Date Borrowed" />
+                                    <TableColumn fx:id="returnDateColumn" prefWidth="113.5" text="Date Returned" />
+                                    <TableColumn fx:id="borrowedDayColumn" prefWidth="109.5" text="Number Of Days " />
+                                    <TableColumn fx:id="lateFeeColumn" prefWidth="113.5" text="Late Fee" />
                                 </columns>
                               </TableView>
                               <Label layoutX="10.0" layoutY="81.0" styleClass="smallText-label" stylesheets="@../des/borrowedbooks-des.css" text="All Borrowed Books:" />

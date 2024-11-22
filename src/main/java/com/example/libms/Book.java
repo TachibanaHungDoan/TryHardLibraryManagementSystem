@@ -9,11 +9,11 @@ public class Book {
         unavailable
     }
 
-    private int id;
-    private String title;
+    protected int id;
+    protected String title;
     private String author;
     private String publisher;
-    private String isbn;
+    protected String isbn;
     private Date publishedDate;
     private int edition;
     private int quantity;

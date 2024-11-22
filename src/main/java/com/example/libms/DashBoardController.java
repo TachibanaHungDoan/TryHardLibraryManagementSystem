@@ -56,7 +56,7 @@ public class DashBoardController extends SceneController {
         setUpScene(usernameLabel, timeLabel);
         totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
         totalReadersLabel.setText(String.valueOf(getTotalReadersFromDatabase()));
-        borrowedBooksLabel.setText("0"); //Sau sẽ sử dụng hàm lấy số sách đã mượn từ CSDL
+        borrowedBooksLabel.setText(String.valueOf(getTotalBorrowedBooksFromDatabase())); //Sau sẽ sử dụng hàm lấy số sách đã mượn từ CSDL
         initializeBarChart();
     }
 
@@ -67,7 +67,7 @@ public class DashBoardController extends SceneController {
         series.setName("Library Statistics");
         int numberOfBooks = getTotalBooksFromDatabase();
         int numberOfReaders = getTotalReadersFromDatabase();
-        int booksBorrowed = 0; // Sau sẽ thêm hàm lấy số sách mượn từ CSDL
+        int booksBorrowed = getTotalBorrowedBooksFromDatabase(); // Sau sẽ thêm hàm lấy số sách mượn từ CSDL
         series.getData().add(new XYChart.Data<>("Total Books", numberOfBooks));
         series.getData().add(new XYChart.Data<>("Total Readers", numberOfReaders));
         series.getData().add(new XYChart.Data<>("Total Borrowed Books", booksBorrowed));
@@ -116,6 +116,21 @@ public class DashBoardController extends SceneController {
             e.printStackTrace();
         }
         return totalReaders;
+    }
+    private int getTotalBorrowedBooksFromDatabase() {
+        int totalBorrowedBooks = 0;
+        String query = "SELECT COUNT(id) AS total FROM borrowedbooks";
+        // Adjust table and column name as per your schema
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                totalBorrowedBooks = resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalBorrowedBooks;
     }
 
     @FXML
