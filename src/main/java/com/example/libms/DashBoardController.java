@@ -1,6 +1,7 @@
 package com.example.libms;
 
 import com.jfoenix.controls.JFXDialogLayout;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -71,6 +72,15 @@ public class DashBoardController extends SceneController {
         series.getData().add(new XYChart.Data<>("Total Readers", numberOfReaders));
         series.getData().add(new XYChart.Data<>("Total Borrowed Books", booksBorrowed));
         bnrBarChart.getData().add(series);
+
+        /*Platform.runLater(() -> {
+            for (XYChart.Data<String, Number> data : series.getData()) {
+                // Đảm bảo Node đã được tạo
+                if (data.getNode() != null) {
+                    data.getNode().setStyle("-fx-bar-fill: green;");  // Đổi màu cho các cột
+                }
+            }
+        });*/
     }
 
     private int getTotalBooksFromDatabase() {

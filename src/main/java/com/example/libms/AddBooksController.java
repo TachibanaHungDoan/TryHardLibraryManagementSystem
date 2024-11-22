@@ -18,6 +18,9 @@ public class AddBooksController extends SceneController {
     private Button addButton;
 
     @FXML
+    private TextField searchBar;
+
+    @FXML
     private TextField authorTextField;
 
     @FXML

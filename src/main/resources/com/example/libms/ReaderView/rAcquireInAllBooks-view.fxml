@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,58 +11,64 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.ReaderView.RAcquireInAllBooksView">
-   <children>
-      <BorderPane layoutX="312.0" layoutY="125.0" prefHeight="450.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <AnchorPane prefHeight="200.0" prefWidth="145.0" BorderPane.alignment="CENTER">
-               <children>
-                  <AnchorPane prefHeight="450.0" prefWidth="145.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
+
+<DialogPane prefWidth="726.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RAcquireController">
+   <content>
+      <AnchorPane prefHeight="450.0" prefWidth="690.0">
+         <children>
+            <BorderPane layoutX="312.0" layoutY="125.0" prefHeight="450.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="145.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="108.0" fitWidth="110.0" layoutX="19.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Icon/appIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="17.0" layoutY="215.0" styleClass="nav-Label" stylesheets="@../des/informationFill-des.css" text="LIBRISCOPE" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </left>
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <AnchorPane prefHeight="450.0" prefWidth="545.0" stylesheets="@../des/readerTemplate-des.css">
-                     <children>
-                        <TableView layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="500.0">
-                          <columns>
-                            <TableColumn prefWidth="48.5" text="BookID" />
-                            <TableColumn prefWidth="129.0" text="Title" />
-                              <TableColumn prefWidth="116.5" text="Author" />
-                              <TableColumn prefWidth="120.5" text="Publisher" />
-                              <TableColumn prefWidth="84.5" text="ISBN" />
-                          </columns>
-                        </TableView>
-                        <Button fx:id="cancelButton" layoutX="239.0" layoutY="392.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-                        <Button fx:id="dFCButton" layoutX="305.0" layoutY="392.0" mnemonicParsing="false" onAction="#deleteFromCartButtonClicked" text="Delete from cart" />
-                        <Button fx:id="confirmButton" layoutX="428.0" layoutY="393.0" mnemonicParsing="false" onAction="#confirmButtonClicked" text="Confirm" />
-                        <AnchorPane layoutX="23.0" layoutY="372.0" prefHeight="55.0" prefWidth="210.0">
+                        <AnchorPane prefHeight="450.0" prefWidth="145.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <Label layoutX="41.0" layoutY="6.0" text="Total books" />
-                              <Label layoutX="55.0" layoutY="23.0" text="Due Date" />
-                              <Label fx:id="dueDateLabel" layoutX="128.0" layoutY="23.0" text="Date" />
-                              <Label fx:id="totalBooksLabel" layoutX="129.0" layoutY="6.0" text="Num" />
+                              <ImageView fitHeight="108.0" fitWidth="110.0" layoutX="19.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/appIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="17.0" layoutY="215.0" styleClass="nav-Label" stylesheets="@../des/informationFill-des.css" text="LIBRISCOPE" />
                            </children>
                         </AnchorPane>
                      </children>
-                     <styleClass>
-                        <String fx:value="content-form" />
-                        <String fx:value="shadow" />
-                     </styleClass></AnchorPane>
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane prefHeight="450.0" prefWidth="545.0" stylesheets="@../des/readerTemplate-des.css">
+                           <children>
+                              <TableView layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="500.0">
+                                <columns>
+                                  <TableColumn prefWidth="48.5" text="BookID" />
+                                  <TableColumn prefWidth="129.0" text="Title" />
+                                    <TableColumn prefWidth="116.5" text="Author" />
+                                    <TableColumn prefWidth="120.5" text="Publisher" />
+                                    <TableColumn prefWidth="84.5" text="ISBN" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="cancelButton" layoutX="232.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancelButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Cancel" />
+                              <Button fx:id="dFCButton" layoutX="309.0" layoutY="381.0" mnemonicParsing="false" onAction="#deleteFromCartButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Delete from cart" />
+                              <Button fx:id="confirmButton" layoutX="455.0" layoutY="381.0" mnemonicParsing="false" onAction="#confirmButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Confirm" />
+                              <AnchorPane layoutX="14.0" layoutY="374.0" prefHeight="55.0" prefWidth="210.0" styleClass="content-field" stylesheets="@../des/rAcquireAllBooks-des.css">
+                                 <children>
+                                    <Label layoutX="39.0" layoutY="6.0" styleClass="smallRightText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Total books:" />
+                                    <Label layoutX="39.0" layoutY="28.0" prefHeight="20.0" prefWidth="82.0" styleClass="smallRightText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Due Date:" />
+                                    <Label fx:id="dueDateLabel" layoutX="130.0" layoutY="28.0" prefHeight="20.0" prefWidth="75.0" styleClass="smallLeftText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Date" />
+                                    <Label fx:id="totalBooksLabel" layoutX="129.0" layoutY="6.0" prefHeight="20.0" prefWidth="56.0" styleClass="smallLeftText-Label" stylesheets="@../des/rAcquireAllBooks-des.css" text="Num" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <styleClass>
+                              <String fx:value="content-form" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </content>
+</DialogPane>
