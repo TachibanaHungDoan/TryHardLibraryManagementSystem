@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class RBooksInventoryController extends SceneController {
+public class RBooksInventoryBorrowController extends SceneController {
 
     @FXML
     private Button allBooksButton;
@@ -30,6 +30,12 @@ public class RBooksInventoryController extends SceneController {
 
     @FXML
     private Label usernameLabel;
+
+    @FXML
+    private Button returnBookButton;
+
+    @FXML
+    private Button returnedBooksSceneSwitchButton;
 
     @FXML
     void initialize() {
@@ -61,4 +67,14 @@ public class RBooksInventoryController extends SceneController {
         switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
     }
 
+    @FXML
+    void returnBookButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void returnedBooksSwitchSceneButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound1();
+        switchScene("ReaderView/rBooksInventoryReturn-view.fxml", returnedBooksSceneSwitchButton);
+    }
 }

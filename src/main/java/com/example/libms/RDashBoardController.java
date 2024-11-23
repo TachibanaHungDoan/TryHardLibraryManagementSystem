@@ -31,6 +31,9 @@ public class RDashBoardController extends SceneController {
     private Button bybrButton;
 
     @FXML
+    private Button settingButton;
+
+    @FXML
     private Label bybrLabel;
 
     @FXML
@@ -98,7 +101,6 @@ public class RDashBoardController extends SceneController {
 
     private void startQuoteTimeline() {
         if (quotes.isEmpty()) return;
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(20), e -> updateQuote()));
         timeline.setCycleCount(Timeline.INDEFINITE); // Lặp vô hạn
         timeline.play();
@@ -140,7 +142,7 @@ public class RDashBoardController extends SceneController {
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
         bookshelfSound();
-        switchScene("ReaderView/rBooksInventory-view.fxml", booksInventoryButton);
+        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
     }
 
     @FXML

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -31,12 +30,11 @@
             <AnchorPane fx:id="signUpForm" prefHeight="500.0" prefWidth="350.0" styleClass="wbg" stylesheets="@../des/login-des.css">
                <children>
                   <Label layoutX="28.0" layoutY="75.0" prefHeight="40.0" prefWidth="121.0" styleClass="black-label" stylesheets="@../des/login-des.css" text="Sign Up" />
-                  <Button fx:id="signUpButton" layoutX="62.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="51.0" prefWidth="241.0" styleClass="login-btn" stylesheets="@../des/login-des.css" text="Sign Up" />
+                  <Button fx:id="signUpButton" layoutX="62.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="51.0" prefWidth="241.0" styleClass="login-btn" stylesheets="@../des/login-des.css" text="Sign Up" />
                   <TextField fx:id="signUpUsernameTextField" layoutX="46.0" layoutY="183.0" prefHeight="40.0" prefWidth="258.0" promptText="Username" />
                   <PasswordField fx:id="signUpPassWordPassWordField" layoutX="46.0" layoutY="241.0" prefHeight="40.0" prefWidth="258.0" promptText="Password" />
                   <Label layoutX="28.0" layoutY="115.0" prefHeight="27.0" prefWidth="296.0" styleClass="blackSmall-label" stylesheets="@../des/login-des.css" text="Please provide your information" />
                   <PasswordField fx:id="confirmPassWordPassWordField" layoutX="46.0" layoutY="295.0" prefHeight="40.0" prefWidth="258.0" promptText="Password" />
-                  <ChoiceBox fx:id="roleChoiceBox" layoutX="153.0" layoutY="349.0" onDragDetected="#ClickChoiceBox" prefHeight="40.0" prefWidth="149.0" />
                   <ImageView fitHeight="69.0" fitWidth="78.0" layoutX="235.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Icon/loginIcon/opened-book-with-a-magnifier.png" />

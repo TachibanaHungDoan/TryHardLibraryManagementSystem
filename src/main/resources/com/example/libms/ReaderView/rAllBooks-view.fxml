@@ -21,7 +21,7 @@
                <left>
                   <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutY="-40.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
                               <ImageView fitHeight="239.0" fitWidth="251.0" layoutX="52.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -67,22 +67,22 @@
                   </AnchorPane>
                </left>
                <top>
-                  <AnchorPane prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="40.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="360.0" prefHeight="80.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutX="360.0" prefHeight="40.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <Label fx:id="usernameLabel" layoutX="79.0" layoutY="18.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
-                              <Label fx:id="timeLabel" layoutX="796.0" layoutY="7.0" prefHeight="52.0" prefWidth="134.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
+                              <Label fx:id="usernameLabel" layoutX="37.0" layoutY="5.0" prefHeight="30.0" prefWidth="278.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
+                              <Label fx:id="timeLabel" layoutX="785.0" layoutY="5.0" prefHeight="32.0" prefWidth="113.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="728.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="905.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icon/ReaderIcon/DashboardIcon/timeClock.png" />
+                                    <Image url="@../Icon/ReaderIcon/DashboardIcon/setting.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/ReaderIcon/DashboardIcon/user.png" />
                                  </image>
@@ -95,7 +95,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
@@ -108,7 +108,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TableView fx:id="booksTable" layoutX="16.0" layoutY="112.0" prefHeight="509.0" prefWidth="893.0">
+                              <TableView fx:id="booksTable" layoutX="16.0" layoutY="112.0" prefHeight="540.0" prefWidth="893.0">
                                  <columns>
                                     <TableColumn fx:id="bookIDColumn" prefWidth="47.5" text="BookID" />
                                     <TableColumn fx:id="titleColumn" prefWidth="133.5" text="Title" />

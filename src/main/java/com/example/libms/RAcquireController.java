@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -51,7 +52,9 @@ public class RAcquireController extends SceneController {
     @FXML
     void cancelButtonClicked(ActionEvent event) throws IOException {
         playButtonClickSound2();
-        switchScene("ReaderView/rAllBooks-view.fxml", cancelButton);
+        /*switchScene("ReaderView/rAllBooks-view.fxml", cancelButton);*/
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

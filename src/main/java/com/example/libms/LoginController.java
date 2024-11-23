@@ -34,9 +34,6 @@ public class LoginController extends SceneController {
     private TextField loginUsernameTextField;
 
     @FXML
-    private ChoiceBox roleChoiceBox;
-
-    @FXML
     private AnchorPane sideForm;
 
     @FXML
@@ -57,11 +54,7 @@ public class LoginController extends SceneController {
     @FXML
     void initialize() {
         //SceneController.playBackGroundMusic();
-        roleChoiceBox.setItems(FXCollections.observableArrayList(new String[] { "Admin", "Reader" }));
-    }
 
-    public void ClickChoiceBox(MouseEvent mouseEvent) {
-        roleChoiceBox.show();
     }
 
     /*public void loginButtonClicked() throws IOException {

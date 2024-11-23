@@ -3,6 +3,7 @@ package com.example.libms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -178,7 +179,7 @@ public class RAllBooksController extends SceneController {
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
         bookshelfSound();
-        switchScene("ReaderView/rBooksInventory-view.fxml", booksInventoryButton);
+        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
     }
 
     @FXML
@@ -229,8 +230,18 @@ public class RAllBooksController extends SceneController {
     @FXML
     void rAcquireButtonClicked(ActionEvent event) throws IOException {
         playButtonClickSound2();
-        switchScene("ReaderView/rAcquireInAllBooks-view.fxml",acquireButton);
+        /*switchScene("ReaderView/rAcquireInAllBooks-view.fxml",acquireButton);*/
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAcquireInAllBooks-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        RAcquireController controller = loader.getController();
+
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Cart");
+        dialog.showAndWait();
     }
+
     @FXML
     void addToCartButtonClicked(ActionEvent event) {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();

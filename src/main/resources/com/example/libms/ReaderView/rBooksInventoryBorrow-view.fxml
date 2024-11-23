@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RBooksInventoryController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RBooksInventoryBorrowController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -20,7 +20,7 @@
                <left>
                   <AnchorPane prefHeight="640.0" prefWidth="360.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutY="-40.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
                               <ImageView fitHeight="239.0" fitWidth="251.0" layoutX="52.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -66,22 +66,22 @@
                   </AnchorPane>
                </left>
                <top>
-                  <AnchorPane prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="40.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="360.0" prefHeight="80.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutX="360.0" prefHeight="40.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <Label fx:id="usernameLabel" layoutX="79.0" layoutY="18.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
-                              <Label fx:id="timeLabel" layoutX="796.0" layoutY="7.0" prefHeight="52.0" prefWidth="134.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
+                              <Label fx:id="usernameLabel" layoutX="37.0" layoutY="5.0" prefHeight="30.0" prefWidth="278.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
+                              <Label fx:id="timeLabel" layoutX="785.0" layoutY="5.0" prefHeight="32.0" prefWidth="113.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="728.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="905.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icon/ReaderIcon/DashboardIcon/timeClock.png" />
+                                    <Image url="@../Icon/ReaderIcon/DashboardIcon/setting.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/ReaderIcon/DashboardIcon/user.png" />
                                  </image>
@@ -94,38 +94,26 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TableView layoutX="31.0" layoutY="78.0" prefHeight="522.0" prefWidth="751.0">
+                              <TableView layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="881.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="75.0" text="BookID" />
+                                  <TableColumn prefWidth="183.33331298828125" text="Title" />
+                                    <TableColumn prefWidth="130.66668701171875" text="Author" />
+                                    <TableColumn prefWidth="117.0" text="Publisher" />
+                                    <TableColumn prefWidth="121.8333740234375" text="ISBN" />
+                                    <TableColumn prefWidth="125.16668701171875" text="Published Date" />
+                                    <TableColumn prefWidth="128.0" text="Borrowed Date" />
                                 </columns>
                               </TableView>
                               <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
-                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
-                              <Button layoutX="411.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane disable="true" layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css" visible="false">
-                           <styleClass>
-                              <String fx:value="content-form" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                           <children>
-                              <TableView layoutX="240.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
-                              </TableView>
-                              <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
-                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
-                              <Button layoutX="114.0" layoutY="238.0" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="returnedBooksSceneSwitchButton" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" onAction="#returnedBooksSwitchSceneButtonClicked" prefHeight="36.0" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
+                              <Button fx:id="returnBookButton" layoutX="777.0" layoutY="31.0" mnemonicParsing="false" onAction="#returnBookButtonClicked" prefHeight="36.0" prefWidth="85.0" styleClass="content-btn" stylesheets="@../des/rAllBooks-des.css" text="Return" />
                            </children>
                         </AnchorPane>
                      </children>

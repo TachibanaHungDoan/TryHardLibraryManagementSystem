@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-   <?import java.lang.String?>
-   <?import javafx.scene.chart.PieChart?>
-   <?import javafx.scene.control.Button?>
-   <?import javafx.scene.control.Label?>
-   <?import javafx.scene.image.Image?>
-   <?import javafx.scene.image.ImageView?>
-   <?import javafx.scene.layout.AnchorPane?>
-   <?import javafx.scene.layout.BorderPane?>
-   <?import javafx.scene.layout.StackPane?>
-   <?import javafx.scene.text.Font?>
-   <?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RDashBoardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RDashBoardController">
       <children>
          <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
                <BorderPane layoutX="231.0" layoutY="188.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <left>
-                     <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
+                     <AnchorPane prefHeight="720.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                         <children>
-                           <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
+                           <AnchorPane layoutY="-40.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                               <children>
                                  <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Dashboard" />
                                  <ImageView fitHeight="239.0" fitWidth="251.0" layoutX="52.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -67,26 +67,27 @@
                      </AnchorPane>
                   </left>
                   <top>
-                     <AnchorPane prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+                     <AnchorPane prefHeight="40.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
                         <children>
-                           <AnchorPane layoutX="360.0" prefHeight="80.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
+                           <AnchorPane layoutX="360.0" prefHeight="40.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/readerTemplate-des.css">
                               <children>
-                                 <Label fx:id="usernameLabel" layoutX="79.0" layoutY="18.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
-                                 <Label fx:id="timeLabel" layoutX="796.0" layoutY="7.0" prefHeight="52.0" prefWidth="134.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
+                                 <Label fx:id="usernameLabel" layoutX="37.0" layoutY="5.0" prefHeight="30.0" prefWidth="278.0" styleClass="footer2-label" stylesheets="@../des/readerTemplate-des.css" text="Username" />
+                                 <Label fx:id="timeLabel" layoutX="785.0" layoutY="5.0" prefHeight="32.0" prefWidth="113.0" styleClass="footer1-label" stylesheets="@../des/readerTemplate-des.css" text="Time">
                                     <font>
                                        <Font size="24.0" />
                                     </font>
                                  </Label>
-                                 <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="728.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="905.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../Icon/ReaderIcon/DashboardIcon/timeClock.png" />
+                                       <Image url="@../Icon/ReaderIcon/DashboardIcon/setting.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../Icon/ReaderIcon/DashboardIcon/user.png" />
                                     </image>
                                  </ImageView>
+                              <Button fx:id="settingButton" layoutX="905.0" layoutY="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="header-btn" stylesheets="@../des/readerTemplate-des.css" />
                               </children>
                            </AnchorPane>
                         </children>
@@ -95,13 +96,13 @@
                   <center>
                      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                         <children>
-                           <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
+                           <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                               <styleClass>
                                  <String fx:value="content-form" />
                                  <String fx:value="shadow" />
                               </styleClass>
                               <children>
-                                 <AnchorPane layoutX="39.0" layoutY="48.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
+                                 <AnchorPane layoutX="39.0" layoutY="68.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
                                     <children>
                                        <ImageView fitHeight="114.0" fitWidth="109.0" layoutX="11.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
@@ -118,8 +119,8 @@
                                        <Label fx:id="mbbLabel" layoutX="139.0" layoutY="56.0" prefHeight="30.0" prefWidth="289.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="Label" />
                                     </children>
                                  </AnchorPane>
-                                 <PieChart layoutX="513.0" layoutY="17.0" prefHeight="393.0" prefWidth="376.0" title="Pie" />
-                                 <AnchorPane layoutX="39.0" layoutY="239.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
+                                 <PieChart layoutX="513.0" layoutY="28.0" prefHeight="393.0" prefWidth="376.0" title="Pie" />
+                                 <AnchorPane layoutX="39.0" layoutY="265.0" prefHeight="135.0" prefWidth="432.0" styleClass="card-pane" stylesheets="@../des/rDashBoard-des.css">
                                     <children>
                                        <ImageView fitHeight="114.0" fitWidth="109.0" layoutX="5.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
@@ -136,10 +137,10 @@
                                        <Label fx:id="bybrLabel" layoutX="136.0" layoutY="56.0" prefHeight="30.0" prefWidth="292.0" styleClass="card-label" stylesheets="@../des/rDashBoard-des.css" text="Label" />
                                     </children>
                                  </AnchorPane>
-                                 <AnchorPane layoutX="43.0" layoutY="446.0" prefHeight="154.0" prefWidth="826.0" styleClass="quote-pane" stylesheets="@../des/rDashBoard-des.css">
+                                 <AnchorPane layoutX="43.0" layoutY="493.0" prefHeight="154.0" prefWidth="826.0" styleClass="quote-pane" stylesheets="@../des/rDashBoard-des.css">
                                     <children>
                                        <Text fx:id="quoteText" fill="WHITE" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="quote-text" text="&quot;Both reading and writing are experiences – lifelong – in the course of which we who encounter words used in certain ways are persuaded by them to be brought mind and heart within the presence, the power, of the imagination.&quot;" wrappingWidth="783.3333740234375" />
-                                       <Label fx:id="quoteAuthorLabel" layoutX="456.0" layoutY="106.0" prefHeight="31.0" prefWidth="278.0" styleClass="quote-label" stylesheets="@../des/rDashBoard-des.css" text="- Eudora Welty -" />
+                                       <Label fx:id="quoteAuthorLabel" layoutX="529.0" layoutY="115.0" prefHeight="26.0" prefWidth="278.0" styleClass="quote-label" stylesheets="@../des/rDashBoard-des.css" text="- Eudora Welty -" />
                                     </children>
                                  </AnchorPane>
                               </children>

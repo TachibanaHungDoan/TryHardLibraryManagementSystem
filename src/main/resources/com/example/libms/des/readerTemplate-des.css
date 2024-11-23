@@ -1,19 +1,23 @@
 .footer1-label {
     -fx-text-fill: #fff;
-    -fx-font-size: 45px;
+    -fx-font-size: 28px;
     -fx-font-family: "Gotham Black";
-    -fx-alignment: center-left;
+    -fx-alignment: center-right;
 }
 
 .footer2-label {
     -fx-text-fill: #fff;
-    -fx-font-size: 40px;
+    -fx-font-size: 25px;
     -fx-font-family: "Gotham Black";
     -fx-alignment: center-left;
 }
 
 .footer-form {
     -fx-background-color: #3a6c98;
+}
+
+.header-btn {
+    -fx-background-color: transparent;
 }
 
 .nav-form {

@@ -18,18 +18,18 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <BorderPane layoutX="419.0" layoutY="150.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <AnchorPane prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="30.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="360.0" prefHeight="80.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutX="360.0" prefHeight="30.0" prefWidth="940.0" styleClass="footer-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
-                              <Label fx:id="timeLabel" layoutX="96.0" layoutY="7.0" prefHeight="35.0" prefWidth="278.0" styleClass="footer-label" stylesheets="@../des/adminTemplate-des.css" text="Time">
+                              <Label fx:id="timeLabel" layoutX="37.0" prefHeight="30.0" prefWidth="278.0" styleClass="footer-label" stylesheets="@../des/adminTemplate-des.css" text="Time">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="25.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/TempIcon/time.png" />
                                  </image>
@@ -40,9 +40,9 @@
                   </AnchorPane>
                </top>
                <left>
-                  <AnchorPane prefHeight="640.0" prefWidth="360.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="690.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-80.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutY="-30.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/adminTemplate-des.css">
                            <children>
                               <Label alignment="CENTER" layoutY="159.0" prefHeight="35.0" prefWidth="360.0" styleClass="nav-welcome" stylesheets="@../des/adminTemplate-des.css" text="Welcome," textFill="WHITE">
                                  <font>
@@ -118,7 +118,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="620.0" prefWidth="918.0" stylesheets="@../des/adminTemplate-des.css">
+                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="670.0" prefWidth="918.0" stylesheets="@../des/adminTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
@@ -181,7 +181,7 @@
                                     </ImageView>
                                  </children>
                               </AnchorPane>
-                              <BarChart fx:id="bnrBarChart" layoutX="73.0" layoutY="210.0" prefHeight="381.0" prefWidth="789.0" title="Books and Readers">
+                              <BarChart fx:id="bnrBarChart" layoutX="73.0" layoutY="220.0" prefHeight="415.0" prefWidth="789.0" title="Books and Readers">
                                  <xAxis>
                                     <CategoryAxis label="Category" side="BOTTOM" fx:id="xAxis" />
                                  </xAxis>

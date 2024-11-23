@@ -52,7 +52,7 @@ public class RGameController extends SceneController {
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event)  throws IOException {
         bookshelfSound();
-        switchScene("ReaderView/rBooksInventory-view.fxml",booksInventoryButton);
+        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml",booksInventoryButton);
     }
 
     @FXML

@@ -3,6 +3,8 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,13 +12,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RGameController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RBooksInventoryBorrowController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane layoutX="378.0" layoutY="100.0" prefHeight="720.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <AnchorPane prefHeight="680.0" prefWidth="360.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="640.0" prefWidth="360.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutY="-40.0" prefHeight="720.0" prefWidth="360.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
                            <children>
@@ -27,8 +29,8 @@
                               </ImageView>
                               <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" onAction="#rHomeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
                               <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" onAction="#rAllBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
-                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" onAction="#rBooksInventoryButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
-                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Games" />
+                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Books Inventory" />
+                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" onAction="#rGamesButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Games" />
                               <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
@@ -90,13 +92,24 @@
                   </AnchorPane>
                </top>
                <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
                            </styleClass>
+                           <children>
+                              <TableView layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="762.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
+                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
+                              <Button layoutX="411.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
+                           </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
