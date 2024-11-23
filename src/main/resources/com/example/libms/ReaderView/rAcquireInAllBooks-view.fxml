@@ -37,13 +37,13 @@
                      <children>
                         <AnchorPane prefHeight="450.0" prefWidth="545.0" stylesheets="@../des/readerTemplate-des.css">
                            <children>
-                              <TableView layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="513.0">
+                              <TableView fx:id="cartTable" layoutX="19.0" layoutY="19.0" prefHeight="341.0" prefWidth="513.0">
                                 <columns>
-                                  <TableColumn prefWidth="48.5" text="BookID" />
-                                  <TableColumn prefWidth="129.0" text="Title" />
-                                    <TableColumn prefWidth="116.5" text="Author" />
-                                    <TableColumn prefWidth="120.5" text="Publisher" />
-                                    <TableColumn prefWidth="96.5" text="ISBN" />
+                                  <TableColumn fx:id="bookIDColumn" prefWidth="48.5" text="BookID" />
+                                  <TableColumn fx:id="bookTitleColumn" prefWidth="129.0" text="Title" />
+                                    <TableColumn fx:id="bookAuthorColumn" prefWidth="116.5" text="Author" />
+                                    <TableColumn fx:id="bookPublisherColumn" prefWidth="120.5" text="Publisher" />
+                                    <TableColumn fx:id="bookISBNColumn" prefWidth="96.5" text="ISBN" />
                                 </columns>
                               </TableView>
                               <Button fx:id="cancelButton" layoutX="232.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancelButtonClicked" styleClass="content-btn" stylesheets="@../des/rAcquireAllBooks-des.css" text="Cancel" />
