@@ -118,7 +118,7 @@ public class AddBooksController extends SceneController {
             SceneController.showAlert(null, null, "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
             return;
         } // Check if remaining is greater than or equal to quantity
-        if (remaining >= quantity) {
+        if (remaining > quantity) {
             alertSoundPlay();
             SceneController.showAlert(null, null, "Remaining cannot be greater than or equal to Quantity.", Alert.AlertType.WARNING);
             return;
