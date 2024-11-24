@@ -205,6 +205,8 @@ public class BooksController extends SceneController {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
             dialog.close();
+            this.loadBooks();
+            allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
         }
     }
 

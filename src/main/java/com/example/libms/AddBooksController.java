@@ -1,5 +1,7 @@
 package com.example.libms;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,6 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -86,44 +92,48 @@ public class AddBooksController extends SceneController {
         String title = bookTitleTextField.getText();
         String author = authorTextField.getText();
         String publisher = publisherTextField.getText();
-
         String publishedDateStr = publishedDateTextField.getText();
+        String isbn = bookISBNTextField.getText();
+        String editionStr = editionTextField.getText();
+        String quantityStr = quantityTextField.getText();
+        String remainingStr = remainingTextField.getText();
+        // Check for empty fields
+        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishedDateStr.isEmpty() || isbn.isEmpty() || editionStr.isEmpty() ||
+                quantityStr.isEmpty() || remainingStr.isEmpty()) {
+            alertSoundPlay();
+            SceneController.showAlert(null, null, "All fields must be filled.", Alert.AlertType.WARNING);
+        }
         Date publishedDate = null;
         try {
-            if (!publishedDateStr.isEmpty()) {
-                publishedDate = dateFormat.parse(publishedDateStr);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+            publishedDate = dateFormat.parse(publishedDateStr);
+        }catch (ParseException e) {
             SceneController.showAlert(null, null, "Invalid date format.", Alert.AlertType.ERROR);
-            return; // Exit the method if date parsing fails
-        }
-
-        String isbn = bookISBNTextField.getText();
-        int edition = Integer.parseInt(editionTextField.getText());
-        int quantity = Integer.parseInt(quantityTextField.getText());
-        //int state = Integer.parseInt(stateTextField.getText());
-
-        String stateString = stateTextField.getText().toLowerCase();
-        Book.BookState state;
+            return; }
+        int edition, quantity, remaining;
         try {
-            state = Book.BookState.valueOf(stateString);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            SceneController.showAlert(null, null,
-                            "Invalid State Filling. You must entered available or unavailable!", Alert.AlertType.ERROR);
+            edition = Integer.parseInt(editionStr);
+            quantity = Integer.parseInt(quantityStr);
+            remaining = Integer.parseInt(remainingStr);
+        } catch (NumberFormatException e) {
+            SceneController.showAlert(null, null, "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
             return;
+        } // Check if remaining is greater than or equal to quantity
+        if (remaining >= quantity) {
+            alertSoundPlay();
+            SceneController.showAlert(null, null, "Remaining cannot be greater than or equal to Quantity.", Alert.AlertType.WARNING);
+            return;
+        } // Automatically set the state based on remaining
+        Book.BookState state;
+        if (remaining == 0) {
+            state = Book.BookState.unavailable;
+        } else { state = Book.BookState.available;
         }
-
-        int remaining = Integer.parseInt(remainingTextField.getText());
-
-        Book book = new Book(0,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
-
+        Book book = new Book(0, title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
         try {
             bookdao.insert(book);
+            bookshelfSound();
             SceneController.showAlert(null,null,"Book added successfully!", Alert.AlertType.INFORMATION);
         } catch (Exception ex) {
-            ex.printStackTrace();
             SceneController.showAlert(null, null, "Failed to add book.", Alert.AlertType.ERROR);
         }
     }
