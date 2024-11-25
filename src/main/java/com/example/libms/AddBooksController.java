@@ -18,6 +18,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.application.Platform;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import java.util.List;
 
 public class AddBooksController extends SceneController {
     @FXML
@@ -70,8 +74,42 @@ public class AddBooksController extends SceneController {
         importImageButton.setOnAction(event -> importImage());
         addButton.setOnAction(event -> addBook());
         clearButton.setOnAction(event -> clearButtonClicked());
-    }
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                List<BookSuggestion> suggestions = GoogleBooksAPI.searchBooks(newValue);
 
+                Platform.runLater(() -> {
+                    ContextMenu contextMenu = new ContextMenu();
+                    for (BookSuggestion suggestion : suggestions) {
+                        MenuItem item = new MenuItem(suggestion.getTitle());
+                        item.setOnAction(event -> selectBookSuggestion(suggestion));
+                        contextMenu.getItems().add(item);
+                    }
+                    contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
+                            searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
+                });
+            }
+        });
+    }
+    private void selectBookSuggestion(BookSuggestion suggestion) {
+        bookTitleTextField.setText(suggestion.getTitle());
+        authorTextField.setText(suggestion.getAuthor());
+        bookISBNTextField.setText(suggestion.getIsbn());
+        publisherTextField.setText(suggestion.getPublisher());
+
+        // Hiển thị ngày dưới dạng chuỗi
+        if (suggestion.getPublishedDate() != null) {
+            publishedDateTextField.setText(new SimpleDateFormat("yyyy-MM-dd").format(suggestion.getPublishedDate()));
+        } else {
+            publishedDateTextField.clear();
+        }
+
+        // Hiển thị ảnh (nếu có)
+        if (suggestion.getThumbnail() != null) {
+            Image image = new Image(suggestion.getThumbnail());
+            imageImageView.setImage(image);
+        }
+    }
 
     @FXML
     void clearButtonClicked() {

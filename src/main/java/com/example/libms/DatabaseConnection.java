@@ -24,7 +24,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         Connection c = null;
         try {
-            String databaseName = "amitdb";  // Replace with your actual database name
+            String databaseName = "libriscopedb";  // Replace with your actual database name
             String databaseUser = "root";  // Default user for XAMPP is root
             String databasePassword = "";  // Default password is empty for XAMPP
             String url = "jdbc:mysql://localhost:3306/" + databaseName;  // Adjust if you are using a different port

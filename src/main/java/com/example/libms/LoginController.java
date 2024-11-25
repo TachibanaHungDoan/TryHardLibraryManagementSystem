@@ -197,7 +197,7 @@ public class LoginController extends SceneController {
     }
 
     private boolean registerUser(String username, String password) {
-        String insertQuery = "INSERT INTO user (username, password) VALUES (?, ?)";
+        String insertQuery = "INSERT INTO users (username, password) VALUES (?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -243,7 +243,7 @@ public class LoginController extends SceneController {
     public boolean validateLogin(String username, String password) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM user WHERE username = '" + loginUsernameTextField.getText() + "'AND password = '" + loginPassWordPassWordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + loginUsernameTextField.getText() + "'AND password = '" + loginPassWordPassWordField.getText() + "'";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
