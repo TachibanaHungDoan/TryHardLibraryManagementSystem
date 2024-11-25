@@ -120,7 +120,7 @@ public class AddBooksController extends SceneController {
         } // Check if remaining is greater than or equal to quantity
         if (remaining > quantity) {
             alertSoundPlay();
-            SceneController.showAlert(null, null, "Remaining cannot be greater than or equal to Quantity.", Alert.AlertType.WARNING);
+            SceneController.showAlert(null, null, "Remaining cannot be greater than Quantity.", Alert.AlertType.WARNING);
             return;
         } // Automatically set the state based on remaining
         Book.BookState state;

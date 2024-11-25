@@ -230,8 +230,13 @@ public class BooksController extends SceneController {
             // Show dialog and wait for user action
             Optional<ButtonType> result = dialog.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                updateBookController.saveUpdatedBook();
-                this.loadBooks();
+               boolean success =  updateBookController.saveUpdatedBook();
+               if(success) {
+                   bookshelfSound();
+                   this.loadBooks();
+               }else {
+                   dialog.showAndWait();
+               }
             }
         } else {
             alertSoundPlay();
