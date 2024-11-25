@@ -241,7 +241,6 @@ public class ReadersController extends SceneController {
     }
     @FXML
     void updateReaderButtonClicked() {
-
         // Lấy dữ liệu từ các trường nhập
         String readerIDText = readerIDTextField.getText().trim();
         String readerName = readerNameTextField.getText().trim();

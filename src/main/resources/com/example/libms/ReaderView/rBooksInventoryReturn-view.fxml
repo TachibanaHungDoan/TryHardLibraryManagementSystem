@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RBooksInventoryBorrowController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RBooksInventoryReturnController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -100,15 +100,19 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TableView layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="762.0">
+                              <TableView layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="876.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="75.0" text="BookID" />
+                                  <TableColumn prefWidth="173.66668701171875" text="Title" />
+                                    <TableColumn prefWidth="111.83331298828125" text="Author" />
+                                    <TableColumn prefWidth="106.6666259765625" text="Publisher" />
+                                    <TableColumn prefWidth="116.83331298828125" text="ISBN" />
+                                    <TableColumn prefWidth="128.33331298828125" text="Published Date" />
+                                    <TableColumn prefWidth="164.5" text="Returned Date" />
                                 </columns>
                               </TableView>
-                              <Button layoutX="22.0" layoutY="11.0" mnemonicParsing="false" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
-                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
-                              <Button layoutX="411.0" layoutY="33.0" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="borrowedBooksScreenSwitchButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrowedBooksSwitchScenehButtonClicked" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
+                              <Button layoutX="190.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="150.0" styleClass="switch-btn" stylesheets="@../des/rBooksInventory-des.css" text="Returned Books" />
                            </children>
                         </AnchorPane>
                      </children>

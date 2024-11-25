@@ -72,7 +72,7 @@ public abstract class SceneController {
         playSound("logOutSound.mp3");
     }
 
-    protected static void switchScene(String fxmlViewFile, Button button) throws IOException {
+    protected void switchScene(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
         Parent root =fxmlLoader.load();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -80,7 +80,7 @@ public abstract class SceneController {
         stage.show();
     }
 
-    protected static void switchSceneWithAlert(String fxmlViewFile, Button button, String title, String headerText, String message, Alert.AlertType alertType) throws IOException {
+    protected void switchSceneWithAlert(String fxmlViewFile, Button button, String title, String headerText, String message, Alert.AlertType alertType) throws IOException {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
@@ -92,7 +92,11 @@ public abstract class SceneController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == okButton) {
-            switchScene(fxmlViewFile, button);
+            FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
+            Parent root =fxmlLoader.load();
+            Stage stage = (Stage) button.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
 

@@ -253,6 +253,8 @@ public class RAllBooksController extends SceneController {
             } else {
                 bookshelfSound();
                 Cart.addBookToCart(selectedBook);
+                showAlert("Successful", "Successful adding to Cart",
+                        "press Acquire to see your Cart", Alert.AlertType.INFORMATION);
             }
         }
         else {

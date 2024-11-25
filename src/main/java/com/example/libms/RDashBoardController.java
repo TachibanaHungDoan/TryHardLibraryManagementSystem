@@ -4,9 +4,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -161,5 +160,19 @@ public class RDashBoardController extends SceneController {
     @FXML
     void rBYBRButtonClicked(ActionEvent event) {
 
+    }
+
+    @FXML
+    void settingButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound2();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAccountSettings-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        RSettingController controller = loader.getController();
+
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Settings");
+        dialog.showAndWait();
     }
 }

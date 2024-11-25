@@ -81,7 +81,7 @@ public class LoginController extends SceneController {
         } else if (username.equals("admin") && password.equals("0")) {
             // Admin credentials
             playButtonClickSound1();
-            setUsername(username); // Set username globally if needed
+            setUsername(username);
             showAlert(null, null, "Admin login successful", Alert.AlertType.CONFIRMATION);
             switchScene("AdminView/dashBoard-view.fxml", signInButton);
         } else if (validateLogin(username, password)) {
@@ -161,7 +161,6 @@ public class LoginController extends SceneController {
 
         RInformationFillController controller = loader.getController();
 
-
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(dialogPane);
         dialog.setTitle("Fill Information Form");
@@ -170,25 +169,21 @@ public class LoginController extends SceneController {
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // Process the information form
-            if (controller.processForm()) {
+            if (controller.processForm(username, password)) {
                 // If both registration and information fill are successful, add the user credentials to the database
-                if (registerUser(username, password)) {
-                    SceneController.playButtonClickSound1();
-                    SceneController.showAlert(
-                            "Registration Successful",
-                            null,
-                            "You have registered successfully!",
-                            Alert.AlertType.INFORMATION
-                    );
-                    // Optionally switch to a different view, like the Reader dashboard
-                    switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
-                } else {
-                    SceneController.alertSoundPlay();
-                    SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
-                }
+                SceneController.playButtonClickSound1();
+                setUsername(username);
+                SceneController.showAlert(
+                        "Registration Successful",
+                        null,
+                        "You have registered successfully!",
+                        Alert.AlertType.INFORMATION
+                );
+                // Optionally switch to a different view, like the Reader dashboard
+                switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
             } else {
                 SceneController.alertSoundPlay();
-                SceneController.showAlert(null, null, "Failed to fill out the information form.", Alert.AlertType.WARNING);
+                SceneController.showAlert(null, null, "Registration failed. Try again!", Alert.AlertType.WARNING);
             }
         } else {
             SceneController.alertSoundPlay();
@@ -243,7 +238,7 @@ public class LoginController extends SceneController {
     public boolean validateLogin(String username, String password) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + loginUsernameTextField.getText() + "'AND password = '" + loginPassWordPassWordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM readers WHERE username = '" + loginUsernameTextField.getText() + "'AND password = '" + loginPassWordPassWordField.getText() + "'";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);

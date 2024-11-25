@@ -31,7 +31,7 @@ public class RInformationFillController {
         readerGenderChoiceBox.setValue(Reader.ReaderGender.male); // Default value
     }
 
-    public boolean processForm() {
+    public boolean processForm(String username, String password) {
         // Validate inputs
         String name = readerNameTextField.getText();
         Reader.ReaderGender gender = readerGenderChoiceBox.getValue();
@@ -48,16 +48,18 @@ public class RInformationFillController {
             int phoneNumber = Integer.parseInt(phone);
             int newReaderID = getNextReaderID();
 
-            // Insert into the database
-            String insertReaderQuery = "INSERT INTO readers (readerID, readerName, gender, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
+            // Insert into the readers table
+            String insertReaderQuery = "INSERT INTO readers (readerID, username, password, readerName, gender, phoneNumber, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertReaderQuery)) {
 
-                preparedStatement.setInt(1,newReaderID);
-                preparedStatement.setString(2, name);
-                preparedStatement.setString(3, gender.toString());
-                preparedStatement.setInt(4, phoneNumber);
-                preparedStatement.setString(5, email);
+                preparedStatement.setInt(1, newReaderID);
+                preparedStatement.setString(2, username);
+                preparedStatement.setString(3, password);
+                preparedStatement.setString(4, name);
+                preparedStatement.setString(5, gender.toString());
+                preparedStatement.setInt(6, phoneNumber);
+                preparedStatement.setString(7, email);
 
                 int result = preparedStatement.executeUpdate();
                 return result > 0;
@@ -74,6 +76,7 @@ public class RInformationFillController {
             return false;
         }
     }
+
     private int getNextReaderID() {
         String query = "SELECT MAX(readerID) FROM readers";
         try (Connection connection = DatabaseConnection.getConnection();
