@@ -119,6 +119,7 @@ public class RAllBooksController extends SceneController {
 
         booksTable.setItems(FXCollections.observableArrayList(filteredBooks));
     }
+
     private void setBooksTable() {
         bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -134,6 +135,7 @@ public class RAllBooksController extends SceneController {
         loadBooksDataFromDatabase();
         searchBar.setOnKeyReleased(this::searchBooks);
     }
+
     public void loadBooksDataFromDatabase() {
         String query = "SELECT * FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -212,7 +214,7 @@ public class RAllBooksController extends SceneController {
     void rViewBookButtonClicked(ActionEvent event) throws IOException {
         if (selectedBook != null) {
             bookFlipSound();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/viewBooksInBooks-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
             ViewBooksController controller = loader.getController();

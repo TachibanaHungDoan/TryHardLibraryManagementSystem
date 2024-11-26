@@ -13,10 +13,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import java.sql.*;
+import java.util.*;
+import java.util.Date;
 
 public class RDashBoardController extends SceneController {
 
@@ -63,9 +62,12 @@ public class RDashBoardController extends SceneController {
     private Label usernameLabel;
 
 
-    private List<Quote> quotes = new ArrayList<>();
+    private final List<Quote> quotes = new ArrayList<>();
     private int currentQuoteIndex = 0;
-
+    private final String mostBorrowedBookQuery = "SELECT * FROM books WHERE title = "
+            + "'" + getMostBorrowedBookTitleFromDatabase() + "'" + " LIMIT 1";
+    private final String bookYouRecentlyBorrowedQuery = "SELECT * FROM books WHERE title = "
+            + "'" + getBookTitleYouRecentlyBorrowedFromDatabase() + "'" + " LIMIT 1";
 
     @FXML
     void initialize() {
@@ -78,6 +80,73 @@ public class RDashBoardController extends SceneController {
         }
         startQuoteTimeline();
         showRandomQuote();
+        setLabel(mbbLabel, getMostBorrowedBookTitleFromDatabase());
+        setLabel(bybrLabel, getBookTitleYouRecentlyBorrowedFromDatabase());
+    }
+
+    private Book correctBook(String query) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                int id = resultSet.getInt("bookID");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                String publisher = resultSet.getString("publisher");
+                String isbn = resultSet.getString("isbn");
+                Date publishedDate = resultSet.getDate("publishedDate");
+                int edition = resultSet.getInt("edition");
+                int quantity = resultSet.getInt("quantity");
+
+                String stateString = resultSet.getString("state");
+                Book.BookState state = Book.BookState.valueOf(stateString.toLowerCase());
+
+                int remaining = resultSet.getInt("remaining");
+                return new Book(id, title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    private String getMostBorrowedBookTitleFromDatabase() {
+        String mostBorrowedBook = "";
+        String query = "SELECT title FROM borrowedbooks Group By title ORDER BY COUNT(*) DESC LIMIT 1";
+        try (Connection connection = DatabaseConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            if (resultSet.next()) {
+                mostBorrowedBook = resultSet.getString("title");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return mostBorrowedBook;
+    }
+
+    private String getBookTitleYouRecentlyBorrowedFromDatabase() {
+        String bookYouRecentlyBorrowed = "";
+        String query = "SELECT title FROM readerborrowedbooks " +
+                "where readerID = " + getReaderID() + " ORDER BY rbBooksID DESC LIMIT 1";
+        try (Connection connection = DatabaseConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            if (resultSet.next()) {
+                bookYouRecentlyBorrowed = resultSet.getString("title");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bookYouRecentlyBorrowed;
+    }
+
+    private void setLabel(Label label, String text) {
+        if (text.isEmpty()) {
+            label.setText("No books borrowed yet.");
+        } else {
+            label.setText(text);
+        }
     }
 
     private void loadQuotes(String filePath) {
@@ -152,14 +221,53 @@ public class RDashBoardController extends SceneController {
 
     //nút sách mượn nhiều nhất
     @FXML
-    void rMBRButtonClicked(ActionEvent event) {
+    void rMBRButtonClicked(ActionEvent event) throws IOException {
+        if (getMostBorrowedBookTitleFromDatabase().isEmpty()) {
+            alertSoundPlay();
+            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+        } else {
+            bookFlipSound();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
 
+            ViewBooksController controller = loader.getController();
+            controller.setBookData(correctBook(mostBorrowedBookQuery));
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("View Book Details");
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+                dialog.close();
+            }
+        }
     }
+
 
     //Nút sách đã mượn gần đây.
     @FXML
-    void rBYBRButtonClicked(ActionEvent event) {
+    void rBYBRButtonClicked(ActionEvent event) throws IOException {
+        if (getBookTitleYouRecentlyBorrowedFromDatabase().isEmpty()) {
+            alertSoundPlay();
+            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+        } else {
+            bookFlipSound();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
 
+            ViewBooksController controller = loader.getController();
+            controller.setBookData(correctBook(bookYouRecentlyBorrowedQuery));
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("View Book Details");
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+                dialog.close();
+            }
+        }
     }
 
     @FXML
