@@ -200,10 +200,29 @@ public class LoginController extends SceneController {
                 return queryResult.getInt(1) == 1;
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-        return false;
-    }
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        PreparedStatement pstm = null;
+        ResultSet queryResult = null;
+        String verifyLogin = "SELECT readerID, readerName FROM readers WHERE userName = ? AND password = ?";
 
+        try {
+            pstm = connectDB.prepareStatement(verifyLogin);
+            pstm.setString(1,username);
+            pstm.setString(2,password);
+            queryResult = pstm.executeQuery();
+            if(queryResult.next()) {
+                int readerID = queryResult.getInt("readerID");
+                String readerName = queryResult.getString("readerName");
+                LoggedInUser.setReaderID(readerID);
+                LoggedInUser.setReaderName(readerName);
+                return true;
+                } else {
+                    return false;
+                }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
