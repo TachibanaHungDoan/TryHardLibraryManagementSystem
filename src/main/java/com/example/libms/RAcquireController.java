@@ -79,7 +79,7 @@ public class RAcquireController extends SceneController {
             String checkStateSQL = "SELECT state, remaining FROM books WHERE isbn = ?";
             String checkBorrowedSQL = "SELECT COUNT(*) FROM borrowedBooks WHERE isbn = ? AND readerID = ?";
             String insertSQL = "INSERT INTO borrowedBooks (isbn, title, readerID, readerName, borrowedDate, returnDate, borrowedDay, lateFee) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            String updateSQL = "UPDATE books SET remaining = remaining - 1 WHERE isbn = ?";
+            String updateSQL = "UPDATE books SET remaining = remaining - 1, state = CASE WHEN remaining = 0 THEN 'unavailable' ELSE state END WHERE isbn = ?";
 
             for (Book book : booksInCart) {
                 try (PreparedStatement pstmCheckState = conn.prepareStatement(checkStateSQL);
@@ -137,6 +137,7 @@ public class RAcquireController extends SceneController {
             Stage stage = (Stage) confirmButton.getScene().getWindow();
             stage.close();
             showAlert("Success", "Books Borrowed", "Books have been successfully borrowed.", Alert.AlertType.INFORMATION);
+
         } catch (SQLException e) {
             e.printStackTrace();
             alertSoundPlay();
