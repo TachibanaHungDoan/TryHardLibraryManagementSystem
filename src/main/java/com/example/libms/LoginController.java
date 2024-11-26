@@ -11,10 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Optional;
 
 public class LoginController extends SceneController {
@@ -238,22 +235,27 @@ public class LoginController extends SceneController {
     public boolean validateLogin(String username, String password) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String verifyLogin = "SELECT count(1) FROM readers WHERE username = '" + loginUsernameTextField.getText() + "'AND password = '" + loginPassWordPassWordField.getText() + "'";
+        PreparedStatement pstm = null;
+        ResultSet queryResult = null;
+        String verifyLogin = "SELECT readerID, readerName FROM readers WHERE userName = ? AND password = ?";
+
         try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            while(queryResult.next()) {
-                if(queryResult.getInt(1) == 1) {
-                    return true;
+            pstm = connectDB.prepareStatement(verifyLogin);
+            pstm.setString(1,username);
+            pstm.setString(2,password);
+            queryResult = pstm.executeQuery();
+            if(queryResult.next()) {
+                int readerID = queryResult.getInt("readerID");
+                String readerName = queryResult.getString("readerName");
+                LoggedInUser.setReaderID(readerID);
+                LoggedInUser.setReaderName(readerName);
+                return true;
                 } else {
                     return false;
                 }
-            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
+            return false;
         }
-        return false;
     }
-
 }

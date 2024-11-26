@@ -13,6 +13,8 @@ module com.example.libms {
     requires com.jfoenix;
     requires com.google.gson;
     requires java.sql;
+    requires mockito.all;
+    requires jfxtras.test_support;
 
     opens com.example.libms to javafx.fxml;
     exports com.example.libms;

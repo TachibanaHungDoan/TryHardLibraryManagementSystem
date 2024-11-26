@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -133,7 +134,7 @@ public class RAllBooksController extends SceneController {
         loadBooksDataFromDatabase();
         searchBar.setOnKeyReleased(this::searchBooks);
     }
-    private void loadBooksDataFromDatabase() {
+    public void loadBooksDataFromDatabase() {
         String query = "SELECT * FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
@@ -160,6 +161,12 @@ public class RAllBooksController extends SceneController {
             throw new RuntimeException(e);
         }
     }
+
+    public void refreshTable() {
+        loadBooksDataFromDatabase();
+        booksTable.refresh();
+    }
+
     private int getTotalBooksFromDatabase() {
         int totalBooks = 0;
         String query = "SELECT COUNT(*) AS total FROM books";
