@@ -12,8 +12,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class RAcquireController extends SceneController {
@@ -55,7 +59,7 @@ public class RAcquireController extends SceneController {
         bookISBNColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         cartTable.setItems(Cart.getBooksInCart());
         totalBooksLabel.setText(String.valueOf(Cart.getBooksInCart().size()));
-        dueDateLabel.setText("1 MONTH");
+        dueDateLabel.setText(setDueDate());
     }
 
     @FXML
@@ -157,5 +161,13 @@ public class RAcquireController extends SceneController {
             alertSoundPlay();
             showAlert("No selection", "No Book Selected", "Please select a book to remove from the cart.", Alert.AlertType.WARNING);
         }
+    }
+
+    private String setDueDate() {
+        LocalDate today = LocalDate.now();
+        LocalDate dueDate = today.plusMonths(1);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date dueDateDate = Date.from(dueDate.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+        return dateFormat.format(dueDateDate);
     }
 }

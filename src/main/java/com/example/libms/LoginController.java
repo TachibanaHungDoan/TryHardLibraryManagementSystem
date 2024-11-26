@@ -8,9 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Optional;
 
 public class LoginController extends SceneController {
@@ -192,14 +190,6 @@ public class LoginController extends SceneController {
     }
 
     public boolean validateLogin(String username, String password) {
-        String verifyLogin = String.format("SELECT count(1) FROM readers WHERE username = '%s' AND password = '%s'", username, password);
-        try (Connection connectDB = DatabaseConnection.getConnection();
-             Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin)) {
-            if (queryResult.next()) {
-                return queryResult.getInt(1) == 1;
-            }
-        } catch (Exception e) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         PreparedStatement pstm = null;
