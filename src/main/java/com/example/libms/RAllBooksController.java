@@ -247,6 +247,7 @@ public class RAllBooksController extends SceneController {
         dialog.setDialogPane(dialogPane);
         dialog.setTitle("Cart");
         dialog.showAndWait();
+        loadBooks();
     }
 
     @FXML
@@ -269,5 +270,9 @@ public class RAllBooksController extends SceneController {
             showAlert("No selection", "No Book Selected",
                     "Please select a book to add to the cart.", Alert.AlertType.WARNING);
         }
+    }
+    public void loadBooks() {
+        bookList.clear();
+        loadBooksDataFromDatabase();
     }
 }
