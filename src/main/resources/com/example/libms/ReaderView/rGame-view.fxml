@@ -237,10 +237,17 @@
                               <Button layoutX="515.0" layoutY="56.0" mnemonicParsing="false" text="New Game" />
                               <Button layoutX="609.0" layoutY="292.0" mnemonicParsing="false" text="Hint" />
                               <Label layoutX="614.0" layoutY="355.0" text="hint" />
-                              <AnchorPane layoutX="32.0" layoutY="68.0" prefHeight="330.0" prefWidth="276.0">
+                              <AnchorPane layoutX="32.0" layoutY="68.0" prefHeight="330.0" prefWidth="276.0" stylesheets="@../des/readerTemplate-des.css">
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fitHeight="310.0" fitWidth="267.0" layoutX="38.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../GameAssets/7.png" />
+                                       </image></ImageView>
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="content-form" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
