@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class BooksController extends SceneController {
+public class BooksController extends AdminTemplateController {
     @FXML
     private Button addBookButton;
 
@@ -166,28 +166,22 @@ public class BooksController extends SceneController {
 
     @FXML
     void homeButtonClicked() throws IOException {
-        playButtonClickSound1();
-        switchScene("AdminView/dashBoard-view.fxml", homeButton);
+        switchToDashboardView(homeButton);
     }
 
     @FXML
     void readersButtonClicked() throws IOException {
-        playButtonClickSound2();
-        switchScene("AdminView/readers-view.fxml", readersButton);
+        switchToReadersView(readersButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked() throws IOException {
-        bookFlipSound();
-       switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
+        switchToBorrowedBooksView(borrowedBooksButton);
     }
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        logOutSound();
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
-                , null, null
-                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        switchToLoginView(logOutButton);
     }
 
     @FXML
@@ -305,6 +299,7 @@ public class BooksController extends SceneController {
             showAlert("No selection", null, "Please select a book to delete.", Alert.AlertType.WARNING);
         }
     }
+
     @FXML
     public void loadBooks() {
         bookList.clear();

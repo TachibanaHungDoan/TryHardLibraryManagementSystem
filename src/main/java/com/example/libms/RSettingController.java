@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -63,7 +64,7 @@ public class RSettingController extends SceneController {
     }
 
     private boolean isCurrentPassWordValid(String currentPassWord) {
-        String querry = "SELECT * FROM user WHERE password = ?";
+        String querry = "SELECT * FROM readers WHERE password = ?";
         try (Connection connection = DatabaseConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(querry)) {
             preparedStatement.setString(1, currentPassWord);
@@ -79,5 +80,41 @@ public class RSettingController extends SceneController {
     }
 
     private void changePassWord(String currentPassWord,String newPassWord) {
+        String username = getUserName();
+        String updateQuery = "UPDATE readers SET password = ? WHERE username = ? AND password = ?";
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm Password Change");
+        confirmationAlert.setContentText("Are you sure you want to change your password?");
+
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try (Connection connection = DatabaseConnection.getConnection();
+                     PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+                    preparedStatement.setString(1, newPassWord);
+                    preparedStatement.setString(2, username);
+                    preparedStatement.setString(3, currentPassWord);
+
+                    int rowsUpdated = preparedStatement.executeUpdate();
+
+                    if (rowsUpdated > 0) {
+                        playButtonClickSound2();
+                        showAlert(null, "Password changed successfully!", null, Alert.AlertType.INFORMATION);
+                    } else {
+                        alertSoundPlay();
+                        showAlert(null, "Failed to change password. Please check your current password.", null, Alert.AlertType.WARNING);
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    alertSoundPlay();
+                    showAlert(null, "An error occurred while changing the password. Please try again later.", null, Alert.AlertType.ERROR);
+                }
+            } else {
+                alertSoundPlay();
+                showAlert(null, "Password change canceled.", null, Alert.AlertType.INFORMATION);
+            }
+        });
     }
 }

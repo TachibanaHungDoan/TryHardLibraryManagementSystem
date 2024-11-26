@@ -1,26 +1,16 @@
 package com.example.libms;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javafx.application.Platform;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import java.util.List;
 
 public class AddBooksController extends SceneController {
@@ -71,10 +61,10 @@ public class AddBooksController extends SceneController {
 
     @FXML
     void initialize() {
-        importImageButton.setOnAction(event -> importImage());
-        addButton.setOnAction(event -> addBook());
-        clearButton.setOnAction(event -> clearButtonClicked());
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+        importImageButton.setOnAction(_ -> importImage());
+        addButton.setOnAction(_ -> addBook());
+        clearButton.setOnAction(_ -> clearButtonClicked());
+        searchBar.textProperty().addListener((_, _, newValue) -> {
             if (!newValue.isEmpty()) {
                 List<BookSuggestion> suggestions = GoogleBooksAPI.searchBooks(newValue);
 
@@ -82,7 +72,7 @@ public class AddBooksController extends SceneController {
                     ContextMenu contextMenu = new ContextMenu();
                     for (BookSuggestion suggestion : suggestions) {
                         MenuItem item = new MenuItem(suggestion.getTitle());
-                        item.setOnAction(event -> selectBookSuggestion(suggestion));
+                        item.setOnAction(_ -> selectBookSuggestion(suggestion));
                         contextMenu.getItems().add(item);
                     }
                     contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
@@ -91,13 +81,13 @@ public class AddBooksController extends SceneController {
             }
         });
     }
+
     private void selectBookSuggestion(BookSuggestion suggestion) {
         bookTitleTextField.setText(suggestion.getTitle());
         authorTextField.setText(suggestion.getAuthor());
         bookISBNTextField.setText(suggestion.getIsbn());
         publisherTextField.setText(suggestion.getPublisher());
 
-        // Hiển thị ngày dưới dạng chuỗi
         if (suggestion.getPublishedDate() != null) {
             publishedDateTextField.setText(new SimpleDateFormat("yyyy-MM-dd").format(suggestion.getPublishedDate()));
         } else {
@@ -135,44 +125,49 @@ public class AddBooksController extends SceneController {
         String editionStr = editionTextField.getText();
         String quantityStr = quantityTextField.getText();
         String remainingStr = remainingTextField.getText();
+
         // Check for empty fields
         if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishedDateStr.isEmpty() || isbn.isEmpty() || editionStr.isEmpty() ||
                 quantityStr.isEmpty() || remainingStr.isEmpty()) {
             alertSoundPlay();
-            SceneController.showAlert(null, null, "All fields must be filled.", Alert.AlertType.WARNING);
+            showAlert(null, null, "All fields must be filled.", Alert.AlertType.WARNING);
         }
-        Date publishedDate = null;
+
+        Date publishedDate;
         try {
             publishedDate = dateFormat.parse(publishedDateStr);
-        }catch (ParseException e) {
-            SceneController.showAlert(null, null, "Invalid date format.", Alert.AlertType.ERROR);
-            return; }
+        } catch (ParseException e) {
+            showAlert(null, "Invalid date format.", "Please enter Published Date with the format of Year-Month-Day", Alert.AlertType.ERROR);
+            return;
+        }
+
         int edition, quantity, remaining;
         try {
             edition = Integer.parseInt(editionStr);
             quantity = Integer.parseInt(quantityStr);
             remaining = Integer.parseInt(remainingStr);
         } catch (NumberFormatException e) {
-            SceneController.showAlert(null, null, "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
+            showAlert(null, null, "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
             return;
         } // Check if remaining is greater than or equal to quantity
         if (remaining > quantity) {
             alertSoundPlay();
-            SceneController.showAlert(null, null, "Remaining cannot be greater than Quantity.", Alert.AlertType.WARNING);
+            showAlert(null, null, "Remaining cannot be greater than Quantity.", Alert.AlertType.WARNING);
             return;
         } // Automatically set the state based on remaining
         Book.BookState state;
         if (remaining == 0) {
             state = Book.BookState.unavailable;
-        } else { state = Book.BookState.available;
+        } else {
+            state = Book.BookState.available;
         }
         Book book = new Book(0, title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
         try {
             bookdao.insert(book);
             bookshelfSound();
-            SceneController.showAlert(null,null,"Book added successfully!", Alert.AlertType.INFORMATION);
+            showAlert(null, null, "Book added successfully!", Alert.AlertType.INFORMATION);
         } catch (Exception ex) {
-            SceneController.showAlert(null, null, "Failed to add book.", Alert.AlertType.ERROR);
+            showAlert(null, null, "Failed to add book.", Alert.AlertType.ERROR);
         }
     }
 

@@ -16,10 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReadersController extends SceneController {
-    @FXML
-    private Button addReaderButton;
-
+public class ReadersController extends AdminTemplateController {
     @FXML
     private Button booksButton;
 
@@ -151,28 +148,22 @@ public class ReadersController extends SceneController {
 
     @FXML
     void booksButtonClicked() throws IOException {
-        bookFlipSound();
-        switchScene("AdminView/books-view.fxml", booksButton);
+        switchToBooksView(booksButton);
     }
 
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound1();
-        switchScene("AdminView/dashBoard-view.fxml", homeButton);
+       switchToDashboardView(homeButton);
     }
 
     @FXML
     void borrowedBooksButtonClicked(ActionEvent event) throws IOException {
-        bookFlipSound();
-        switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksButton);
+        switchToBorrowedBooksView(borrowedBooksButton);
     }
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
-                , null, null
-                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
     }
 
     @FXML
@@ -185,60 +176,6 @@ public class ReadersController extends SceneController {
         readerEmailTextField.clear();
     }
 
-    @FXML
-    void addReaderButtonClicked() {
-        // Get data from input fields
-        String readerName = readerNameTextField.getText().trim();
-        String email = readerEmailTextField.getText().trim();
-        Reader.ReaderGender gender = readerGenderChoiceBox.getValue(); // Get the selected gender
-        int phoneNumber;
-
-        // Validate phone number input
-        try {
-            phoneNumber = Integer.parseInt(readerPhoneTextField.getText().trim());
-        } catch (NumberFormatException e) {
-            alertSoundPlay();
-            showAlert("Input Error", "Phone number must be a valid integer.", null, Alert.AlertType.WARNING);
-            return;
-        }
-
-        // Check if all fields are filled correctly
-        if (readerName.isEmpty() || email.isEmpty() || gender == null || phoneNumber <= 0) {
-            alertSoundPlay();
-            showAlert("Input Error", "Please fill all fields correctly", null, Alert.AlertType.WARNING);
-            return;
-        }
-
-        // Insert new reader into the database
-        String insertQuery = "INSERT INTO readers (readerName, Gender, PhoneNumber, Email) VALUES (?, ?, ?, ?)";
-
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-
-            statement.setString(1, readerName);
-            statement.setString(2, gender.name()); // Save the gender as a String
-            statement.setInt(3, phoneNumber);
-            statement.setString(4, email);
-
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                playButtonClickSound2();
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Reader added successfully.");
-                alert.showAndWait();
-                loadReadersDataFromDatabase(); // Refresh the table
-            }
-
-        } catch (SQLException e) {
-            alertSoundPlay();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Error");
-            alert.setHeaderText("Could not add reader to the database.");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }
-    }
     @FXML
     void updateReaderButtonClicked() {
         // Lấy dữ liệu từ các trường nhập

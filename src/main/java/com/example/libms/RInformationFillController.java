@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class RInformationFillController {
+public class RInformationFillController extends SceneController {
 
     @FXML
     private TextField readerNameTextField;
@@ -39,8 +39,8 @@ public class RInformationFillController {
         String email = readerEmailTextField.getText();
 
         if (name.isBlank() || phone.isBlank() || email.isBlank() || gender == null) {
-            SceneController.alertSoundPlay();
-            SceneController.showAlert(null, null, "Please fill in all fields!", Alert.AlertType.WARNING);
+            alertSoundPlay();
+            showAlert(null, null, "Please fill in all fields!", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -66,13 +66,13 @@ public class RInformationFillController {
             }
 
         } catch (NumberFormatException e) {
-            SceneController.alertSoundPlay();
-            SceneController.showAlert(null, null, "Phone number must be numeric!", Alert.AlertType.WARNING);
+            alertSoundPlay();
+            showAlert(null, null, "Phone number must be numeric!", Alert.AlertType.WARNING);
             return false;
         } catch (Exception e) {
             e.printStackTrace();
-            SceneController.alertSoundPlay();
-            SceneController.showAlert(null, null, "An error occurred while saving the data.", Alert.AlertType.ERROR);
+            alertSoundPlay();
+            showAlert(null, null, "An error occurred while saving the data.", Alert.AlertType.ERROR);
             return false;
         }
     }

@@ -1,7 +1,5 @@
 package com.example.libms;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,62 +11,62 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public abstract class SceneController {
+    private final Map<String, AudioClip> soundCache = new HashMap<>();
+    private TimeService timeService;
+    private static String userName;
+    private int readerID;
 
-    /*protected static void playBackGroundMusic() {
-        Media bgMusic = new Media(App.class.getResource("Sound").toExternalForm());
-        MediaPlayer bgMusicPlayer = new MediaPlayer(bgMusic);
-        bgMusicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        bgMusicPlayer.setAutoPlay(true);
-    }*/
-
-    private static final Map<String, AudioClip> soundCache = new HashMap<>();
-
-    private static TimeService timeService;
-
-    private static String username;
-
-    protected void setUsername(String userName) {
-        username = userName;
+    protected void setUserName(String userName) {
+        SceneController.userName = userName;
     }
 
-    private static String getUsername() {
-        return username;
+    protected String getUserName() {
+        return userName;
     }
 
-    private static void playSound(String soundFileName) {
-        AudioClip sound = soundCache.computeIfAbsent(soundFileName, file -> new AudioClip
-                (SceneController.class.getResource("Sound/" + soundFileName).toExternalForm()));
+    protected void setReaderID(int readerID) {
+        this.readerID = readerID;
+    }
+
+    protected int getReaderID() {
+        return readerID;
+    }
+
+    private void playSound(String soundFileName) {
+        AudioClip sound = soundCache.computeIfAbsent(soundFileName, _ -> new AudioClip
+                (Objects.requireNonNull(SceneController.class.getResource("Sound/" + soundFileName)).toExternalForm()));
         sound.play();
     }
 
-    protected static void alertSoundPlay() {
+    protected void alertSoundPlay() {
         playSound("alert.mp3");
     }
 
-    protected static void playButtonClickSound1() {
+    protected void playButtonClickSound1() {
         playSound("buttonClickSound1.mp3");
     }
 
-    protected static void playButtonClickSound2() {
+    protected void playButtonClickSound2() {
         playSound("buttonClickSound2.mp3");
     }
 
-    protected static void bookFlipSound() {
+    protected void bookFlipSound() {
         playSound("bookFlipSound.mp3");
     }
 
-    protected static void bookshelfSound() {
+    protected void bookshelfSound() {
         playSound("bookshelfSound.mp3");
     }
 
-    protected static void deleteConfirm() {
+    protected void deleteConfirm() {
         playSound("DeleteConfirm.mp3");
     }
 
-    protected static void logOutSound() {
+    protected void logOutSound() {
         playSound("logOutSound.mp3");
     }
 
@@ -100,19 +98,19 @@ public abstract class SceneController {
         }
     }
 
-    protected static void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
+    protected void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
         alert.showAndWait();
     }
 
-    protected static void setUpScene(Label usernameLabel, Label timeLabel) {
-        usernameLabel.setText(getUsername());
+    protected void setUpScene(Label usernameLabel, Label timeLabel) {
+        usernameLabel.setText(userName);
         setUpTimeLabel(timeLabel);
     }
 
-    protected static void setUpTimeLabel (Label timeLabel) {
+    protected void setUpTimeLabel (Label timeLabel) {
         if (timeService == null) {
             timeService = new TimeService(timeLabel);
             timeService.start();

@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class BorrowedBooksController extends SceneController {
+public class BorrowedBooksController extends AdminTemplateController {
     @FXML
     private Label allBorrowedBooksLabel;
 
@@ -133,28 +133,22 @@ public class BorrowedBooksController extends SceneController {
 
     @FXML
     void booksButtonClicked() throws IOException {
-        bookFlipSound();
-        switchScene("AdminView/books-view.fxml", booksButton);
+        switchToBooksView(booksButton);
     }
 
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound1();
-        switchScene("AdminView/dashBoard-view.fxml", homeButton);
+        switchToDashboardView(homeButton);
     }
 
     @FXML
     void readersButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("AdminView/readers-view.fxml", readersButton);
+        switchToReadersView(readersButton);
     }
 
     @FXML
     void logOutButtonClicked() throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
-                , null, null
-                ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
     }
 
 }
