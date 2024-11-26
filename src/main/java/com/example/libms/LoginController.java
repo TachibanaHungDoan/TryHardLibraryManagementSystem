@@ -136,7 +136,6 @@ public class LoginController extends SceneController {
                 "Registration successful",
                 Alert.AlertType.CONFIRMATION
         );
-        switchScene("ReaderView/rDashBoard-view.fxml", signUpButton);
     }
 
     private boolean validateRegistration(String username, String password, String confirmPassword) {
