@@ -70,6 +70,14 @@ public abstract class SceneController {
         playSound("logOutSound.mp3");
     }
 
+    protected void winGameSound() {
+        playSound("victory.mp3");
+    }
+
+    protected void loseGameSound() {
+        playSound("loss.mp3");
+    }
+
     protected void switchScene(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
         Parent root = fxmlLoader.load();

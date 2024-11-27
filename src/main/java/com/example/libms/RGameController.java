@@ -2,13 +2,16 @@ package com.example.libms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -28,7 +31,7 @@ public class RGameController extends ReaderTemplateController {
     @FXML
     private ImageView hangmanImage;
     @FXML
-    private Text text, hintText, insText;
+    private Text text, hintText;
 
     private int mistakeCounts;
     private int correctCounts;
@@ -37,8 +40,7 @@ public class RGameController extends ReaderTemplateController {
     private List<String> myLetters;
     private List<String> answer;
     private final List<String> images = Arrays.asList(
-            "1.png", "2.png", "3.png",
-            "4.png", "5.png", "6.png", "7.png"
+            "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"
     );
 
     @FXML
@@ -76,6 +78,10 @@ public class RGameController extends ReaderTemplateController {
         String letter = ((Button) event.getSource()).getText();
         ((Button) event.getSource()).setDisable(true); // Vô hiệu nút sau khi chọn
 
+        if (correctCounts == 0 && mistakeCounts == 0) {
+            hangmanImage.setImage(null);
+        }
+
         if (myLetters.contains(letter)) {
             for (int i = 0; i < myLetters.size(); i++) {
                 if (myLetters.get(i).equals(letter)) {
@@ -85,18 +91,69 @@ public class RGameController extends ReaderTemplateController {
             }
             text.setText(String.join(" ", answer)); // Cập nhật từ hiện tại
             if (correctCounts == myLetters.size()) {
-                //winStatus.setText("You Win!");
                 buttons.getChildren().forEach(node -> node.setDisable(true)); // Tắt các nút khi thắng
+                winGameSound();
+                Alert winAlert = new Alert(Alert.AlertType.INFORMATION);
+                winAlert.setHeaderText("Congratulations!\nYou have won the game by guessing the correct author who is " + authorWord + ".");
+                winAlert.setContentText("Do you want to play again?");
+                winAlert.getButtonTypes().setAll(ButtonType.CANCEL, ButtonType.OK);
+                winAlert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        winAlert.close();
+                        newGame();
+                    } else if (response == ButtonType.CANCEL) {
+                        try {
+                            switchToDashBoardView(dashBoardButton);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
             }
         } else {
             mistakeCounts++;
             updateHangmanImage(); // Cập nhật hình ảnh
             if (mistakeCounts >= images.size()) {
-                //winStatus.setText("You Lose!");
-                //realWord.setText("The actual word was: " + AuthorWordToGuess); // Hiển thị từ đúng khi thua
                 buttons.getChildren().forEach(node -> node.setDisable(true)); // Tắt các nút khi thua
+                loseGameSound();
+                Alert loseAlert = new Alert(Alert.AlertType.INFORMATION);
+                loseAlert.setHeaderText("Sorry! You have lost this game\nThe author you have to guess is " + authorWord + ".");
+                loseAlert.setContentText("Do you want to play again?");
+                loseAlert.getButtonTypes().setAll(ButtonType.CANCEL, ButtonType.OK);
+                loseAlert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        loseAlert.close();
+                        newGame();
+                    } else if (response == ButtonType.CANCEL) {
+                        try {
+                            switchToDashBoardView(dashBoardButton);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
             }
         }
+    }
+
+    @FXML
+    void logOutButtonClicked(ActionEvent event) throws Exception {
+        switchToLoginView(logOutButton);
+    }
+
+    @FXML
+    void allBooksButtonClicked(ActionEvent event) throws Exception {
+        switchToAllBooksView(allBooksButton);
+    }
+
+    @FXML
+    void booksInventoryButtonClicked(ActionEvent event) throws Exception {
+        switchToBooksInventoryView(booksInventoryButton);
+    }
+
+    @FXML
+    void homeButtonClicked(ActionEvent event) throws Exception {
+        switchToDashBoardView(dashBoardButton);
     }
 
     private void updateHangmanImage() {
@@ -127,7 +184,7 @@ public class RGameController extends ReaderTemplateController {
     }
 
     private String getHintText() {
-        String hintText = "";
+        String hintText;
         String hint = "";
         String query = "SELECT title FROM books WHERE author = '" + authorWord + "' LIMIT 1";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -145,25 +202,4 @@ public class RGameController extends ReaderTemplateController {
         hintText = "Hint: The book titled " + hint + " is written by this author.";
         return hintText;
     }
-
-    @FXML
-    void logOutButtonClicked(ActionEvent event) throws Exception {
-        switchToLoginView(logOutButton);
-    }
-
-    @FXML
-    void allBooksButtonClicked(ActionEvent event) throws Exception {
-        switchToAllBooksView(allBooksButton);
-    }
-
-    @FXML
-    void booksInventoryButtonClicked(ActionEvent event) throws Exception {
-        switchToBooksInventoryView(booksInventoryButton);
-    }
-
-    @FXML
-    void homeButtonClicked(ActionEvent event) throws Exception {
-        switchToDashBoardView(dashBoardButton);
-    }
-
 }

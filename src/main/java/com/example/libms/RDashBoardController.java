@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -61,6 +62,8 @@ public class RDashBoardController extends SceneController {
     @FXML
     private Label usernameLabel;
 
+    @FXML
+    private PieChart pieChart;
 
     private final List<Quote> quotes = new ArrayList<>();
     private int currentQuoteIndex = 0;
@@ -68,6 +71,10 @@ public class RDashBoardController extends SceneController {
             + "'" + getMostBorrowedBookTitleFromDatabase() + "'" + " LIMIT 1";
     private final String bookYouRecentlyBorrowedQuery = "SELECT * FROM books WHERE title = "
             + "'" + getBookTitleYouRecentlyBorrowedFromDatabase() + "'" + " LIMIT 1";
+    private final String totalBorrowedBooksQuery = "SELECT COUNT(*) AS total FROM readerborrowedbooks WHERE readerID = "
+            + "'" + getReaderID() + "'";
+    private final String totalReturnedBooksQuery = "SELECT COUNT(*) AS total FROM readerborrowedbooks WHERE readerID = "
+            + "'" + getReaderID() +"'";
 
     @FXML
     void initialize() {
@@ -82,6 +89,29 @@ public class RDashBoardController extends SceneController {
         showRandomQuote();
         setLabel(mbbLabel, getMostBorrowedBookTitleFromDatabase());
         setLabel(bybrLabel, getBookTitleYouRecentlyBorrowedFromDatabase());
+        initPieChart();
+    }
+
+    private int getTotalCategoryFromDatabase(String query) {
+        int totalCategory = 0;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                totalCategory = resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return totalCategory;
+    }
+
+    private void initPieChart() {
+        int totalBorrowedBooks = getTotalCategoryFromDatabase(totalBorrowedBooksQuery);
+        int totalReturnedBooks = getTotalCategoryFromDatabase(totalReturnedBooksQuery);
+        PieChart.Data totalBorrowedBooksData = new PieChart.Data("Borrowed Books", totalBorrowedBooks);
+        PieChart.Data totalReturnedBooksData = new PieChart.Data("Returned Books", totalReturnedBooks);
+        pieChart.getData().addAll(totalBorrowedBooksData, totalReturnedBooksData);
     }
 
     private Book correctBook(String query) {
