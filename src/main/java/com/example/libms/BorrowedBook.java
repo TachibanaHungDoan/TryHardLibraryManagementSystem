@@ -9,12 +9,12 @@ public class BorrowedBook {
     private int readerID;
     private String readerName;
     private Date borrowedDate;
-    private Date returnDate;
+    private java.sql.Date returnDate;
     private int borrowedDay;
     private double lateFee;
 
     public BorrowedBook(int id, String isbn, String title, int readerID, String readerName,
-                        Date borrowedDate, Date returnDate, int borrowedDay, double lateFee) {
+                        Date borrowedDate, java.sql.Date returnDate, int borrowedDay, double lateFee) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -23,6 +23,19 @@ public class BorrowedBook {
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
         this.borrowedDay = borrowedDay;
+        this.lateFee = lateFee;
+    }
+    public BorrowedBook(int id, String title , String isbn, java.sql.Date borrowedDate) {
+        this.id = id;
+        this.title = title;
+        this.isbn =  isbn;
+        this.borrowedDate = borrowedDate;
+    }
+    public BorrowedBook(int id , String title , String isbn, java.sql.Date returnDate, long lateFee) {
+        this.id = id;
+        this.title = title;
+        this.isbn =  isbn;
+        this.returnDate = returnDate;
         this.lateFee = lateFee;
     }
 
@@ -71,7 +84,7 @@ public class BorrowedBook {
         return borrowedDate;
     }
 
-    public void setBorrowedDate(Date borrowedDate) {
+    public void setBorrowedDate(java.sql.Date borrowedDate) {
         this.borrowedDate = borrowedDate;
     }
 
@@ -79,7 +92,7 @@ public class BorrowedBook {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(java.sql.Date returnDate) {
         this.returnDate = returnDate;
     }
 

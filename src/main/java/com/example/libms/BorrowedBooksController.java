@@ -78,7 +78,7 @@ public class BorrowedBooksController extends AdminTemplateController {
                 int readerID = resultSet.getInt("readerID");
                 String readerName = resultSet.getString("readerName");
                 Date borrowedDate = resultSet.getDate("borrowedDate");
-                Date returnDate = resultSet.getDate("returnDate");
+                java.sql.Date returnDate = resultSet.getDate("returnDate");
                 int borrowedDay = resultSet.getInt("borrowedDay");
                 double lateFee = resultSet.getDouble("lateFee");
                 BorrowedBook borrowedBook = new BorrowedBook(id, isbn, title, readerID, readerName, borrowedDate, returnDate, borrowedDay, lateFee);

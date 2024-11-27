@@ -100,16 +100,16 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TableView layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="876.0">
+                              <TableView fx:id="returnedBooksTable" layoutX="20.0" layoutY="78.0" prefHeight="574.0" prefWidth="876.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="BookID" />
-                                  <TableColumn prefWidth="173.66668701171875" text="Title" />
-                                    <TableColumn prefWidth="111.83331298828125" text="Author" />
-                                    <TableColumn prefWidth="106.6666259765625" text="Publisher" />
-                                    <TableColumn prefWidth="116.83331298828125" text="ISBN" />
-                                    <TableColumn minWidth="0.0" prefWidth="0.0" text="Published Date" />
-                                    <TableColumn prefWidth="161.5" text="Returned Date" />
-                                    <TableColumn prefWidth="128.5" text="lateFee" />
+                                  <TableColumn fx:id="bookIDColumn" prefWidth="75.0" text="BookID" />
+                                  <TableColumn fx:id="titleColumn" prefWidth="173.66668701171875" text="Title" />
+                                    <TableColumn fx:id="authorColumn" prefWidth="111.83331298828125" text="Author" />
+                                    <TableColumn fx:id="publisherColumn" prefWidth="106.6666259765625" text="Publisher" />
+                                    <TableColumn fx:id="isbnColumn" prefWidth="116.83331298828125" text="ISBN" />
+                                    <TableColumn fx:id="publishedDateColumn" minWidth="0.0" prefWidth="0.0" text="Published Date" />
+                                    <TableColumn fx:id="returnedDateColumn" prefWidth="161.5" text="Returned Date" />
+                                    <TableColumn fx:id="lateFeeColumn" prefWidth="128.5" text="lateFee" />
                                 </columns>
                               </TableView>
                               <Button fx:id="borrowedBooksScreenSwitchButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrowedBooksSwitchScenehButtonClicked" prefWidth="150.0" styleClass="normal-btn" stylesheets="@../des/rBooksInventory-des.css" text="Borrowed Books" />
