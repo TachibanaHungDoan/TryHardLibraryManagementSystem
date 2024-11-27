@@ -13,48 +13,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class AddBooksController extends SceneController {
+public class AddBooksController extends BooksController {
     @FXML
-    private Button addButton;
-
+    private Button addButton, clearButton, importImageButton;
     @FXML
     private TextField searchBar;
-
     @FXML
-    private TextField authorTextField;
-
+    private TextField bookTitleTextField, authorTextField, publisherTextField;
     @FXML
-    private TextField bookISBNTextField;
-
+    private TextField publishedDateTextField, bookISBNTextField, editionTextField;
     @FXML
-    private TextField bookTitleTextField;
-
-    @FXML
-    private Button clearButton;
-
-    @FXML
-    private TextField editionTextField;
-
+    private TextField stateTextField, quantityTextField, remainingTextField;
     @FXML
     private ImageView imageImageView;
-
-    @FXML
-    private Button importImageButton;
-
-    @FXML
-    private TextField publishedDateTextField;
-
-    @FXML
-    private TextField publisherTextField;
-
-    @FXML
-    private TextField quantityTextField;
-
-    @FXML
-    private TextField remainingTextField;
-
-    @FXML
-    private TextField stateTextField;
 
     private BookDAO bookdao = new BookDAO();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,37 +35,35 @@ public class AddBooksController extends SceneController {
         importImageButton.setOnAction(_ -> importImage());
         addButton.setOnAction(_ -> addBook());
         clearButton.setOnAction(_ -> clearButtonClicked());
-        searchBar.textProperty().addListener((_, _, newValue) -> {
+        setSearchBarAction();
+    }
+
+    private void setSearchBarAction() {
+        searchBar.textProperty().addListener( (_, _, newValue) -> {
             if (!newValue.isEmpty()) {
                 List<BookSuggestion> suggestions = GoogleBooksAPI.searchBooks(newValue);
-
-                Platform.runLater(() -> {
-                    ContextMenu contextMenu = new ContextMenu();
-                    for (BookSuggestion suggestion : suggestions) {
-                        MenuItem item = new MenuItem(suggestion.getTitle());
-                        item.setOnAction(_ -> selectBookSuggestion(suggestion));
-                        contextMenu.getItems().add(item);
-                    }
-                    contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
-                            searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
-                });
+                Platform.runLater(() -> showSuggestionsPopup(suggestions));
             }
         });
+    }
+
+    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
+        ContextMenu contextMenu = new ContextMenu();
+        for (BookSuggestion suggestion : suggestions) {
+            MenuItem item = new MenuItem(suggestion.getTitle());
+            item.setOnAction(_ -> selectBookSuggestion(suggestion));
+            contextMenu.getItems().add(item);
+        }
+        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
+                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
     }
 
     private void selectBookSuggestion(BookSuggestion suggestion) {
         bookTitleTextField.setText(suggestion.getTitle());
         authorTextField.setText(suggestion.getAuthor());
         bookISBNTextField.setText(suggestion.getIsbn());
-        publisherTextField.setText(suggestion.getPublisher());
-
-        if (suggestion.getPublishedDate() != null) {
-            publishedDateTextField.setText(new SimpleDateFormat("yyyy-MM-dd").format(suggestion.getPublishedDate()));
-        } else {
-            publishedDateTextField.clear();
-        }
-
-        // Hiển thị ảnh (nếu có)
+        publisherTextField.setText((suggestion.getPublishedDate() != null ?
+                dateFormat.format(suggestion.getPublishedDate()) : ""));
         if (suggestion.getThumbnail() != null) {
             Image image = new Image(suggestion.getThumbnail());
             imageImageView.setImage(image);
