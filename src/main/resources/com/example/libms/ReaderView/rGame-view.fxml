@@ -27,11 +27,11 @@
                                     <Image url="@../Icon/appIcon.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
-                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
-                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
-                              <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Games" />
-                              <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
+                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
+                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" onAction="#allBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
+                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" onAction="#booksInventoryButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
+                              <Button layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Games" />
+                              <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
@@ -94,148 +94,148 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="10.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <FlowPane fx:id="buttons" hgap="7.0" layoutX="213.0" layoutY="464.0" prefHeight="172.0" prefWidth="497.0" vgap="7.0">
+                              <FlowPane fx:id="buttons" hgap="7.0" layoutX="390.0" layoutY="370.0" prefHeight="267.0" prefWidth="466.0" vgap="7.0">
                                  <children>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="A">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="A">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="B">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="B">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="C">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="C">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="D">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="D">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="E">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="E">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="F">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="F">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="G">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="G">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="H">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="H">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="I">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="I">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="J">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="J">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="K">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="K">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="L">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="L">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="M">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="M">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="N">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="N">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="O">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="O">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="P">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="P">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Q">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="Q">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="R">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="R">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="S">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="S">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="T">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="T">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="U">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="U">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="V">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="V">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="W">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="W">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="X">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="X">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Y">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="Y">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #33EECF;" text="Z">
+                                    <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #33EECF;" text="Z">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
                                  </children>
                               </FlowPane>
-                              <Button layoutX="515.0" layoutY="56.0" mnemonicParsing="false" text="New Game" />
-                              <AnchorPane layoutX="32.0" layoutY="68.0" prefHeight="330.0" prefWidth="276.0" stylesheets="@../des/readerTemplate-des.css">
+                              <Button fx:id="newGameButton" layoutX="118.0" layoutY="20.0" mnemonicParsing="false" styleClass="game-btn" stylesheets="@../des/rGame-des.css" text="New Game" />
+                              <AnchorPane layoutX="50.0" layoutY="82.0" prefHeight="330.0" prefWidth="276.0" stylesheets="@../des/readerTemplate-des.css">
                                  <styleClass>
                                     <String fx:value="content-form" />
                                     <String fx:value="shadow" />
@@ -244,21 +244,20 @@
                                     <ImageView fx:id="hangmanImage" fitHeight="317.0" fitWidth="248.0" layoutX="13.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </AnchorPane>
-                              <Text fx:id="text" fill="#40b9ff" layoutX="365.0" layoutY="165.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="338.1285705566406">
+                              <Text fx:id="text" fill="#40b9ff" layoutX="349.0" layoutY="141.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="547.6285705566406">
                                  <font>
                                     <Font size="50.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="winStatus" fill="#59ecf6" layoutX="42.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="146.0428466796875">
-                                 <font>
-                                    <Font size="75.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="realWord" fill="#40b9ff" layoutX="373.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="359.0">
+                              <Text fx:id="hintText" fill="#40b9ff" layoutX="402.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="490.0">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="hintButton" layoutX="582.0" layoutY="185.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="104.0" styleClass="game-btn" stylesheets="@../des/rGame-des.css" text="Hint" />
+                              <Text fx:id="insText" layoutX="78.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" text="Objective: Guess the name of the author of a book by selecting letters. You have limited incorrect guesses.&quot;" wrappingWidth="220.13671875" />
+                              <Label layoutX="65.0" layoutY="444.0" styleClass="gameTitle-label" stylesheets="@../des/rGame-des.css" text="HANGMAN GAME" />
+                              <Label layoutX="82.0" layoutY="483.0" styleClass="gameYo-Label" stylesheets="@../des/rGame-des.css" text="Guess the Author's Name" />
                            </children>
                         </AnchorPane>
                      </children>
