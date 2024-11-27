@@ -72,7 +72,7 @@ public abstract class SceneController {
 
     protected void switchScene(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
-        Parent root =fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RGameController">
    <children>
@@ -26,11 +27,11 @@
                                     <Image url="@../Icon/appIcon.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" onAction="#rHomeButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
-                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" onAction="#rAllBooksButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
-                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" onAction="#rBooksInventoryButtonClicked" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
+                              <Button fx:id="dashBoardButton" layoutY="307.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Dashboard" />
+                              <Button fx:id="allBooksButton" layoutY="367.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="All Books" />
+                              <Button fx:id="booksInventoryButton" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Books Inventory" />
                               <Button fx:id="gamesButton" layoutY="487.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="360.0" styleClass="dashboard-btn" stylesheets="@../des/rDashBoard-des.css" text="Games" />
-                              <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
+                              <Button fx:id="logOutButton" layoutY="650.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="360.0" styleClass="nav-btn" stylesheets="@../des/readerTemplate-des.css" text="Log out">
                                  <font>
                                     <Font name="Gotham-Black" size="14.0" />
                                  </font>
@@ -93,7 +94,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="10.0" layoutY="11.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
+                        <AnchorPane layoutY="10.0" prefHeight="660.0" prefWidth="918.0" stylesheets="@../des/readerTemplate-des.css">
                            <styleClass>
                               <String fx:value="content-form" />
                               <String fx:value="shadow" />
@@ -233,22 +234,31 @@
                                     </Button>
                                  </children>
                               </FlowPane>
-                              <Label layoutX="607.0" layoutY="239.0" text="WORD" />
                               <Button layoutX="515.0" layoutY="56.0" mnemonicParsing="false" text="New Game" />
-                              <Button layoutX="609.0" layoutY="292.0" mnemonicParsing="false" text="Hint" />
-                              <Label layoutX="614.0" layoutY="355.0" text="hint" />
                               <AnchorPane layoutX="32.0" layoutY="68.0" prefHeight="330.0" prefWidth="276.0" stylesheets="@../des/readerTemplate-des.css">
-                                 <children>
-                                    <ImageView fitHeight="310.0" fitWidth="267.0" layoutX="38.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../GameAssets/7.png" />
-                                       </image></ImageView>
-                                 </children>
                                  <styleClass>
                                     <String fx:value="content-form" />
                                     <String fx:value="shadow" />
                                  </styleClass>
+                                 <children>
+                                    <ImageView fx:id="hangmanImage" fitHeight="317.0" fitWidth="248.0" layoutX="13.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
                               </AnchorPane>
+                              <Text fx:id="text" fill="#40b9ff" layoutX="365.0" layoutY="165.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="338.1285705566406">
+                                 <font>
+                                    <Font size="50.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="winStatus" fill="#59ecf6" layoutX="42.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="146.0428466796875">
+                                 <font>
+                                    <Font size="75.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="realWord" fill="#40b9ff" layoutX="373.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="359.0">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </children>
