@@ -10,6 +10,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import java.io.IOException;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +22,8 @@ public class DashBoardController extends AdminTemplateController {
     private Label usernameLabel, timeLabel;
     @FXML
     private Button booksButton, readersButton, borrowedBooksButton, logOutButton;
+    @FXML
+    private ToggleButton toggleMusicButton;
     @FXML
     private Label totalBooksLabel, totalReadersLabel, borrowedBooksLabel;
     @FXML
@@ -33,8 +37,11 @@ public class DashBoardController extends AdminTemplateController {
     private final String TOTAL_READERS_QUERY = "SELECT COUNT(readerID) AS total FROM readers";
     private final String TOTAL_BORROWEDBOOKS_QUERY = "SELECT COUNT(id) AS total FROM borrowedbooks";
 
+    private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
+
     @FXML
     void initialize() {
+        toggleMusicButton.setOnAction(e -> backgroundMusic.toggleBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3"));
         int totalBooks = getTotalCategoryFromDatabase(TOTAL_BOOKS_QUERY);
         int totalReaders = getTotalCategoryFromDatabase(TOTAL_READERS_QUERY);
         int totalBooksBorrowed = getTotalCategoryFromDatabase(TOTAL_BORROWEDBOOKS_QUERY);
@@ -63,6 +70,7 @@ public class DashBoardController extends AdminTemplateController {
     @FXML
     void logOutButtonClicked() throws IOException {
         switchToLoginView(logOutButton);
+        backgroundMusic.stopBackgroundMusic();
     }
 
     private void initializeBarChart(int totalBooks, int totalReaders, int totalBooksBorrowed) {

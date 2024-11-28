@@ -34,8 +34,7 @@ public class RBooksInventoryReturnController extends SceneController {
     @FXML
     private TableColumn<ReturnedBook, Integer> lateFeeColumn;
 
-    private ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
-
+    private final ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -47,6 +46,32 @@ public class RBooksInventoryReturnController extends SceneController {
         returnedDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
         lateFeeColumn.setCellValueFactory(new PropertyValueFactory<>("lateFee"));
         loadReturnedBooksDataFromDatabase();
+    }
+
+    private void loadReturnedBooksDataFromDatabase() {
+        String query = "SELECT r.rtBooksID, r.title, r.isbn, "
+                + "r.returnedDate, r.borrowedDay, r.lateFee, r.readerID, b.author, b.publisher "
+                + "FROM readerReturnedBooks r " + "JOIN books b ON r.isbn = b.isbn " + "WHERE r.readerID = "
+                + " " + LoggedInUser.getReaderID() + "'";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            returnedBooksList.clear();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("rtBooksID");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                String publisher = resultSet.getString("publisher");
+                String isbn = resultSet.getString("isbn");
+                Date returnedDate = resultSet.getDate("returnedDate");
+                int lateFee = resultSet.getInt("lateFee");
+                ReturnedBook rbook = new ReturnedBook(id,title ,author, publisher,isbn, returnedDate, lateFee);
+                returnedBooksList.add(rbook);
+            }
+            returnedBooksTable.setItems(returnedBooksList);
+    } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -26,6 +26,7 @@ public class AddBooksController extends SceneController {
     private TextField stateTextField, quantityTextField, remainingTextField;
     @FXML
     private ImageView imageImageView;
+    private boolean shouldQueryAPI = true;
 
     private BookDAO bookdao = new BookDAO();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,7 +49,7 @@ public class AddBooksController extends SceneController {
         addButton.setOnAction(event -> addBook());
         clearButton.setOnAction(event -> clearButtonClicked());
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.isEmpty()) {
+            if (shouldQueryAPI && !newValue.isEmpty()) {
                 List<BookSuggestion> cachedSuggestions = BookSearchCache.get(newValue);
                 if (cachedSuggestions != null) {
                     showSuggestionsPopup(cachedSuggestions);
@@ -62,6 +63,29 @@ public class AddBooksController extends SceneController {
             }
         });
     }
+
+    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
+        if(currentContextMenu != null && currentContextMenu.isShowing()){
+            currentContextMenu.hide();
+        }
+        ContextMenu contextMenu = new ContextMenu();
+        int maxSuggestions = 3;
+        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
+            BookSuggestion suggestion = suggestions.get(i);
+            MenuItem item = new MenuItem(suggestion.getTitle());
+            item.setOnAction(_ -> {
+                shouldQueryAPI = false;
+                selectBookSuggestion(suggestion); });
+            contextMenu.getItems().add(item);
+        }
+            if (searchBar.getScene() != null && searchBar.getScene().getWindow() != null) {
+                currentContextMenu = contextMenu;
+            contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
+                    searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
+            }
+    }
+
+
 
     @FXML
     public void clearButtonClicked() {
@@ -77,6 +101,7 @@ public class AddBooksController extends SceneController {
         remainingTextField.clear();
         imageImageView.setImage(null);
         searchBar.clear();
+        shouldQueryAPI = true;
     }
 
     /**
@@ -144,22 +169,6 @@ public class AddBooksController extends SceneController {
         }
     }
 
-    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
-        if(currentContextMenu != null && currentContextMenu.isShowing()){
-            currentContextMenu.hide();
-        }
-        ContextMenu contextMenu = new ContextMenu();
-        int maxSuggestions = 4;
-        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
-            BookSuggestion suggestion = suggestions.get(i);
-            MenuItem item = new MenuItem(suggestion.getTitle());
-            item.setOnAction(_ -> selectBookSuggestion(suggestion));
-            contextMenu.getItems().add(item);
-        }
-        currentContextMenu = contextMenu;
-        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
-                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
-    }
 
     /**
      * Selects a book suggestion and populates the corresponding text fields and image view

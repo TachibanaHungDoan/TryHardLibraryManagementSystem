@@ -111,8 +111,13 @@ public class LoginController extends SceneController {
                 Alert.AlertType.CONFIRMATION
         );
         switchScene("AdminView/dashBoard-view.fxml", signInButton);
+        if (backgroundMusic.isPlaying()) {
+            backgroundMusic.stopBackgroundMusic();
+        }
+        backgroundMusic.playBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3");
     }
 
+    private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
     private void handleReaderLogin(String username) throws IOException {
         playButtonClickSound1();
         LoggedInUser.setUsername(username);
