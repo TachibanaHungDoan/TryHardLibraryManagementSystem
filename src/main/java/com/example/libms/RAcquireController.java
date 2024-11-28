@@ -18,20 +18,9 @@ import java.util.List;
 
 public class RAcquireController extends SceneController {
     @FXML
-    private Button cancelButton;
-
+    private Button cancelButton, confirmButton, dFCButton;
     @FXML
-    private Button confirmButton;
-
-    @FXML
-    private Button dFCButton;
-
-    @FXML
-    private Label dueDateLabel;
-
-    @FXML
-    private Label totalBooksLabel;
-
+    private Label totalBooksLabel, dueDateLabel;
     @FXML
     private TableView<Book> cartTable;
     @FXML
@@ -42,7 +31,6 @@ public class RAcquireController extends SceneController {
     private TableColumn<Book, String> bookAuthorColumn;
     @FXML
     private TableColumn<Book, String> bookPublisherColumn;
-
     @FXML
     private TableColumn<Book, String> bookISBNColumn;
 
@@ -66,6 +54,14 @@ public class RAcquireController extends SceneController {
         stage.close();
     }
 
+    /**
+     * Handles the action when the confirm button is clicked. This method processes the list of books in the
+     * cart and carries out the borrowing procedure by checking the availability of each book, ensuring that
+     * the user hasn't already borrowed the book, and updating the necessary database records. If successful,
+     * it clears the cart and updates the UI accordingly.
+     *
+     * @param event The event that triggered the action.
+     */
     @FXML
     void confirmButtonClicked(ActionEvent event) {
         List<Book> booksInCart = Cart.getBooksInCart();

@@ -8,33 +8,12 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class UpdateBooksController extends SceneController {
-
     @FXML
-    private TextField authorTextField;
-
+    private TextField bookTitleTextField, authorTextField, publisherTextField;
     @FXML
-    private TextField bookISBNTextField;
-
+    private TextField publishedDateTextField, bookISBNTextField, editionTextField;
     @FXML
-    private TextField bookTitleTextField;
-
-    @FXML
-    private TextField editionTextField;
-
-    @FXML
-    private TextField publishedDateTextField;
-
-    @FXML
-    private TextField publisherTextField;
-
-    @FXML
-    private TextField quantityTextField;
-
-    @FXML
-    private TextField remainingTextField;
-
-    @FXML
-    private TextField stateTextField;
+    private TextField quantityTextField, stateTextField, remainingTextField;
 
     private Book book;
     private final BookDAO bookDao = new BookDAO();

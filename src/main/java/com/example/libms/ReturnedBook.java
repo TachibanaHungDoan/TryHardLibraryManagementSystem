@@ -21,8 +21,6 @@ public class ReturnedBook  {
         this.lateFee = lateFee;
     }
 
-    // Các phương thức getter và setter
-
     public int getId() {
         return id;
     }

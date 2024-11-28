@@ -18,26 +18,15 @@ import java.util.stream.Collectors;
 
 public class ReadersController extends AdminTemplateController {
     @FXML
-    private Button booksButton;
-
+    private Label usernameLabel, timeLabel;
     @FXML
-    private Button borrowedBooksButton;
-
+    private Button homeButton, booksButton, borrowedBooksButton, logOutButton;
     @FXML
-    private Button clearInformationButton;
-
+    private Button updateReaderButton, clearInformationButton, deleteReaderButton;
     @FXML
-    private Button deleteReaderButton;
-
+    private TextField searchBar;
     @FXML
-    private Button homeButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private TextField readerEmailTextField;
-
+    private TextField readerNameTextField, readerPhoneTextField, readerEmailTextField;
     @FXML
     private ChoiceBox<Reader.ReaderGender> readerGenderChoiceBox;
 
@@ -45,42 +34,19 @@ public class ReadersController extends AdminTemplateController {
     private TextField readerIDTextField;
 
     @FXML
-    private TextField readerNameTextField;
-
-    @FXML
-    private TextField readerPhoneTextField;
-
-    @FXML
     private TableView<Reader> readersTable;
-
     @FXML
     private TableColumn<Reader, String> emailColumn;
-
     @FXML
     private TableColumn<Reader, String> genderColumn;
-
     @FXML
     private TableColumn<Reader, Integer> phoneNumberColumn;
-
     @FXML
     private TableColumn<Reader, Integer> readerIDColumn;
-
     @FXML
     private TableColumn<Reader, String> readerNameColumn;
 
     private ObservableList<Reader> readersList = FXCollections.observableArrayList();
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Button updateReaderButton;
-
-    @FXML
-    private Label usernameLabel;
 
     @FXML
     void initialize() {

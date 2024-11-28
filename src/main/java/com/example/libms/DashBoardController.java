@@ -19,9 +19,9 @@ public class DashBoardController extends AdminTemplateController {
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
-    private Label totalBooksLabel, totalReadersLabel, borrowedBooksLabel;
-    @FXML
     private Button booksButton, readersButton, borrowedBooksButton, logOutButton;
+    @FXML
+    private Label totalBooksLabel, totalReadersLabel, borrowedBooksLabel;
     @FXML
     private BarChart<String, Number> bnrBarChart;
     @FXML

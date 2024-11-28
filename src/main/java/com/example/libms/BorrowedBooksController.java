@@ -17,31 +17,15 @@ import java.util.Date;
 
 public class BorrowedBooksController extends AdminTemplateController {
     @FXML
+    private Label usernameLabel, timeLabel;
+    @FXML
+    private Button homeButton, booksButton, readersButton, logOutButton;
+    @FXML
     private Label allBorrowedBooksLabel;
-
-    @FXML
-    private Button booksButton;
-
-    @FXML
-    private TableView<BorrowedBook> borrowedBooksTable;
-
-    @FXML
-    private Button homeButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Button readersButton;
-
     @FXML
     private TextField searchBar;
-
     @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label usernameLabel;
+    private TableView<BorrowedBook> borrowedBooksTable;
     @FXML
     private TableColumn<BorrowedBook, Integer> borrowedIDColumn;
     @FXML

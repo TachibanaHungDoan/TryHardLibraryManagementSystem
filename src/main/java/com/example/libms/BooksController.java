@@ -20,11 +20,15 @@ import java.util.stream.Collectors;
 
 public class BooksController extends AdminTemplateController {
     @FXML
-    private Button addBookButton;
-
+    private Label usernameLabel, timeLabel;
+    @FXML
+    private Button homeButton, readersButton, borrowedBooksButton, logOutButton;
+    @FXML
+    private Button addBookButton, updateBookButton, viewBookButton, deleteBookButton;
     @FXML
     private Label allBooksLabel;
-
+    @FXML
+    private TextField searchBar;
     @FXML
     private TableView<Book> booksTable;
     @FXML
@@ -47,37 +51,10 @@ public class BooksController extends AdminTemplateController {
     private TableColumn<Book, Integer> stateColumn;
     @FXML
     private TableColumn<Book, Integer> remainingColumn;
-    @FXML
-    private Button borrowedBooksButton;
-
-    @FXML
-    private Button deleteBookButton;
-
-    @FXML
-    private Button homeButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Button readersButton;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Button updateBookButton;
-
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private Button viewBookButton;
 
     private Book selectedBook;
+    private ObservableList<Book> bookList = FXCollections.observableArrayList();
+
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -88,8 +65,6 @@ public class BooksController extends AdminTemplateController {
             selectedBook = newValue;
         });
     }
-
-    private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
     private void setBooksTable() {
         bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));

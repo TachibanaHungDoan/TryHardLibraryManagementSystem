@@ -4,33 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ViewBooksController extends SceneController {
-
     @FXML
-    private Label ISBNLabel;
-
+    private Label bookTitleLabel, authorLabel, publisherLabel;
     @FXML
-    private Label authorLabel;
-
+    private Label publishedDateLabel, ISBNLabel, editionLabel;
     @FXML
-    private Label bookTitleLabel;
-
-    @FXML
-    private Label editionLabel;
-
-    @FXML
-    private Label publishedDateLabel;
-
-    @FXML
-    private Label publisherLabel;
-
-    @FXML
-    private Label quantityLabel;
-
-    @FXML
-    private Label remainingLabel;
-
-    @FXML
-    private Label stateLabel;
+    private Label quantityLabel, stateLabel, remainingLabel;
 
     public void setBookData(Book book) {
         bookTitleLabel.setText(book.getTitle());

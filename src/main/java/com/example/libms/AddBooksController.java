@@ -28,10 +28,11 @@ public class AddBooksController extends SceneController {
     private ImageView imageImageView;
 
     private BookDAO bookdao = new BookDAO();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private ContextMenu currentContextMenu;
 
     @FXML
-    void initialize() {
+    public void initialize() {
         importImageButton.setOnAction(_ -> importImage());
         addButton.setOnAction(_ -> addBook());
         clearButton.setOnAction(_ -> clearButtonClicked());
@@ -50,7 +51,6 @@ public class AddBooksController extends SceneController {
             }
         });
     }
-    private ContextMenu currentContextMenu;
 
     private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
         if(currentContextMenu != null && currentContextMenu.isShowing()){
@@ -97,7 +97,7 @@ public class AddBooksController extends SceneController {
         searchBar.clear();
     }
 
-    //Lưu ý cần thêm xử lý ngoại lệ khi các ô bị thiếu.
+
     private void addBook() {
         String title = bookTitleTextField.getText();
         String author = authorTextField.getText();

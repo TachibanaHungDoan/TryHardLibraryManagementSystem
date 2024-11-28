@@ -7,29 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RSettingController extends SceneController {
-
     @FXML
-    private Button cancelButton;
-
+    private Button confirmButton, cancelButton;
     @FXML
-    private Button confirmButton;
-
-    @FXML
-    private TextField confirmNewPassWordTextField;
-
-    @FXML
-    private TextField currentPassWordTextField;
-
-    @FXML
-    private TextField newPassWordTextField;
-
+    private TextField currentPassWordTextField, newPassWordTextField, confirmNewPassWordTextField;
 
     @FXML
     void cancelButtonClicked(ActionEvent event) {
