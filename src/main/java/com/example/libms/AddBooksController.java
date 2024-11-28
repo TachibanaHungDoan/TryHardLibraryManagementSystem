@@ -35,25 +35,36 @@ public class AddBooksController extends SceneController {
         importImageButton.setOnAction(_ -> importImage());
         addButton.setOnAction(_ -> addBook());
         clearButton.setOnAction(_ -> clearButtonClicked());
-        setSearchBarAction();
-    }
-
-    private void setSearchBarAction() {
-        searchBar.textProperty().addListener( (_, _, newValue) -> {
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
-                List<BookSuggestion> suggestions = GoogleBooksAPI.searchBooks(newValue);
-                Platform.runLater(() -> showSuggestionsPopup(suggestions));
+                List<BookSuggestion> cachedSuggestions = BookSearchCache.get(newValue);
+                if (cachedSuggestions != null) {
+                    showSuggestionsPopup(cachedSuggestions);
+                } else {
+                    new Thread(() -> {
+                        List<BookSuggestion> suggestions = GoogleBooksAPI.searchBooks(newValue);
+                        BookSearchCache.put(newValue, suggestions);
+                        Platform.runLater(() -> showSuggestionsPopup(suggestions));
+                    }).start();
+                }
             }
         });
     }
+    private ContextMenu currentContextMenu;
 
     private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
+        if(currentContextMenu != null && currentContextMenu.isShowing()){
+            currentContextMenu.hide();
+        }
         ContextMenu contextMenu = new ContextMenu();
-        for (BookSuggestion suggestion : suggestions) {
+        int maxSuggestions = 4;
+        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
+            BookSuggestion suggestion = suggestions.get(i);
             MenuItem item = new MenuItem(suggestion.getTitle());
             item.setOnAction(_ -> selectBookSuggestion(suggestion));
             contextMenu.getItems().add(item);
         }
+        currentContextMenu = contextMenu;
         contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
                 searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
     }
@@ -82,6 +93,8 @@ public class AddBooksController extends SceneController {
         quantityTextField.clear();
         stateTextField.clear();
         remainingTextField.clear();
+        imageImageView.setImage(null);
+        searchBar.clear();
     }
 
     //Lưu ý cần thêm xử lý ngoại lệ khi các ô bị thiếu.

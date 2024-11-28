@@ -76,6 +76,7 @@ public class GoogleBooksAPI {
                                 publishedDate = DATE_FORMAT.parse(publishedDateStr);
                             } catch (ParseException e) {
                                 // Nếu không parse được thì giữ null
+                                publishedDate = null;
                             }
                         }
 
