@@ -15,6 +15,7 @@ module com.example.libms {
     requires java.sql;
     requires mockito.all;
     requires jfxtras.test_support;
+    requires jbcrypt;
 
     opens com.example.libms to javafx.fxml;
     exports com.example.libms;

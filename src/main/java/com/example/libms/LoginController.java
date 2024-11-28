@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.Optional;
@@ -82,6 +84,10 @@ public class LoginController extends SceneController {
         switchScene("ReaderView/rDashBoard-view.fxml", signInButton);
     }
 
+    private String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
     @FXML
     void registerButtonClicked() throws IOException {
         String username = signUpUsernameTextField.getText();
@@ -92,7 +98,8 @@ public class LoginController extends SceneController {
             return;
         }
 
-        showInformationFormAndRegister(username, password);
+        String hashedPassword =hashPassword(password) ;
+        showInformationFormAndRegister(username, hashedPassword);
     }
 
     private void showInformationFormAndRegister(String username, String password) throws IOException {
@@ -193,22 +200,26 @@ public class LoginController extends SceneController {
         Connection connectDB = connectNow.getConnection();
         PreparedStatement pstm = null;
         ResultSet queryResult = null;
-        String verifyLogin = "SELECT readerID, readerName FROM readers WHERE userName = ? AND password = ?";
+        String verifyLogin = "SELECT readerID, readerName, password FROM readers WHERE userName = ?";
 
         try {
             pstm = connectDB.prepareStatement(verifyLogin);
             pstm.setString(1,username);
-            pstm.setString(2,password);
             queryResult = pstm.executeQuery();
             if(queryResult.next()) {
-                int readerID = queryResult.getInt("readerID");
-                String readerName = queryResult.getString("readerName");
-                LoggedInUser.setReaderID(readerID);
-                LoggedInUser.setReaderName(readerName);
-                return true;
+                String storedHashedPassword = queryResult.getString("password");
+                if (BCrypt.checkpw(password, storedHashedPassword)) {
+                    int readerID = queryResult.getInt("readerID");
+                    String readerName = queryResult.getString("readerName");
+                    LoggedInUser.setReaderID(readerID);
+                    LoggedInUser.setReaderName(readerName);
+                    return true;
                 } else {
                     return false;
                 }
+            }else {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
