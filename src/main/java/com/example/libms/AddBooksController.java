@@ -52,7 +52,6 @@ public class AddBooksController extends SceneController {
             }
         });
     }
-    private ContextMenu currentContextMenu;
 
     private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
         if(currentContextMenu != null && currentContextMenu.isShowing()){
@@ -75,23 +74,7 @@ public class AddBooksController extends SceneController {
             }
     }
 
-    private void selectBookSuggestion(BookSuggestion suggestion) {
-        bookTitleTextField.setText(suggestion.getTitle());
-        authorTextField.setText(suggestion.getAuthor());
-        publisherTextField.setText(suggestion.getPublisher());
-        bookISBNTextField.setText(suggestion.getIsbn());
-        if (suggestion.getPublishedDate() != null) {
-            String formattedDate = dateFormat.format(suggestion.getPublishedDate());
-            System.out.println("Published Date: " + formattedDate);
-            publishedDateTextField.setText(formattedDate);
-        } else {
-            publishedDateTextField.setText("");
-        }
-        if (suggestion.getThumbnail() != null) {
-            Image image = new Image(suggestion.getThumbnail());
-            imageImageView.setImage(image);
-        }
-    }
+
 
     @FXML
     public void clearButtonClicked() {
@@ -166,22 +149,6 @@ public class AddBooksController extends SceneController {
         }
     }
 
-    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
-        if(currentContextMenu != null && currentContextMenu.isShowing()){
-            currentContextMenu.hide();
-        }
-        ContextMenu contextMenu = new ContextMenu();
-        int maxSuggestions = 4;
-        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
-            BookSuggestion suggestion = suggestions.get(i);
-            MenuItem item = new MenuItem(suggestion.getTitle());
-            item.setOnAction(_ -> selectBookSuggestion(suggestion));
-            contextMenu.getItems().add(item);
-        }
-        currentContextMenu = contextMenu;
-        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
-                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
-    }
 
     private void selectBookSuggestion(BookSuggestion suggestion) {
         bookTitleTextField.setText(suggestion.getTitle());

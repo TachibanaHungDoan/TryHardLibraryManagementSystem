@@ -34,8 +34,6 @@ public class RBooksInventoryReturnController extends SceneController {
     @FXML
     private TableColumn<ReturnedBook, Integer> lateFeeColumn;
 
-    private ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
-
     private final ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
     @FXML
     void initialize() {
