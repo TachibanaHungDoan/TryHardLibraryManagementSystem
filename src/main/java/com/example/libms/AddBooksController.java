@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class AddBooksController extends BooksController {
+public class AddBooksController extends SceneController {
     @FXML
     private Button addButton, clearButton, importImageButton;
     @FXML

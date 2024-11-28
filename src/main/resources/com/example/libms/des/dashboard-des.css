@@ -37,3 +37,18 @@
     -fx-font-size: 48px;
     -fx-text-fill: #fff;
 }
+
+.firstChart-bar {
+    -fx-bar-fill: #AAFFCC;
+    -fx-bar-width: 50;
+}
+
+.secondChart-bar {
+    -fx-bar-fill: #FFCCAA;
+    -fx-bar-width: 50;
+}
+
+.thirdChart-bar {
+    -fx-bar-fill: #1E5B53;
+    -fx-bar-width: 50;
+}

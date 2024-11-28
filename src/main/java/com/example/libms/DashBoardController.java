@@ -77,21 +77,36 @@ public class DashBoardController extends AdminTemplateController {
         series.getData().add(totalReadersData);
         series.getData().add(totalBooksBorrowedData);
         bnrBarChart.getData().add(series);
+        bnrBarChart.getStylesheets().add(getClass().getResource("des/dashboard-des.css").toExternalForm());
 
         Platform.runLater(() -> {
             Node totalBooksNode = totalBooksData.getNode();
             if (totalBooksNode != null) {
-                totalBooksNode.setStyle("-fx-bar-fill: blue;");
+                totalBooksNode.getStyleClass().add("firstChart-bar");
             }
             Node totalReadersNode = totalReadersData.getNode();
             if (totalReadersNode != null) {
-                totalReadersNode.setStyle("-fx-bar-fill: red;");
+                totalReadersNode.getStyleClass().add("secondChart-bar");
             }
             Node booksBorrowedNode = totalBooksBorrowedData.getNode();
             if (booksBorrowedNode != null) {
-                booksBorrowedNode.setStyle("-fx-bar-fill: green;");
+                booksBorrowedNode.getStyleClass().add("thirdChart-bar");
             }
         });
+        /*Platform.runLater(() -> {
+            Node totalBooksNode = totalBooksData.getNode();
+            if (totalBooksNode != null) {
+                totalBooksNode.setStyle("-fx-bar-fill: #AAFFCC;");
+            }
+            Node totalReadersNode = totalReadersData.getNode();
+            if (totalReadersNode != null) {
+                totalReadersNode.setStyle("-fx-bar-fill: #FFCCAA;");
+            }
+            Node booksBorrowedNode = totalBooksBorrowedData.getNode();
+            if (booksBorrowedNode != null) {
+                booksBorrowedNode.setStyle("-fx-bar-fill: #1E5B53;");
+            }
+        });*/
     }
 
     private int getTotalCategoryFromDatabase(String query) {

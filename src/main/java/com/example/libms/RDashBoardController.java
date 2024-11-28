@@ -18,6 +18,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+import static com.example.libms.LoggedInUser.getReaderID;
+
 public class RDashBoardController extends SceneController {
 
     @FXML
@@ -71,10 +73,10 @@ public class RDashBoardController extends SceneController {
             + "'" + getMostBorrowedBookTitleFromDatabase() + "'" + " LIMIT 1";
     private final String bookYouRecentlyBorrowedQuery = "SELECT * FROM books WHERE title = "
             + "'" + getBookTitleYouRecentlyBorrowedFromDatabase() + "'" + " LIMIT 1";
-    private final String totalBorrowedBooksQuery = "SELECT COUNT(*) AS total FROM readerborrowedbooks WHERE readerID = "
-            + "'" + getReaderID() + "'";
-    private final String totalReturnedBooksQuery = "SELECT COUNT(*) AS total FROM readerborrowedbooks WHERE readerID = "
-            + "'" + getReaderID() +"'";
+    private final String totalBorrowedBooksQuery = "SELECT COUNT(*) AS total FROM borrowedbooks WHERE readerID = "
+            + "'" + LoggedInUser.getReaderID() + "'";
+    private final String totalReturnedBooksQuery = "SELECT COUNT(*) AS total FROM readerreturnedbooks WHERE readerID = "
+            + "'" + LoggedInUser.getReaderID() +"'";
 
     @FXML
     void initialize() {
@@ -109,6 +111,8 @@ public class RDashBoardController extends SceneController {
     private void initPieChart() {
         int totalBorrowedBooks = getTotalCategoryFromDatabase(totalBorrowedBooksQuery);
         int totalReturnedBooks = getTotalCategoryFromDatabase(totalReturnedBooksQuery);
+        //System.out.println(totalBorrowedBooks + " " + totalReturnedBooks);
+        pieChart.getData().clear();
         PieChart.Data totalBorrowedBooksData = new PieChart.Data("Borrowed Books", totalBorrowedBooks);
         PieChart.Data totalReturnedBooksData = new PieChart.Data("Returned Books", totalReturnedBooks);
         pieChart.getData().addAll(totalBorrowedBooksData, totalReturnedBooksData);
@@ -142,7 +146,7 @@ public class RDashBoardController extends SceneController {
 
     private String getMostBorrowedBookTitleFromDatabase() {
         String mostBorrowedBook = "";
-        String query = "SELECT title FROM borrowedbooks Group By title ORDER BY COUNT(*) DESC LIMIT 1";
+        String query = "SELECT title FROM borrowedbooks Group By isbn ORDER BY COUNT(*) DESC LIMIT 1";
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
@@ -157,8 +161,8 @@ public class RDashBoardController extends SceneController {
 
     private String getBookTitleYouRecentlyBorrowedFromDatabase() {
         String bookYouRecentlyBorrowed = "";
-        String query = "SELECT title FROM readerborrowedbooks " +
-                "where readerID = " + getReaderID() + " ORDER BY rbBooksID DESC LIMIT 1";
+        String query = "SELECT title FROM borrowedbooks " +
+                "where readerID = " + LoggedInUser.getReaderID() + " ORDER BY id DESC LIMIT 1";
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {

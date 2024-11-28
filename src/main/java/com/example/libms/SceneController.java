@@ -18,7 +18,6 @@ public abstract class SceneController {
     private final Map<String, AudioClip> soundCache = new HashMap<>();
     private TimeService timeService;
     private static String userName;
-    private int readerID;
 
     protected void setUserName(String userName) {
         SceneController.userName = userName;
@@ -26,14 +25,6 @@ public abstract class SceneController {
 
     protected String getUserName() {
         return userName;
-    }
-
-    protected void setReaderID(int readerID) {
-        this.readerID = readerID;
-    }
-
-    protected int getReaderID() {
-        return readerID;
     }
 
     private void playSound(String soundFileName) {
