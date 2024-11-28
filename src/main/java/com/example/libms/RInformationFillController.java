@@ -11,18 +11,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class RInformationFillController extends SceneController {
-
     @FXML
-    private TextField readerNameTextField;
-
+    private TextField readerNameTextField, readerPhoneTextField, readerEmailTextField;
     @FXML
     private ChoiceBox<Reader.ReaderGender> readerGenderChoiceBox;
-
-    @FXML
-    private TextField readerPhoneTextField;
-
-    @FXML
-    private TextField readerEmailTextField;
 
     @FXML
     void initialize() {

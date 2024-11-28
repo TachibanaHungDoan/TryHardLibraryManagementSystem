@@ -18,7 +18,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class RBooksInventoryBorrowController extends SceneController {
-
+    @FXML
+    private Label usernameLabel, timeLabel;
+    @FXML
+    private Button dashBoardButton, allBooksButton, gamesButton, logOutButton;
+    @FXML
+    private Button returnedBooksSceneSwitchButton, returnBookButton;
     @FXML
     private TableView<BorrowedBookEx> borrowedBooksTable;
     @FXML
@@ -36,33 +41,6 @@ public class RBooksInventoryBorrowController extends SceneController {
     @FXML
     private TableColumn<BorrowedBookEx, Date> borrowedDateColumn;
 
-    @FXML
-    private Button allBooksButton;
-
-    @FXML
-    private Button booksInventoryButton;
-
-    @FXML
-    private Button dashBoardButton;
-
-    @FXML
-    private Button gamesButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private Button returnBookButton;
-
-    @FXML
-    private Button returnedBooksSceneSwitchButton;
-
     private ObservableList<BorrowedBookEx> borrowedBooksList = FXCollections.observableArrayList();
 
     @FXML
@@ -77,6 +55,7 @@ public class RBooksInventoryBorrowController extends SceneController {
         borrowedDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
         loadBorrowedBooksDataFromDatabase();
     }
+
     private void loadBorrowedBooksDataFromDatabase() {
         String query = "SELECT b.id, b.isbn, b.title, bk.author, bk.publisher,bk.publishedDate, b.borrowedDate "
                 + "FROM borrowedBooks b "
@@ -177,6 +156,7 @@ public class RBooksInventoryBorrowController extends SceneController {
                     "There was an error returning the book. Please try again.", Alert.AlertType.ERROR);
             }
     }
+
     @FXML
     void returnedBooksSwitchSceneButtonClicked(ActionEvent event) throws IOException {
         playButtonClickSound2();

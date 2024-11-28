@@ -11,7 +11,12 @@ import java.io.IOException;
 import java.sql.*;
 
 public class RBooksInventoryReturnController extends SceneController {
-
+    @FXML
+    private Label usernameLabel, timeLabel;
+    @FXML
+    private Button dashBoardButton, allBooksButton, gamesButton, logOutButton;
+    @FXML
+    private Button borrowedBooksScreenSwitchButton;
     @FXML
     private TableView<ReturnedBook> returnedBooksTable;
     @FXML
@@ -28,29 +33,8 @@ public class RBooksInventoryReturnController extends SceneController {
     private TableColumn<ReturnedBook, Date> returnedDateColumn;
     @FXML
     private TableColumn<ReturnedBook, Integer> lateFeeColumn;
-    @FXML
-    private Button allBooksButton;
 
-    @FXML
-    private Button booksInventoryButton;
-
-    @FXML
-    private Button borrowedBooksScreenSwitchButton;
-
-    @FXML
-    private Button dashBoardButton;
-
-    @FXML
-    private Button gamesButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label usernameLabel;
+    private ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
 
     private final ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
     @FXML
@@ -91,6 +75,7 @@ public class RBooksInventoryReturnController extends SceneController {
             e.printStackTrace();
         }
     }
+
     @FXML
     void borrowedBooksSwitchScenehButtonClicked(ActionEvent event) throws IOException {
         playButtonClickSound2();

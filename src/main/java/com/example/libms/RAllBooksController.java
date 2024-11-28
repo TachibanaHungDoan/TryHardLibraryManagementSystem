@@ -23,76 +23,40 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class RAllBooksController extends SceneController {
-
+    @FXML
+    private Label usernameLabel, timeLabel;
+    @FXML
+    private Button dashBoardButton, booksInventoryButton, gamesButton, logOutButton;
+    @FXML
+    private Button acquireButton, addToCartButton, viewBookButton;
     @FXML
     private TableColumn<Book, String> ISBNColumn;
-
-    @FXML
-    private Button acquireButton;
-
-    @FXML
-    private Button addToCartButton;
-
-    @FXML
-    private Button allBooksButton;
-
     @FXML
     private Label allBooksLabel;
-
-    @FXML
-    private TableColumn<Book, String > authorColumn;
-
-    @FXML
-    private TableColumn<Book, Integer> bookIDColumn;
-
-    @FXML
-    private Button booksInventoryButton;
-
-    @FXML
-    private TableView<Book> booksTable;
-
-    @FXML
-    private Button dashBoardButton;
-
-    @FXML
-    private TableColumn<Book, Integer> editionColumn;
-
-    @FXML
-    private Button gamesButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private TableColumn<Book, Date> publishedDateColumn;
-
-    @FXML
-    private TableColumn<Book, String> publisherColumn;
-
-    @FXML
-    private TableColumn<Book, Integer> quantityColumn;
-
-    @FXML
-    private TableColumn<Book, Integer> remainingColumn;
-
     @FXML
     private TextField searchBar;
-
+    @FXML
+    private TableView<Book> booksTable;
+    @FXML
+    private TableColumn<Book, String> authorColumn;
+    @FXML
+    private TableColumn<Book, Integer> bookIDColumn;
+    @FXML
+    private TableColumn<Book, Integer> editionColumn;
+    @FXML
+    private TableColumn<Book, Date> publishedDateColumn;
+    @FXML
+    private TableColumn<Book, String> publisherColumn;
+    @FXML
+    private TableColumn<Book, Integer> quantityColumn;
+    @FXML
+    private TableColumn<Book, Integer> remainingColumn;
     @FXML
     private TableColumn<Book, Enum> stateColumn;
-
-    @FXML
-    private Label timeLabel;
-
     @FXML
     private TableColumn<Book, String> titleColumn;
 
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private Button viewBookButton;
-
+    private ObservableList<Book> bookList = FXCollections.observableArrayList();
     private Book selectedBook;
 
     @FXML
@@ -104,7 +68,6 @@ public class RAllBooksController extends SceneController {
         });
         setBooksTable();
     }
-    private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
     private void searchBooks(KeyEvent event) {
         String keyword = searchBar.getText().toLowerCase();
@@ -162,11 +125,6 @@ public class RAllBooksController extends SceneController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void refreshTable() {
-        loadBooksDataFromDatabase();
-        booksTable.refresh();
     }
 
     private int getTotalBooksFromDatabase() {
@@ -273,6 +231,7 @@ public class RAllBooksController extends SceneController {
                     "Please select a book to add to the cart.", Alert.AlertType.WARNING);
         }
     }
+
     public void loadBooks() {
         bookList.clear();
         loadBooksDataFromDatabase();

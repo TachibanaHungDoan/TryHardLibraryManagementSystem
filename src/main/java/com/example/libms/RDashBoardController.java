@@ -21,49 +21,18 @@ import java.util.Date;
 import static com.example.libms.LoggedInUser.getReaderID;
 
 public class RDashBoardController extends SceneController {
-
     @FXML
-    private Button allBooksButton;
-
+    private Label usernameLabel, timeLabel;
     @FXML
-    private Button booksInventoryButton;
-
+    private Button allBooksButton, booksInventoryButton, gamesButton, logOutButton;
     @FXML
-    private Button bybrButton;
-
+    private Button bybrButton, mbrButton, settingButton;
     @FXML
-    private Button settingButton;
-
-    @FXML
-    private Label bybrLabel;
-
-    @FXML
-    private Button dashBoardButton;
-
-    @FXML
-    private Button gamesButton;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Label mbbLabel;
-
-    @FXML
-    private Button mbrButton;
-
+    private Label mbbLabel, bybrLabel;
     @FXML
     private Label quoteAuthorLabel;
-
     @FXML
     private Text quoteText;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label usernameLabel;
-
     @FXML
     private PieChart pieChart;
 
