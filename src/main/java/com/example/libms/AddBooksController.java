@@ -73,7 +73,8 @@ public class AddBooksController extends SceneController {
         bookTitleTextField.setText(suggestion.getTitle());
         authorTextField.setText(suggestion.getAuthor());
         bookISBNTextField.setText(suggestion.getIsbn());
-        publisherTextField.setText((suggestion.getPublishedDate() != null ?
+        publisherTextField.setText(suggestion.getPublisher());
+        publishedDateTextField.setText((suggestion.getPublishedDate() != null ?
                 dateFormat.format(suggestion.getPublishedDate()) : ""));
         if (suggestion.getThumbnail() != null) {
             Image image = new Image(suggestion.getThumbnail());
