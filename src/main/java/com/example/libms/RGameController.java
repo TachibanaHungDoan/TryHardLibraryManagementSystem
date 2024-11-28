@@ -196,9 +196,6 @@ public class RGameController extends ReaderTemplateController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println(hint);
-        //System.out.println(authorWord);
-        //System.out.println(authorWordToGuess);
         hintText = "Hint: The book titled " + hint + " is written by this author.";
         return hintText;
     }

@@ -87,6 +87,10 @@ public class BooksController extends AdminTemplateController {
         switchToLoginView(logOutButton);
     }
 
+    /**
+     * Handles the event when the "Add Book" button is clicked in the administrator's view.
+     *
+     * This method is responsible for opening*/
     @FXML
     void addBookButtonClicked() throws IOException {
         bookshelfSound();
@@ -107,6 +111,19 @@ public class BooksController extends AdminTemplateController {
         }
     }
 
+    /**
+     * Handles the event when the "Update Book" button is clicked.
+     *
+     * This method checks if a book is selected in the `booksTable`. If a book is
+     * selected, a dialog is opened to update the book information using
+     * `UpdateBooksController`. The method sets up the dialog and passes the
+     * selected book to the `UpdateBooksController`. If the book update is
+     * successful, it reloads the book list to reflect changes; otherwise, it
+     * prompts the user to check the input.
+     *
+     * @throws IOException if there is an issue loading the FXML resource for the
+     *                     dialog.
+     */
     @FXML
     void updateBookButtonClicked() throws IOException {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
@@ -142,6 +159,11 @@ public class BooksController extends AdminTemplateController {
         }
     }
 
+    /**
+     * Handles the event when the "View Book" button is clicked.
+     *
+     * This method opens a detailed view of the selected book's information in a dialog.
+     * If a book is selected from the*/
     @FXML
     void viewBookButtonClicked() throws IOException {
         if (selectedBook != null) {
@@ -168,6 +190,15 @@ public class BooksController extends AdminTemplateController {
         }
     }
 
+    /**
+     * Handles the event when the "Delete Book" button is clicked.
+     *
+     * This method is responsible for deleting the selected book from the books table.
+     * The user is prompted with a confirmation dialog to ensure the deletion of the book.
+     * If confirmed, it deletes the book using the `BookDAO` and updates the table to
+     * reflect the changes. If the deletion is successful, a success alert is shown;
+     * otherwise, an error alert is presented. If no book is selected, a warning alert is displayed.
+     */
     @FXML
     private void deleteBookButtonClicked() {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
@@ -254,6 +285,32 @@ public class BooksController extends AdminTemplateController {
         return totalBooks;
     }
 
+    /**
+     * Loads all book data from the database and populates the list of books.
+     * This method executes a SQL query to fetch all records from the "books"
+     * table in the database, then iterates over the results to create
+     * Book objects using the retrieved data. Each Book object is added to
+     * a list, which is then set to the table view for display.
+     *
+     * The method uses a try-with-resources statement to ensure that the
+     * database connection, prepared statement, and result set are closed
+     * automatically after use.
+     *
+     * SQL exceptions encountered during the operation will result in a
+     * runtime exception being thrown.
+     *
+     * The columns fetched from the database include:
+     * - bookID: an identifier for the book
+     * - title: the title of the book
+     * - author: the author of the book
+     * - publisher: the publisher of the book
+     * - isbn: the ISBN number of the book
+     * - publishedDate: the date when the book was published
+     * - edition: the edition number of the book
+     * - quantity: the total quantity of the book in stock
+     * - state: the availability state of the book, either 'available' or 'unavailable'
+     * - remaining: the remaining quantity of the book in stock after lending
+     */
     private void loadBooksDataFromDatabase() {
         String query = "SELECT * FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
