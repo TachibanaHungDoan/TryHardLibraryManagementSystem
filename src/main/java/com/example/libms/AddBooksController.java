@@ -33,9 +33,9 @@ public class AddBooksController extends SceneController {
 
     @FXML
     public void initialize() {
-        importImageButton.setOnAction(_ -> importImage());
-        addButton.setOnAction(_ -> addBook());
-        clearButton.setOnAction(_ -> clearButtonClicked());
+        importImageButton.setOnAction(event -> importImage());
+        addButton.setOnAction(event -> addBook());
+        clearButton.setOnAction(event -> clearButtonClicked());
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 List<BookSuggestion> cachedSuggestions = BookSearchCache.get(newValue);
@@ -52,38 +52,8 @@ public class AddBooksController extends SceneController {
         });
     }
 
-    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
-        if(currentContextMenu != null && currentContextMenu.isShowing()){
-            currentContextMenu.hide();
-        }
-        ContextMenu contextMenu = new ContextMenu();
-        int maxSuggestions = 4;
-        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
-            BookSuggestion suggestion = suggestions.get(i);
-            MenuItem item = new MenuItem(suggestion.getTitle());
-            item.setOnAction(_ -> selectBookSuggestion(suggestion));
-            contextMenu.getItems().add(item);
-        }
-        currentContextMenu = contextMenu;
-        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
-                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
-    }
-
-    private void selectBookSuggestion(BookSuggestion suggestion) {
-        bookTitleTextField.setText(suggestion.getTitle());
-        authorTextField.setText(suggestion.getAuthor());
-        bookISBNTextField.setText(suggestion.getIsbn());
-        publisherTextField.setText(suggestion.getPublisher());
-        publishedDateTextField.setText((suggestion.getPublishedDate() != null ?
-                dateFormat.format(suggestion.getPublishedDate()) : ""));
-        if (suggestion.getThumbnail() != null) {
-            Image image = new Image(suggestion.getThumbnail());
-            imageImageView.setImage(image);
-        }
-    }
-
     @FXML
-    void clearButtonClicked() {
+    public void clearButtonClicked() {
         playButtonClickSound2();
         bookTitleTextField.clear();
         authorTextField.clear();
@@ -98,8 +68,8 @@ public class AddBooksController extends SceneController {
         searchBar.clear();
     }
 
-
-    private void addBook() {
+    @FXML
+    public void addBook() {
         String title = bookTitleTextField.getText();
         String author = authorTextField.getText();
         String publisher = publisherTextField.getText();
@@ -153,6 +123,36 @@ public class AddBooksController extends SceneController {
             showAlert(null, null, "Failed to add book.", Alert.AlertType.ERROR);
         }
     }
+
+    private void showSuggestionsPopup(List<BookSuggestion> suggestions) {
+        if(currentContextMenu != null && currentContextMenu.isShowing()){
+            currentContextMenu.hide();
+        }
+        ContextMenu contextMenu = new ContextMenu();
+        int maxSuggestions = 4;
+        for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
+            BookSuggestion suggestion = suggestions.get(i);
+            MenuItem item = new MenuItem(suggestion.getTitle());
+            item.setOnAction(_ -> selectBookSuggestion(suggestion));
+            contextMenu.getItems().add(item);
+        }
+        currentContextMenu = contextMenu;
+        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
+                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
+    }
+
+    private void selectBookSuggestion(BookSuggestion suggestion) {
+        bookTitleTextField.setText(suggestion.getTitle());
+        authorTextField.setText(suggestion.getAuthor());
+        bookISBNTextField.setText(suggestion.getIsbn());
+        publisherTextField.setText((suggestion.getPublishedDate() != null ?
+                dateFormat.format(suggestion.getPublishedDate()) : ""));
+        if (suggestion.getThumbnail() != null) {
+            Image image = new Image(suggestion.getThumbnail());
+            imageImageView.setImage(image);
+        }
+    }
+
 
     private void importImage() {
         FileChooser fileChooser = new FileChooser();
