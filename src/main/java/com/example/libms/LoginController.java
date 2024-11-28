@@ -14,7 +14,7 @@ import java.sql.*;
 import java.util.Optional;
 
 public class LoginController extends SceneController {
-    private final String ADMIN_USERNAME = "Admin";
+    private final String ADMIN_USERNAME = "admin";
     private final String ADMIN_PASSWORD = "0";
 
     @FXML
@@ -48,7 +48,7 @@ public class LoginController extends SceneController {
                     Alert.AlertType.WARNING
             );
         } else if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-            handleAdminLogin(username);
+            handleAdminLogin();
         } else if (validateLogin(username, password)) {
             handleReaderLogin(username);
         } else {
@@ -103,9 +103,8 @@ public class LoginController extends SceneController {
         showInformationFormAndRegister(username, hashedPassword);
     }
 
-    private void handleAdminLogin(String username) throws IOException {
+    private void handleAdminLogin() throws IOException {
         playButtonClickSound1();
-        setUserName(username);
         showAlert(null,
                 null,
                 "Admin login successful",
@@ -116,7 +115,7 @@ public class LoginController extends SceneController {
 
     private void handleReaderLogin(String username) throws IOException {
         playButtonClickSound1();
-        setUserName(username);
+        LoggedInUser.setUsername(username);
         showAlert(null,
                 null,
                 "login successful",
@@ -164,7 +163,7 @@ public class LoginController extends SceneController {
 
     private void handleReaderRegistrationSuccessful(String username) throws IOException {
         playButtonClickSound1();
-        setUserName(username);
+        LoggedInUser.setUsername(username);
         showAlert(null,
                 null,
                 "Registration successful",

@@ -9,8 +9,7 @@ public class AdminTemplateController extends SceneController {
 
     @Override
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
-        String username = getUserName();
-        usernameLabel.setText(username);
+        usernameLabel.setText("Admin");
         setUpTimeLabel(timeLabel);
     }
 

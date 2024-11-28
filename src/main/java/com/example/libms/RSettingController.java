@@ -67,7 +67,7 @@ public class RSettingController extends SceneController {
     }
 
     private void changePassWord(String currentPassWord,String newPassWord) {
-        String username = getUserName();
+        String username = LoggedInUser.getUsername();
         String updateQuery = "UPDATE readers SET password = ? WHERE username = ? AND password = ?";
 
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);

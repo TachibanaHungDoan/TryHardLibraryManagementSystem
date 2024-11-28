@@ -17,15 +17,6 @@ import java.util.Optional;
 public abstract class SceneController {
     private final Map<String, AudioClip> soundCache = new HashMap<>();
     private TimeService timeService;
-    private static String userName;
-
-    protected void setUserName(String userName) {
-        SceneController.userName = userName;
-    }
-
-    protected String getUserName() {
-        return userName;
-    }
 
     private void playSound(String soundFileName) {
         AudioClip sound = soundCache.computeIfAbsent(soundFileName, _ -> new AudioClip
@@ -105,7 +96,7 @@ public abstract class SceneController {
     }
 
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
-        usernameLabel.setText(userName);
+        usernameLabel.setText(LoggedInUser.getUsername());
         setUpTimeLabel(timeLabel);
     }
 

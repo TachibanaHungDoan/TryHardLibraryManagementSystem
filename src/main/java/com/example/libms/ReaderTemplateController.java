@@ -8,7 +8,7 @@ import java.io.IOException;
 public class ReaderTemplateController extends SceneController {
     @Override
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
-        String username = getUserName();
+        String username = LoggedInUser.getUsername();
         usernameLabel.setText(username);
         setUpTimeLabel(timeLabel);
     }

@@ -34,12 +34,10 @@ public class AddBooksController extends SceneController {
     /**
      * Initializes the controller class by setting up event handlers and listeners for the UI components.
      * This method configures the following behavior:
-     *
      * - The importImageButton will trigger the image import function when clicked.
      * - The addButton will trigger the process of adding a book when clicked.
      * - The clearButton will clear all input fields when clicked.
      * - The searchBar has a text listener to provide book suggestions from a cache or via Google Books API.
-     *
      * The search bar listens for text changes and, if the new value is not empty, checks the cache for suggestions.
      * If suggestions are not found in the cache, a background thread fetches suggestions from the Google Books API.
      * Once fetched, suggestions are shown using a popup.
@@ -89,7 +87,7 @@ public class AddBooksController extends SceneController {
      * 3. Checks that the edition, quantity, and remaining fields are valid integers.
      * 4. Ensures that the remaining count is not greater than the available quantity.
      *
-     * If any of these conditions fail, the function*/
+     **/
     @FXML
     public void addBook() {
         String title = bookTitleTextField.getText();

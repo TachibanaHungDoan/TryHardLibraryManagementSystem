@@ -21,14 +21,18 @@ stored in our application database.
    and entertain by playing a Hangman based game.
 5. The information of books and readers is stored in our application database.
 
+## Libraries Used
+- JavaFX 
+- SQLITE-JDBC - For Database Connection
+- JBCrypt - Java Strong password hashing
+
 ## UML Diagram
 
 ## Installation
 __Requirements: IDE (Integrated Development Environment), DBMS (Database Management System)__
 1. Clone the project from the repository.
 2. Open the project in the IDE.
-3. Get the database in src/main/java/resources/libriscopedb. and import it to your DBMS
-4. Run the project.
+3. Run the project.
 
 ## Usage
 ### For Admin:
@@ -58,10 +62,10 @@ __Requirements: IDE (Integrated Development Environment), DBMS (Database Managem
 5. To return to the login scene, click the Log Out button.
 ### For Reader:
 1. Click the Sign Up button to switch to the Register section if you don't have an account:
-    + Yolo
-    + n
+    + 
+    + 
 2. t
-3. 
+
 ## Future improvements
 
 ## Project status

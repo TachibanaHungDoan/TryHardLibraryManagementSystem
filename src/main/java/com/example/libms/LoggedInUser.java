@@ -1,8 +1,17 @@
 package com.example.libms;
 
 public class LoggedInUser {
+    private static String username;
     private static int readerID;
     private static String readerName;
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        LoggedInUser.username = username;
+    }
 
     public static int getReaderID() {
         return readerID;

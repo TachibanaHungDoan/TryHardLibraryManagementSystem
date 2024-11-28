@@ -19,4 +19,6 @@ module com.example.libms {
 
     opens com.example.libms to javafx.fxml;
     exports com.example.libms;
+    exports com.example.libms.AdminController;
+    opens com.example.libms.AdminController to javafx.fxml;
 }
