@@ -21,7 +21,6 @@ public class GoogleBooksAPI {
     public static List<BookSuggestion> searchBooks(String query) {
         List<BookSuggestion> suggestions = new ArrayList<>();
         String apiUrl = String.format("https://www.googleapis.com/books/v1/volumes?q=%s", query.replace(" ", "+"));
-
         try {
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

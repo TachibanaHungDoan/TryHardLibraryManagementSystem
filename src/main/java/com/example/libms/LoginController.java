@@ -14,6 +14,9 @@ import java.sql.*;
 import java.util.Optional;
 
 public class LoginController extends SceneController {
+    private final String ADMIN_USERNAME = "Admin";
+    private final String ADMIN_PASSWORD = "0";
+
     @FXML
     private Label changingLabel;
     @FXML
@@ -29,12 +32,8 @@ public class LoginController extends SceneController {
     @FXML
     private AnchorPane sideForm;
 
-    private final String ADMIN_USERNAME = "Admin";
-    private final String ADMIN_PASSWORD = "0";
-
     @FXML
-    void initialize() {
-    }
+    void initialize() {}
 
     @FXML
     void loginButtonClicked() throws IOException {
@@ -62,6 +61,48 @@ public class LoginController extends SceneController {
         }
     }
 
+    @FXML
+    void switchForm(ActionEvent event) {
+        TranslateTransition slider = new TranslateTransition();
+        if (event.getSource() == sideSignUpButton) {
+            playButtonClickSound1();
+            slider.setNode(sideForm);
+            slider.setToX(350);
+            slider.setDuration(Duration.seconds(.5));
+            changingLabel.setText("Already have account?");
+            slider.setOnFinished((ActionEvent e) -> {
+                alrButton.setVisible(true);
+                sideSignUpButton.setVisible(false);
+            });
+            slider.play();
+        } else if (event.getSource() == alrButton) {
+            playButtonClickSound1();
+            slider.setNode(sideForm);
+            slider.setToX(0);
+            slider.setDuration(Duration.seconds(.5));
+            changingLabel.setText("New to our platform?");
+            slider.setOnFinished((ActionEvent e) -> {
+                alrButton.setVisible(false);
+                sideSignUpButton.setVisible(true);
+            });
+            slider.play();
+        }
+    }
+
+    @FXML
+    void registerButtonClicked() throws IOException {
+        String username = signUpUsernameTextField.getText();
+        String password = signUpPassWordPassWordField.getText();
+        String confirmPassword = confirmPassWordPassWordField.getText();
+
+        if (!validateRegistration(username, password, confirmPassword)) {
+            return;
+        }
+
+        String hashedPassword =hashPassword(password) ;
+        showInformationFormAndRegister(username, hashedPassword);
+    }
+
     private void handleAdminLogin(String username) throws IOException {
         playButtonClickSound1();
         setUserName(username);
@@ -86,20 +127,6 @@ public class LoginController extends SceneController {
 
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt(12));
-    }
-
-    @FXML
-    void registerButtonClicked() throws IOException {
-        String username = signUpUsernameTextField.getText();
-        String password = signUpPassWordPassWordField.getText();
-        String confirmPassword = confirmPassWordPassWordField.getText();
-
-        if (!validateRegistration(username, password, confirmPassword)) {
-            return;
-        }
-
-        String hashedPassword =hashPassword(password) ;
-        showInformationFormAndRegister(username, hashedPassword);
     }
 
     private void showInformationFormAndRegister(String username, String password) throws IOException {
@@ -165,34 +192,6 @@ public class LoginController extends SceneController {
             return false;
         }
         return true;
-    }
-
-    @FXML
-    void switchForm(ActionEvent event) {
-        TranslateTransition slider = new TranslateTransition();
-        if (event.getSource() == sideSignUpButton) {
-            playButtonClickSound1();
-            slider.setNode(sideForm);
-            slider.setToX(350);
-            slider.setDuration(Duration.seconds(.5));
-            changingLabel.setText("Already have account?");
-            slider.setOnFinished((ActionEvent e) -> {
-                alrButton.setVisible(true);
-                sideSignUpButton.setVisible(false);
-            });
-            slider.play();
-        } else if (event.getSource() == alrButton) {
-           playButtonClickSound1();
-            slider.setNode(sideForm);
-            slider.setToX(0);
-            slider.setDuration(Duration.seconds(.5));
-            changingLabel.setText("New to our platform?");
-            slider.setOnFinished((ActionEvent e) -> {
-                alrButton.setVisible(false);
-                sideSignUpButton.setVisible(true);
-            });
-            slider.play();
-        }
     }
 
     public boolean validateLogin(String username, String password) {

@@ -47,57 +47,6 @@ public class BorrowedBooksController extends AdminTemplateController {
 
     private ObservableList<BorrowedBook> borrowedBooksList;
 
-    private void loadBorrowedBooksDataFromDatabase() {
-        String query = "SELECT id, isbn, title, readerID," +
-                " readerName, borrowedDate, returnDate,borrowedDay, "
-               +"lateFee FROM borrowedBooks";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            borrowedBooksList = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String isbn  = resultSet.getString("isbn");
-                String title = resultSet.getString("title");
-                int readerID = resultSet.getInt("readerID");
-                String readerName = resultSet.getString("readerName");
-                Date borrowedDate = resultSet.getDate("borrowedDate");
-                java.sql.Date returnDate = resultSet.getDate("returnDate");
-                int borrowedDay = resultSet.getInt("borrowedDay");
-                double lateFee = resultSet.getDouble("lateFee");
-                BorrowedBook borrowedBook = new BorrowedBook(id, isbn, title, readerID, readerName, borrowedDate, returnDate, borrowedDay, lateFee);
-                borrowedBooksList.add(borrowedBook);
-            }
-            FilteredList<BorrowedBook> filteredList = new FilteredList<>(borrowedBooksList, p -> true);
-            borrowedBooksTable.setItems(filteredList);
-            borrowedBooksTable.setItems(borrowedBooksList); // Update the total number of borrowed books
-            allBorrowedBooksLabel.setText(String.valueOf(borrowedBooksList.size()));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void addSearchFunctionality() {
-        FilteredList<BorrowedBook> filteredList = new FilteredList<>(borrowedBooksList, p -> true);
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-        filteredList.setPredicate(borrowedBook -> {
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
-            String lowerCaseFilter = newValue.toLowerCase();
-            if (borrowedBook.getTitle().toLowerCase().contains(lowerCaseFilter)) {
-                return true; // Filter matches book title
-            } else if (borrowedBook.getIsbn().toLowerCase().contains(lowerCaseFilter)) {
-                return true; // Filter matches book ISBN
-            } else if (borrowedBook.getReaderName().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            }
-            return false;
-        });
-    });
-        borrowedBooksTable.setItems(filteredList);
-    }
-
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -135,4 +84,54 @@ public class BorrowedBooksController extends AdminTemplateController {
         switchToLoginView(logOutButton);
     }
 
+    private void loadBorrowedBooksDataFromDatabase() {
+        String query = "SELECT id, isbn, title, readerID," +
+                " readerName, borrowedDate, returnDate,borrowedDay, "
+                +"lateFee FROM borrowedBooks";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            borrowedBooksList = FXCollections.observableArrayList();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String isbn  = resultSet.getString("isbn");
+                String title = resultSet.getString("title");
+                int readerID = resultSet.getInt("readerID");
+                String readerName = resultSet.getString("readerName");
+                Date borrowedDate = resultSet.getDate("borrowedDate");
+                java.sql.Date returnDate = resultSet.getDate("returnDate");
+                int borrowedDay = resultSet.getInt("borrowedDay");
+                double lateFee = resultSet.getDouble("lateFee");
+                BorrowedBook borrowedBook = new BorrowedBook(id, isbn, title, readerID, readerName, borrowedDate, returnDate, borrowedDay, lateFee);
+                borrowedBooksList.add(borrowedBook);
+            }
+            FilteredList<BorrowedBook> filteredList = new FilteredList<>(borrowedBooksList, p -> true);
+            borrowedBooksTable.setItems(filteredList);
+            borrowedBooksTable.setItems(borrowedBooksList); // Update the total number of borrowed books
+            allBorrowedBooksLabel.setText(String.valueOf(borrowedBooksList.size()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addSearchFunctionality() {
+        FilteredList<BorrowedBook> filteredList = new FilteredList<>(borrowedBooksList, p -> true);
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(borrowedBook -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (borrowedBook.getTitle().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches book title
+                } else if (borrowedBook.getIsbn().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches book ISBN
+                } else if (borrowedBook.getReaderName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+        borrowedBooksTable.setItems(filteredList);
+    }
 }

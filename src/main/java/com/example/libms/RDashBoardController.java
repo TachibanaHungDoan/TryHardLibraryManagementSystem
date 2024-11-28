@@ -63,6 +63,93 @@ public class RDashBoardController extends SceneController {
         initPieChart();
     }
 
+    @FXML
+    void logOutButtonClicked(ActionEvent event) throws IOException {
+        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
+                null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
+        logOutSound();
+    }
+
+    @FXML
+    void rAllBooksButtonClicked(ActionEvent event) throws IOException {
+        bookFlipSound();
+        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
+    }
+
+    @FXML
+    void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
+        bookshelfSound();
+        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
+    }
+
+    @FXML
+    void rGamesButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound2();
+        switchScene("ReaderView/rGame-view.fxml", gamesButton);
+    }
+
+    @FXML
+    void rMBRButtonClicked(ActionEvent event) throws IOException {
+        if (getMostBorrowedBookTitleFromDatabase().isEmpty()) {
+            alertSoundPlay();
+            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+        } else {
+            bookFlipSound();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            ViewBooksController controller = loader.getController();
+            controller.setBookData(correctBook(mostBorrowedBookQuery));
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("View Book Details");
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+                dialog.close();
+            }
+        }
+    }
+
+    @FXML
+    void rBYBRButtonClicked(ActionEvent event) throws IOException {
+        if (getBookTitleYouRecentlyBorrowedFromDatabase().isEmpty()) {
+            alertSoundPlay();
+            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+        } else {
+            bookFlipSound();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            ViewBooksController controller = loader.getController();
+            controller.setBookData(correctBook(bookYouRecentlyBorrowedQuery));
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("View Book Details");
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
+                dialog.close();
+            }
+        }
+    }
+
+    @FXML
+    void settingButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound2();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAccountSettings-view.fxml"));
+        DialogPane dialogPane = loader.load();
+
+        RSettingController controller = loader.getController();
+
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        dialog.setTitle("Settings");
+        dialog.showAndWait();
+    }
+
     private int getTotalCategoryFromDatabase(String query) {
         int totalCategory = 0;
         try (Connection connection = DatabaseConnection.getConnection();
@@ -195,95 +282,5 @@ public class RDashBoardController extends SceneController {
             quoteText.setText(randomQuote.getQuote());
             quoteAuthorLabel.setText("-" + randomQuote.getAuthor() + "-");
         }
-    }
-
-    @FXML
-    void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
-    }
-
-    @FXML
-    void rAllBooksButtonClicked(ActionEvent event) throws IOException {
-        bookFlipSound();
-        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
-    }
-
-    @FXML
-    void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
-        bookshelfSound();
-        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
-    }
-
-    @FXML
-    void rGamesButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rGame-view.fxml", gamesButton);
-    }
-
-    //nút sách mượn nhiều nhất
-    @FXML
-    void rMBRButtonClicked(ActionEvent event) throws IOException {
-        if (getMostBorrowedBookTitleFromDatabase().isEmpty()) {
-            alertSoundPlay();
-            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
-        } else {
-            bookFlipSound();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
-            DialogPane dialogPane = loader.load();
-
-            ViewBooksController controller = loader.getController();
-            controller.setBookData(correctBook(mostBorrowedBookQuery));
-
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(dialogPane);
-            dialog.setTitle("View Book Details");
-
-            Optional<ButtonType> result = dialog.showAndWait();
-            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
-                dialog.close();
-            }
-        }
-    }
-
-
-    //Nút sách đã mượn gần đây.
-    @FXML
-    void rBYBRButtonClicked(ActionEvent event) throws IOException {
-        if (getBookTitleYouRecentlyBorrowedFromDatabase().isEmpty()) {
-            alertSoundPlay();
-            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
-        } else {
-            bookFlipSound();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
-            DialogPane dialogPane = loader.load();
-
-            ViewBooksController controller = loader.getController();
-            controller.setBookData(correctBook(bookYouRecentlyBorrowedQuery));
-
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(dialogPane);
-            dialog.setTitle("View Book Details");
-
-            Optional<ButtonType> result = dialog.showAndWait();
-            if (result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL)) {
-                dialog.close();
-            }
-        }
-    }
-
-    @FXML
-    void settingButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAccountSettings-view.fxml"));
-        DialogPane dialogPane = loader.load();
-
-        RSettingController controller = loader.getController();
-
-        Dialog<Void> dialog = new Dialog<>();
-        dialog.setDialogPane(dialogPane);
-        dialog.setTitle("Settings");
-        dialog.showAndWait();
     }
 }

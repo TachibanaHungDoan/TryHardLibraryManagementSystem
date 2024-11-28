@@ -56,33 +56,6 @@ public class RBooksInventoryBorrowController extends SceneController {
         loadBorrowedBooksDataFromDatabase();
     }
 
-    private void loadBorrowedBooksDataFromDatabase() {
-        String query = "SELECT b.id, b.isbn, b.title, bk.author, bk.publisher,bk.publishedDate, b.borrowedDate "
-                + "FROM borrowedBooks b "
-                + "JOIN books bk ON b.isbn = bk.isbn "
-                + "WHERE b.readerID = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, LoggedInUser.getReaderID());
-            ResultSet resultSet = statement.executeQuery();
-            borrowedBooksList.clear();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String isbn = resultSet.getString("isbn");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String publisher = resultSet.getString("publisher");
-                Date publishedDate = resultSet.getDate("publishedDate");
-                java.sql.Date borrowedDate = resultSet.getDate("borrowedDate");
-                BorrowedBookEx book = new BorrowedBookEx(id,title,isbn,author,publisher,publishedDate,borrowedDate);
-                borrowedBooksList.add(book);
-            }
-            borrowedBooksTable.setItems(borrowedBooksList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
@@ -121,6 +94,39 @@ public class RBooksInventoryBorrowController extends SceneController {
         }
     }
 
+    @FXML
+    void returnedBooksSwitchSceneButtonClicked(ActionEvent event) throws IOException {
+        playButtonClickSound2();
+        switchScene("ReaderView/rBooksInventoryReturn-view.fxml", returnedBooksSceneSwitchButton);
+    }
+
+    private void loadBorrowedBooksDataFromDatabase() {
+        String query = "SELECT b.id, b.isbn, b.title, bk.author, bk.publisher,bk.publishedDate, b.borrowedDate "
+                + "FROM borrowedBooks b "
+                + "JOIN books bk ON b.isbn = bk.isbn "
+                + "WHERE b.readerID = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, LoggedInUser.getReaderID());
+            ResultSet resultSet = statement.executeQuery();
+            borrowedBooksList.clear();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String isbn = resultSet.getString("isbn");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                String publisher = resultSet.getString("publisher");
+                Date publishedDate = resultSet.getDate("publishedDate");
+                java.sql.Date borrowedDate = resultSet.getDate("borrowedDate");
+                BorrowedBookEx book = new BorrowedBookEx(id,title,isbn,author,publisher,publishedDate,borrowedDate);
+                borrowedBooksList.add(book);
+            }
+            borrowedBooksTable.setItems(borrowedBooksList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void returnBook(BorrowedBookEx book) {
         String deleteSQL = "DELETE FROM borrowedBooks WHERE isbn = ? AND readerID = ?";
         String updateSQL = "UPDATE books SET remaining = remaining + 1, state = 'available' WHERE isbn = ?";
@@ -155,11 +161,5 @@ public class RBooksInventoryBorrowController extends SceneController {
                 showAlert("Database Error", "Error Returning Book",
                     "There was an error returning the book. Please try again.", Alert.AlertType.ERROR);
             }
-    }
-
-    @FXML
-    void returnedBooksSwitchSceneButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rBooksInventoryReturn-view.fxml", returnedBooksSceneSwitchButton);
     }
 }

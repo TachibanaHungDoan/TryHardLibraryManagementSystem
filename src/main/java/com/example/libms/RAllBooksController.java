@@ -69,80 +69,6 @@ public class RAllBooksController extends SceneController {
         setBooksTable();
     }
 
-    private void searchBooks(KeyEvent event) {
-        String keyword = searchBar.getText().toLowerCase();
-
-        // Filter the list based on the keyword
-        List<Book> filteredBooks = bookList.stream()
-                .filter(book -> book.getTitle().toLowerCase().contains(keyword) ||
-                        book.getAuthor().toLowerCase().contains(keyword) ||
-                        String.valueOf(book.getId()).toLowerCase().contains(keyword) ||
-                        book.getIsbn().contains(keyword))
-                .collect(Collectors.toList());
-
-        booksTable.setItems(FXCollections.observableArrayList(filteredBooks));
-    }
-
-    private void setBooksTable() {
-        bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        publishedDateColumn.setCellValueFactory(new PropertyValueFactory<>("publishedDate"));
-        editionColumn.setCellValueFactory(new PropertyValueFactory<>("edition"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-        remainingColumn.setCellValueFactory(new PropertyValueFactory<>("remaining"));
-
-        loadBooksDataFromDatabase();
-        searchBar.setOnKeyReleased(this::searchBooks);
-    }
-
-    public void loadBooksDataFromDatabase() {
-        String query = "SELECT * FROM books";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                int id = resultSet.getInt("bookID");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String publisher = resultSet.getString("publisher");
-                String isbn = resultSet.getString("isbn");
-                Date publishedDate = resultSet.getDate("publishedDate");
-                int edition = resultSet.getInt("edition");
-                int quantity = resultSet.getInt("quantity");
-
-                String stateString = resultSet.getString("state");
-                Book.BookState state = Book.BookState.valueOf(stateString.toLowerCase());
-
-                int remaining = resultSet.getInt("remaining");
-                Book book = new Book(id,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
-                bookList.add(book);
-            }
-            booksTable.setItems(bookList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private int getTotalBooksFromDatabase() {
-        int totalBooks = 0;
-        String query = "SELECT COUNT(*) AS total FROM books";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            if (resultSet.next()) {
-                totalBooks = resultSet.getInt("total");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return totalBooks;
-    }
-
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
         bookshelfSound();
@@ -230,6 +156,79 @@ public class RAllBooksController extends SceneController {
             showAlert("No selection", "No Book Selected",
                     "Please select a book to add to the cart.", Alert.AlertType.WARNING);
         }
+    }
+    private void searchBooks(KeyEvent event) {
+        String keyword = searchBar.getText().toLowerCase();
+
+        // Filter the list based on the keyword
+        List<Book> filteredBooks = bookList.stream()
+                .filter(book -> book.getTitle().toLowerCase().contains(keyword) ||
+                        book.getAuthor().toLowerCase().contains(keyword) ||
+                        String.valueOf(book.getId()).toLowerCase().contains(keyword) ||
+                        book.getIsbn().contains(keyword))
+                .collect(Collectors.toList());
+
+        booksTable.setItems(FXCollections.observableArrayList(filteredBooks));
+    }
+
+    private void setBooksTable() {
+        bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        publishedDateColumn.setCellValueFactory(new PropertyValueFactory<>("publishedDate"));
+        editionColumn.setCellValueFactory(new PropertyValueFactory<>("edition"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        remainingColumn.setCellValueFactory(new PropertyValueFactory<>("remaining"));
+
+        loadBooksDataFromDatabase();
+        searchBar.setOnKeyReleased(this::searchBooks);
+    }
+
+    public void loadBooksDataFromDatabase() {
+        String query = "SELECT * FROM books";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("bookID");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                String publisher = resultSet.getString("publisher");
+                String isbn = resultSet.getString("isbn");
+                Date publishedDate = resultSet.getDate("publishedDate");
+                int edition = resultSet.getInt("edition");
+                int quantity = resultSet.getInt("quantity");
+
+                String stateString = resultSet.getString("state");
+                Book.BookState state = Book.BookState.valueOf(stateString.toLowerCase());
+
+                int remaining = resultSet.getInt("remaining");
+                Book book = new Book(id,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
+                bookList.add(book);
+            }
+            booksTable.setItems(bookList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private int getTotalBooksFromDatabase() {
+        int totalBooks = 0;
+        String query = "SELECT COUNT(*) AS total FROM books";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            if (resultSet.next()) {
+                totalBooks = resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalBooks;
     }
 
     public void loadBooks() {

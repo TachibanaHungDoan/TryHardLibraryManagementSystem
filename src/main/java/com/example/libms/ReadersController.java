@@ -29,10 +29,8 @@ public class ReadersController extends AdminTemplateController {
     private TextField readerNameTextField, readerPhoneTextField, readerEmailTextField;
     @FXML
     private ChoiceBox<Reader.ReaderGender> readerGenderChoiceBox;
-
     @FXML
     private TextField readerIDTextField;
-
     @FXML
     private TableView<Reader> readersTable;
     @FXML
@@ -64,52 +62,6 @@ public class ReadersController extends AdminTemplateController {
             }
         });
         clearInformationButton.setOnAction(event -> clearInformationButtonClicked());
-    }
-
-    private void setReadersTable() {
-        readerIDColumn.setCellValueFactory(new PropertyValueFactory<>("readerID"));
-        readerNameColumn.setCellValueFactory(new PropertyValueFactory<>("readerName"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
-
-        loadReadersDataFromDatabase();
-    }
-
-    private void loadReadersDataFromDatabase() {
-        String query = "SELECT * FROM readers";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            readersList.clear();
-
-            while (resultSet.next()) {
-                int readerID = resultSet.getInt("readerID");
-                String readerName = resultSet.getString("readerName");
-                String genderString = resultSet.getString("Gender");
-                Reader.ReaderGender gender = Reader.ReaderGender.valueOf(genderString.toLowerCase());
-                int phoneNumber = resultSet.getInt("PhoneNumber");
-                String email = resultSet.getString("Email");
-
-                Reader reader = new Reader(readerID, readerName, gender, phoneNumber, email);
-                readersList.add(reader);
-            }
-            readersTable.setItems(readersList);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void searchReaders(KeyEvent event) {
-        String keyword = searchBar.getText().toLowerCase();
-
-        List<Reader> filteredReaders = readersList.stream()
-                .filter(reader -> reader.getReaderName().toLowerCase().contains(keyword) ||
-                        String.valueOf(reader.getReaderID()).contains(keyword))
-                .collect(Collectors.toList());
-        readersTable.setItems(FXCollections.observableArrayList(filteredReaders));
     }
 
     @FXML
@@ -209,11 +161,6 @@ public class ReadersController extends AdminTemplateController {
         }
     }
 
-    // Làm mới dữ liệu hiển thị trên bảng
-    private void refreshTableData() {
-        readersList.clear(); // Xóa danh sách hiện tại
-        loadReadersDataFromDatabase(); // Tải dữ liệu mới từ cơ sở dữ liệu
-    }
     @FXML
     void deleteReaderButtonClicked() {
         // Lấy Reader được chọn trong bảng
@@ -260,5 +207,57 @@ public class ReadersController extends AdminTemplateController {
                 showAlert(null, "Database Error", "Could not delete the database. \n" + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
+    }
+
+    private void setReadersTable() {
+        readerIDColumn.setCellValueFactory(new PropertyValueFactory<>("readerID"));
+        readerNameColumn.setCellValueFactory(new PropertyValueFactory<>("readerName"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+
+        loadReadersDataFromDatabase();
+    }
+
+    private void loadReadersDataFromDatabase() {
+        String query = "SELECT * FROM readers";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            readersList.clear();
+
+            while (resultSet.next()) {
+                int readerID = resultSet.getInt("readerID");
+                String readerName = resultSet.getString("readerName");
+                String genderString = resultSet.getString("Gender");
+                Reader.ReaderGender gender = Reader.ReaderGender.valueOf(genderString.toLowerCase());
+                int phoneNumber = resultSet.getInt("PhoneNumber");
+                String email = resultSet.getString("Email");
+
+                Reader reader = new Reader(readerID, readerName, gender, phoneNumber, email);
+                readersList.add(reader);
+            }
+            readersTable.setItems(readersList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void searchReaders(KeyEvent event) {
+        String keyword = searchBar.getText().toLowerCase();
+
+        List<Reader> filteredReaders = readersList.stream()
+                .filter(reader -> reader.getReaderName().toLowerCase().contains(keyword) ||
+                        String.valueOf(reader.getReaderID()).contains(keyword))
+                .collect(Collectors.toList());
+        readersTable.setItems(FXCollections.observableArrayList(filteredReaders));
+    }
+
+    // Làm mới dữ liệu hiển thị trên bảng
+    private void refreshTableData() {
+        readersList.clear(); // Xóa danh sách hiện tại
+        loadReadersDataFromDatabase(); // Tải dữ liệu mới từ cơ sở dữ liệu
     }
 }

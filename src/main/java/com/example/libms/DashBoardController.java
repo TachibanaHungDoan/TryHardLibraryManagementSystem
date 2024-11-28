@@ -93,20 +93,6 @@ public class DashBoardController extends AdminTemplateController {
                 booksBorrowedNode.getStyleClass().add("thirdChart-bar");
             }
         });
-        /*Platform.runLater(() -> {
-            Node totalBooksNode = totalBooksData.getNode();
-            if (totalBooksNode != null) {
-                totalBooksNode.setStyle("-fx-bar-fill: #AAFFCC;");
-            }
-            Node totalReadersNode = totalReadersData.getNode();
-            if (totalReadersNode != null) {
-                totalReadersNode.setStyle("-fx-bar-fill: #FFCCAA;");
-            }
-            Node booksBorrowedNode = totalBooksBorrowedData.getNode();
-            if (booksBorrowedNode != null) {
-                booksBorrowedNode.setStyle("-fx-bar-fill: #1E5B53;");
-            }
-        });*/
     }
 
     private int getTotalCategoryFromDatabase(String query) {
