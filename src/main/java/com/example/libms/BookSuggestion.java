@@ -11,6 +11,30 @@ public class BookSuggestion {
     private String isbn;
     private String thumbnail;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     public BookSuggestion(String title, String author, String publisher, Date publishedDate, String isbn, String thumbnail) {
         this.title = title;
         this.author = author;

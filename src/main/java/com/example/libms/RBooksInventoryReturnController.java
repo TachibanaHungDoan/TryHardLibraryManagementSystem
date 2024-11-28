@@ -52,7 +52,7 @@ public class RBooksInventoryReturnController extends SceneController {
     @FXML
     private Label usernameLabel;
 
-    private ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
+    private final ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -69,7 +69,8 @@ public class RBooksInventoryReturnController extends SceneController {
     private void loadReturnedBooksDataFromDatabase() {
         String query = "SELECT r.rtBooksID, r.title, r.isbn, "
                 + "r.returnedDate, r.borrowedDay, r.lateFee, r.readerID, b.author, b.publisher "
-                + "FROM readerReturnedBooks r " + "JOIN books b ON r.isbn = b.isbn";
+                + "FROM readerReturnedBooks r " + "JOIN books b ON r.isbn = b.isbn " + "WHERE r.readerID = "
+                + " " + LoggedInUser.getReaderID() + "'";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();

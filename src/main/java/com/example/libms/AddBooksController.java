@@ -26,6 +26,7 @@ public class AddBooksController extends SceneController {
     private TextField stateTextField, quantityTextField, remainingTextField;
     @FXML
     private ImageView imageImageView;
+    private boolean shouldQueryAPI = true;
 
     private BookDAO bookdao = new BookDAO();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,7 +37,7 @@ public class AddBooksController extends SceneController {
         addButton.setOnAction(_ -> addBook());
         clearButton.setOnAction(_ -> clearButtonClicked());
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.isEmpty()) {
+            if (shouldQueryAPI && !newValue.isEmpty()) {
                 List<BookSuggestion> cachedSuggestions = BookSearchCache.get(newValue);
                 if (cachedSuggestions != null) {
                     showSuggestionsPopup(cachedSuggestions);
@@ -57,24 +58,34 @@ public class AddBooksController extends SceneController {
             currentContextMenu.hide();
         }
         ContextMenu contextMenu = new ContextMenu();
-        int maxSuggestions = 4;
+        int maxSuggestions = 3;
         for (int i = 0; i< Math.min(suggestions.size(),maxSuggestions); i++) {
             BookSuggestion suggestion = suggestions.get(i);
             MenuItem item = new MenuItem(suggestion.getTitle());
-            item.setOnAction(_ -> selectBookSuggestion(suggestion));
+            item.setOnAction(_ -> {
+                shouldQueryAPI = false;
+                selectBookSuggestion(suggestion); });
             contextMenu.getItems().add(item);
         }
-        currentContextMenu = contextMenu;
-        contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
-                searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
+            if (searchBar.getScene() != null && searchBar.getScene().getWindow() != null) {
+                currentContextMenu = contextMenu;
+            contextMenu.show(searchBar, searchBar.getScene().getWindow().getX() + searchBar.getLayoutX(),
+                    searchBar.getScene().getWindow().getY() + searchBar.getLayoutY() + searchBar.getHeight());
+            }
     }
 
     private void selectBookSuggestion(BookSuggestion suggestion) {
         bookTitleTextField.setText(suggestion.getTitle());
         authorTextField.setText(suggestion.getAuthor());
+        publisherTextField.setText(suggestion.getPublisher());
         bookISBNTextField.setText(suggestion.getIsbn());
-        publisherTextField.setText((suggestion.getPublishedDate() != null ?
-                dateFormat.format(suggestion.getPublishedDate()) : ""));
+        if (suggestion.getPublishedDate() != null) {
+            String formattedDate = dateFormat.format(suggestion.getPublishedDate());
+            System.out.println("Published Date: " + formattedDate);
+            publishedDateTextField.setText(formattedDate);
+        } else {
+            publishedDateTextField.setText("");
+        }
         if (suggestion.getThumbnail() != null) {
             Image image = new Image(suggestion.getThumbnail());
             imageImageView.setImage(image);
@@ -95,6 +106,7 @@ public class AddBooksController extends SceneController {
         remainingTextField.clear();
         imageImageView.setImage(null);
         searchBar.clear();
+        shouldQueryAPI = true;
     }
 
     //Lưu ý cần thêm xử lý ngoại lệ khi các ô bị thiếu.
