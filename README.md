@@ -27,8 +27,9 @@ stored in our application database.
 - JBCrypt - Java Strong password hashing
 
 ## UML Diagram
-![UML](https://drive.google.com/file/d/1tKEMV7dn_u_7TNT0wtqLTYaT1NDEattJ/view?usp=sharing)
-
+<p>
+<img src="src\main\resources\ReadmeImg\tree.png">
+</p>
 
 ## Installation
 __Requirements: IDE (Integrated Development Environment), DBMS (Database Management System)__
