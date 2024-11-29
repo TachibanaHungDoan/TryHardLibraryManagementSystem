@@ -1,0 +1,34 @@
+.content-btn {
+    -fx-background-color: linear-gradient(to right, #6b8d98, #4a9bb1); /* Gradient từ xanh xám nhạt đến xanh dương */
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.content-btn:hover {
+    -fx-background-color: linear-gradient(to right, #5a7f8f, #3b85a0); /* Gradient đậm hơn khi hover */
+}
+
+.content-field {
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-border-color: linear-gradient(to right, #5a7f8f, #3b85a0);
+}
+
+.left-Label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 14px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.right-Label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 14px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+    -fx-alignment: center-right;
+}

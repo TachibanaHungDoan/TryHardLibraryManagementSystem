@@ -1,0 +1,41 @@
+.allbooks-btn {
+    -fx-background-color: #4a9bb1; /* Màu xanh dương nhẹ hơn */
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-border-color: #4a9bb1; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px;
+    -fx-alignment: center-left;
+    -fx-spacing: 80px;
+}
+
+.allbooks-btn:hover {
+    -fx-background-color: #3b85a0; /* Màu xanh dương đậm hơn */
+    -fx-text-fill: white;
+    -fx-border-color: #3b85a0; /* Viền cùng màu nền */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #3b85a0, 8, 0.3, 0, 0);
+}
+
+.smallText-label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 26px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}
+
+.content-btn {
+    -fx-background-color: linear-gradient(to right, #6b8d98, #4a9bb1); /* Gradient từ xanh xám nhạt đến xanh dương */
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.content-btn:hover {
+    -fx-background-color: linear-gradient(to right, #5a7f8f, #3b85a0); /* Gradient đậm hơn khi hover */
+}

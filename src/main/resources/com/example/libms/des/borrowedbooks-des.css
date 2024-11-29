@@ -1,0 +1,35 @@
+.borrowedbooks-btn{
+    -fx-background-color: #2C8C6A;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 23px;
+    -fx-text-fill: white;
+    -fx-border-color: #2C8C6A;
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+    -fx-padding: 0 80px 0 80px;
+    -fx-alignment: center-left;
+    -fx-spacing: 80px;
+}
+
+.borrowedbooks-btn:hover {
+    -fx-background-color: #3D7A6A;
+    -fx-text-fill: white;
+    -fx-border-color: #3D7A6A;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #1E5B53, 10, 0.3, 0, 0);
+}
+
+.bigText-label {
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 36px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}
+
+.smallText-label {
+    -fx-font-family: "Gotham-Light";
+    -fx-font-size: 26px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}

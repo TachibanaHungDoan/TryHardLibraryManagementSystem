@@ -1,0 +1,63 @@
+.footer-label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 25px;
+    -fx-font-family: "Gotham Black";
+}
+
+.footer-form {
+    -fx-background-color: #1E5B53;
+}
+
+.nav-form {
+    -fx-background-color: linear-gradient(#CCFFAA, #1E5B53);
+}
+
+.nav-welcome {
+    -fx-alignment: center;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 26px;
+    -fx-text-fill: #fff;
+}
+
+.nav-username {
+    -fx-alignment: center;
+    -fx-font-family: "Gotham Black";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-text-fill: #fff;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-family: "Gotham";
+    -fx-font-size: 24px;
+    -fx-text-fill: #fff;
+    -fx-padding: 0 80px 0 80px; /* Giảm padding bên trái để lùi chữ */
+    -fx-alignment: center-left; /* Đảm bảo chữ được căn trái */
+    -fx-spacing: 80px;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #3D7A6A;
+    -fx-text-fill: #fff;
+    -fx-border-color: #3D7A6A;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, #1E5B53, 5, 0.3, 0, 0);
+}
+
+.content-form {
+    -fx-background-color: #F0FBF9;
+    -fx-background-radius: 8px;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.content-label {
+    -fx-font-family: "Gotham Black";
+    -fx-font-size: 42px;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}

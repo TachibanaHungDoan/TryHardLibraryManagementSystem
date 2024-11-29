@@ -1,0 +1,27 @@
+.header-label {
+    -fx-alignment: center-left;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 19px;
+    -fx-text-fill: #000;
+}
+
+.content-label {
+    -fx-alignment: center-left;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000;
+}
+
+.dialog-btn {
+    -fx-background-color: linear-gradient(to right, #6b8d98, #4a9bb1); /* Gradient từ xanh xám nhạt đến xanh dương */
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.dialog-btn:hover {
+    -fx-background-color: linear-gradient(to right, #5a7f8f, #3b85a0);
+}
+

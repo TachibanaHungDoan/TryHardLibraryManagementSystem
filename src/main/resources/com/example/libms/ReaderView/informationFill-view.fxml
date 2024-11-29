@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<DialogPane prefHeight="384.0" prefWidth="520.0" styleClass="content-form" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libms.RInformationFillController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="551.0">
+         <children>
+            <AnchorPane layoutX="106.0" layoutY="107.0" prefHeight="360.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <BorderPane layoutX="155.0" layoutY="73.0" prefHeight="450.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <left>
+                        <AnchorPane prefHeight="360.0" prefWidth="145.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane prefHeight="360.0" prefWidth="145.0" styleClass="nav-form" stylesheets="@../des/readerTemplate-des.css">
+                                 <children>
+                                    <ImageView fitHeight="108.0" fitWidth="110.0" layoutX="19.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Icon/appIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="17.0" layoutY="215.0" styleClass="nav-Label" stylesheets="@../des/informationFill-des.css" text="LIBRISCOPE" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="450.0" prefWidth="418.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane prefHeight="360.0" prefWidth="375.0" styleClass="content-form" stylesheets="@../des/readerTemplate-des.css">
+                                 <children>
+                                    <Label layoutX="46.0" layoutY="40.0" styleClass="contentheader-label" stylesheets="@../des/informationFill-des.css" text="Please fill in your information" />
+                                    <Label alignment="TOP_LEFT" layoutY="110.0" prefHeight="32.0" prefWidth="100.0" styleClass="content-label" stylesheets="@../des/informationFill-des.css" text="Name:" />
+                                    <TextField fx:id="readerNameTextField" layoutX="118.0" layoutY="108.0" prefHeight="32.0" prefWidth="242.0" />
+                                    <Label alignment="TOP_LEFT" layoutY="167.0" prefHeight="32.0" prefWidth="100.0" styleClass="content-label" stylesheets="@../des/informationFill-des.css" text="Gender:" />
+                                    <Label layoutX="1.0" layoutY="224.0" prefHeight="32.0" prefWidth="107.0" styleClass="content-label" stylesheets="@../des/informationFill-des.css" text="Phone Number:" />
+                                    <TextField fx:id="readerPhoneTextField" layoutX="118.0" layoutY="221.0" prefHeight="32.0" prefWidth="242.0" />
+                                    <Label layoutY="281.0" prefHeight="32.0" prefWidth="100.0" styleClass="content-label" stylesheets="@../des/informationFill-des.css" text="Email:" />
+                                    <TextField fx:id="readerEmailTextField" layoutX="118.0" layoutY="279.0" prefHeight="32.0" prefWidth="242.0" />
+                                    <ChoiceBox fx:id="readerGenderChoiceBox" layoutX="118.0" layoutY="168.0" prefHeight="32.0" prefWidth="114.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </content>
+   <buttonTypes>
+      <ButtonType fx:constant="OK" />
+      <ButtonType fx:constant="CANCEL" />
+   </buttonTypes>
+</DialogPane>
