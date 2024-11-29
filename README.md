@@ -99,7 +99,29 @@ fill the username, password field and click Sign In button to login into our app
 7. To return to the login scene, click the Log Out button.
 
 ## Demo
+<p>
+<img src="src\main\resources\ReadmeImg\demo4.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo5.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo7.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo6.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo3.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo1.jpg">
+</p>
+<p>
+<img src="src\main\resources\ReadmeImg\demo2.jpg">
+</p>
 
+More...
 
 ## Future improvements
 1. Add more complex games.
@@ -107,6 +129,9 @@ fill the username, password field and click Sign In button to login into our app
 3. Inform reader and print for them a receipt of late fee when they return books overdue.
 4. Add more book images for user to see.
 5. Improve the graphics and user interface, optimize algorithms for a smooth using application.
+
+## Contributing
+Pull request are welcomed. For major changes, please open an issue first to discuss what you would like to change. 
 
 ## Project status
 The project is completed but can be improved by adding much more functions.
