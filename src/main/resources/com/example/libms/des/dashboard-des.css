@@ -52,3 +52,17 @@
     -fx-bar-fill: #1E5B53;
     -fx-bar-width: 50;
 }
+
+.bgm-toggle-btn {
+    -fx-background-color: #1E5B53;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-border-color: #1E5B53;
+    -fx-border-radius: 5px;
+}
+
+.bgm-toggle-btn:hover {
+    -fx-background-color: #155b4c;
+    -fx-text-fill: white;
+    -fx-border-color: #155b4c;
+}

@@ -34,6 +34,13 @@
     -fx-text-fill: #000;
 }
 
+.smallLeftText-label {
+    -fx-alignment: center-left;
+    -fx-font-family: "Gotham-light";
+    -fx-font-size: 22px;
+    -fx-text-fill: #000;
+}
+
 .content-btn {
     -fx-text-fill: white;
     -fx-font-family: "Gotham-Light";

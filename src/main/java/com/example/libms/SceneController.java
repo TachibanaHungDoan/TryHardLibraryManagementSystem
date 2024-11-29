@@ -15,50 +15,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public abstract class SceneController {
-    private final Map<String, AudioClip> soundCache = new HashMap<>();
     private TimeService timeService;
-
-    private void playSound(String soundFileName) {
-        AudioClip sound = soundCache.computeIfAbsent(soundFileName, _ -> new AudioClip
-                (Objects.requireNonNull(SceneController.class.getResource("Sound/" + soundFileName)).toExternalForm()));
-        sound.play();
-    }
-
-    protected void alertSoundPlay() {
-        playSound("alert.mp3");
-    }
-
-    protected void playButtonClickSound1() {
-        playSound("buttonClickSound1.mp3");
-    }
-
-    protected void playButtonClickSound2() {
-        playSound("buttonClickSound2.mp3");
-    }
-
-    protected void bookFlipSound() {
-        playSound("bookFlipSound.mp3");
-    }
-
-    protected void bookshelfSound() {
-        playSound("bookshelfSound.mp3");
-    }
-
-    protected void deleteConfirm() {
-        playSound("DeleteConfirm.mp3");
-    }
-
-    protected void logOutSound() {
-        playSound("logOutSound.mp3");
-    }
-
-    protected void winGameSound() {
-        playSound("victory.mp3");
-    }
-
-    protected void loseGameSound() {
-        playSound("loss.mp3");
-    }
 
     protected void switchScene(String fxmlViewFile, Button button) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(fxmlViewFile));
@@ -88,12 +45,6 @@ public abstract class SceneController {
         }
     }
 
-    protected void showAlert(String title, String headerText, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
-    }
 
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
         usernameLabel.setText(LoggedInUser.getUsername());

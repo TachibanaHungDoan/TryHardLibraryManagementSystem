@@ -19,7 +19,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BooksController extends AdminTemplateController {
-
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
@@ -53,6 +52,9 @@ public class BooksController extends AdminTemplateController {
     @FXML
     private TableColumn<Book, Integer> remainingColumn;
 
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+    private final BookDAO bookDAO = new BookDAO();
     private Book selectedBook;
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
 
@@ -93,7 +95,7 @@ public class BooksController extends AdminTemplateController {
      * This method is responsible for opening*/
     @FXML
     void addBookButtonClicked() throws IOException {
-        bookshelfSound();
+        soundButtonController.bookshelfSound();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/addBooksInBooks-view.fxml"));
         DialogPane dialogPane = loader.load();
 
@@ -128,7 +130,7 @@ public class BooksController extends AdminTemplateController {
     void updateBookButtonClicked() throws IOException {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/updateBooksInBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -146,15 +148,15 @@ public class BooksController extends AdminTemplateController {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                boolean success =  updateBookController.saveUpdatedBook();
                if(success) {
-                   bookshelfSound();
+                   soundButtonController.bookshelfSound();
                    this.loadBooks();
                }else {
                    dialog.showAndWait();
                }
             }
         } else {
-            alertSoundPlay();
-            showAlert("No selection", "No Book Selected",
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", "No Book Selected",
                              "Please select a book to update", Alert.AlertType.WARNING);
         }
     }
@@ -167,7 +169,7 @@ public class BooksController extends AdminTemplateController {
     @FXML
     void viewBookButtonClicked() throws IOException {
         if (selectedBook != null) {
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView/viewBooksInBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -184,8 +186,8 @@ public class BooksController extends AdminTemplateController {
             }
 
         } else {
-            alertSoundPlay();
-            showAlert("No selection", "No Book Selected",
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", "No Book Selected",
                                 "Please select a book to view its details.", Alert.AlertType.WARNING);
         }
     }
@@ -204,7 +206,7 @@ public class BooksController extends AdminTemplateController {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
 
         if (selectedBook != null) {
-            playButtonClickSound2();
+            soundButtonController.playButtonClickSound2();
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Delete Book");
             confirmAlert.setHeaderText("Are you sure you want to delete the selected book?");
@@ -212,25 +214,23 @@ public class BooksController extends AdminTemplateController {
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                BookDAO bookDAO = new BookDAO();
 
-                // Assume selectedBook has an accessible field `id` as the primary key
-                int deleteResult = bookDAO.deleteBookById(selectedBook.getId());
+                int deleteResult = bookDAO.delete(selectedBook);
 
                 if (deleteResult > 0) {
                     loadBooks();  // Reload table to show updated book list
                     allBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
-                    showAlert("Delete Success", null,
+                    alertShowing.showAlert("Delete Success", null,
                                         "The book was successfully deleted.", Alert.AlertType.INFORMATION);
                 } else {
-                    alertSoundPlay();
-                    showAlert("Delete Failed", null,
+                    soundButtonController.alertSoundPlay();
+                    alertShowing.showAlert("Delete Failed", null,
                                         "Failed to delete the book. Please try again.", Alert.AlertType.ERROR);
                 }
             }
         } else {
-            alertSoundPlay();
-            showAlert("No selection", null, "Please select a book to delete.", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", null, "Please select a book to delete.", Alert.AlertType.WARNING);
         }
     }
 
@@ -270,19 +270,7 @@ public class BooksController extends AdminTemplateController {
     }
 
     private int getTotalBooksFromDatabase() {
-        int totalBooks = 0;
-        String query = "SELECT COUNT(*) AS total FROM books";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            if (resultSet.next()) {
-                totalBooks = resultSet.getInt("total");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return totalBooks;
+        return bookDAO.getTotalItems();
     }
 
     /**
@@ -312,30 +300,8 @@ public class BooksController extends AdminTemplateController {
      * - remaining: the remaining quantity of the book in stock after lending
      */
     private void loadBooksDataFromDatabase() {
-        String query = "SELECT * FROM books";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                int id = resultSet.getInt("bookID");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String publisher = resultSet.getString("publisher");
-                String isbn = resultSet.getString("isbn");
-                Date publishedDate = resultSet.getDate("publishedDate");
-                int edition = resultSet.getInt("edition");
-                int quantity = resultSet.getInt("quantity");
-
-                String stateString = resultSet.getString("state");
-                Book.BookState state = Book.BookState.valueOf(stateString.toLowerCase());
-
-                int remaining = resultSet.getInt("remaining");
-                Book book = new Book(id,title, author, publisher, isbn, publishedDate, edition, quantity, state, remaining);
-                bookList.add(book);
-            }
-            booksTable.setItems(bookList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<Book> getBookList = bookDAO.getAllItems();
+        bookList = FXCollections.observableArrayList(getBookList);
+        booksTable.setItems(bookList);
     }
 }

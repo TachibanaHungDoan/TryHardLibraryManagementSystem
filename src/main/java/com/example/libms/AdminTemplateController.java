@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 
 public class AdminTemplateController extends SceneController {
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
 
     @Override
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
@@ -14,22 +16,22 @@ public class AdminTemplateController extends SceneController {
     }
 
     protected void switchToDashboardView(Button homeButton) throws IOException {
-        playButtonClickSound1();
+        soundButtonController.playButtonClickSound1();
         switchScene("AdminView/dashBoard-view.fxml", homeButton);
     }
 
     protected void switchToBooksView(Button booksButton) throws IOException {
-        bookFlipSound();
+        soundButtonController.bookFlipSound();
         switchScene("AdminView/books-view.fxml", booksButton);
     }
 
     protected void switchToReadersView(Button readersButton) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         switchScene("AdminView/readers-view.fxml", readersButton);
     }
 
     protected void switchToBorrowedBooksView(Button borrowedBooksbutton) throws IOException {
-        bookFlipSound();
+        soundButtonController.bookFlipSound();
         switchScene("AdminView/borrowedBooks-view.fxml", borrowedBooksbutton);
     }
 
@@ -37,6 +39,7 @@ public class AdminTemplateController extends SceneController {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton
                 , null, null
                 ,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        soundButtonController.logOutSound();
+        backgroundMusic.stopBackgroundMusic();
     }
 }

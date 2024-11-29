@@ -2,21 +2,12 @@ package com.example.libms;
 
 import java.util.Date;
 
-public class ReturnedBook  {
-    private int id;
-    private String isbn;
-    private String title;
-    private String author;
-    private String publisher;
+public class ReturnedBook extends Book{
     private Date returnedDate;
     private int lateFee;
 
     public ReturnedBook(int id, String title, String author, String publisher, String isbn, Date returnedDate, int lateFee) {
-        this.id = id;
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
+        super(id, title, author, publisher, isbn);
         this.returnedDate = returnedDate;
         this.lateFee = lateFee;
     }

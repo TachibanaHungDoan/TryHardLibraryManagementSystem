@@ -35,6 +35,12 @@
                                     <Image url="@../Icon/TempIcon/time.png" />
                                  </image>
                               </ImageView>
+                              <ToggleButton fx:id="toggleMusicButton" layoutX="882.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="52.0" styleClass="bgm-toggle-btn" stylesheets="@../des/dashboard-des.css" text="BGM" />
+                              <ImageView fx:id="bgmImageView" fitHeight="30.0" fitWidth="30.0" layoutX="850.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/AdminIcon/dashBoardIcon/audioWaves.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -190,7 +196,6 @@
                                     <NumberAxis fx:id="yAxis" label="Count" side="LEFT" />
                                  </yAxis>
                               </BarChart>
-                              <ToggleButton fx:id="toggleMusicButton" layoutX="29.0" layoutY="623.0" mnemonicParsing="false" text="Music" />
                            </children>
                         </AnchorPane>
                      </children>

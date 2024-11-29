@@ -55,3 +55,15 @@
     -fx-text-fill: white;
     -fx-alignment: center;
 }
+
+.rbgm-toggle-btn {
+    -fx-background-color: #2f5a74;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-border-color: #2f5a74;
+}
+
+.rbgm-toggle-btn:hover {
+    -fx-background-color: #3d6b8a;
+    -fx-text-fill: white;
+}

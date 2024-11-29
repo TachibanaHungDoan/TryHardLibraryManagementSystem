@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class RAllBooksController extends SceneController {
+public class RAllBooksController extends ReaderTemplateController {
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
@@ -59,6 +59,9 @@ public class RAllBooksController extends SceneController {
     private ObservableList<Book> bookList = FXCollections.observableArrayList();
     private Book selectedBook;
 
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -71,33 +74,28 @@ public class RAllBooksController extends SceneController {
 
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
-        bookshelfSound();
-        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
+        switchToBooksInventoryView(booksInventoryButton);
     }
 
     @FXML
     void rGamesButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rGame-view.fxml", gamesButton);
+        switchToGameView(gamesButton);
     }
 
     @FXML
     void rHomeButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound1();
-        switchScene("ReaderView/rDashBoard-view.fxml", dashBoardButton);
+        switchToDashBoardView(dashBoardButton);
     }
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
     }
 
     @FXML
     void rViewBookButtonClicked(ActionEvent event) throws IOException {
         if (selectedBook != null) {
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -114,15 +112,15 @@ public class RAllBooksController extends SceneController {
             }
 
         } else {
-            alertSoundPlay();
-            showAlert("No selection", "No Book Selected",
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", "No Book Selected",
                     "Please select a book to view its details.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
     void rAcquireButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         /*switchScene("ReaderView/rAcquireInAllBooks-view.fxml",acquireButton);*/
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAcquireInAllBooks-view.fxml"));
         DialogPane dialogPane = loader.load();
@@ -141,19 +139,19 @@ public class RAllBooksController extends SceneController {
         Book selectedBook = booksTable.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
             if (Cart.getBooksInCart().contains(selectedBook)) {
-                alertSoundPlay();
-                showAlert("Duplicate Book", "Book Already in Cart",
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert("Duplicate Book", "Book Already in Cart",
                         "This book is already in your cart.", Alert.AlertType.WARNING);
             } else {
-                bookshelfSound();
+                soundButtonController.bookshelfSound();
                 Cart.addBookToCart(selectedBook);
-                showAlert("Successful", "Successful adding to Cart",
+                alertShowing.showAlert("Successful", "Successful adding to Cart",
                         "press Acquire to see your Cart", Alert.AlertType.INFORMATION);
             }
         }
         else {
-            alertSoundPlay();
-            showAlert("No selection", "No Book Selected",
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", "No Book Selected",
                     "Please select a book to add to the cart.", Alert.AlertType.WARNING);
         }
     }

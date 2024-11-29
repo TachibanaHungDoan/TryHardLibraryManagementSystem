@@ -2,7 +2,7 @@ package com.example.libms;
 
 import java.util.Date;
 
-public class BorrowedBookEx extends BorrowedBook {
+public class RBorrowedBook extends BorrowedBook {
     private String author;
     private String publisher;
     private Date publishedDate;
@@ -19,7 +19,7 @@ public class BorrowedBookEx extends BorrowedBook {
     private java.sql.Date returnDate;
 
 
-    public BorrowedBookEx(int id, String title, String isbn, String author, String publisher, Date publishedDate, java.sql.Date borrowedDate) {
+    public RBorrowedBook(int id, String title, String isbn, String author, String publisher, Date publishedDate, java.sql.Date borrowedDate) {
         super(id, title, isbn, borrowedDate);
         this.author = author;
         this.publisher = publisher;

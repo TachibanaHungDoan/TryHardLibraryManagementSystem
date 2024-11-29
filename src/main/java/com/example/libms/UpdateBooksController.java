@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class UpdateBooksController extends SceneController {
+public class UpdateBooksController {
     @FXML
     private TextField bookTitleTextField, authorTextField, publisherTextField;
     @FXML
@@ -18,6 +18,9 @@ public class UpdateBooksController extends SceneController {
     private Book book;
     private final BookDAO bookDao = new BookDAO();
     private BooksController booksController;
+
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
 
     public void setBookData(Book book) {
         this.book = book;
@@ -50,8 +53,8 @@ public class UpdateBooksController extends SceneController {
         String quantityStr = quantityTextField.getText();
         String remainingStr = remainingTextField.getText();
         if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishedDateStr.isEmpty() || isbn.isEmpty() || editionStr.isEmpty() || quantityStr.isEmpty() || remainingStr.isEmpty()) {
-            alertSoundPlay();
-            showAlert("Update Error", "Invalid Input", "All fields must be filled.", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Update Error", "Invalid Input", "All fields must be filled.", Alert.AlertType.WARNING);
             return false;
         }
         Date publishedDate;
@@ -59,13 +62,13 @@ public class UpdateBooksController extends SceneController {
             publishedDate = java.sql.Date.valueOf(publishedDateStr);
             // Check if published date is in the future
             if (publishedDate.after(new Date())) {
-                alertSoundPlay();
-                showAlert("Update Error", "Invalid Input", "Published date cannot be in the future.", Alert.AlertType.WARNING);
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert("Update Error", "Invalid Input", "Published date cannot be in the future.", Alert.AlertType.WARNING);
                 return false;
             }
         } catch (IllegalArgumentException e) {
-            alertSoundPlay();
-            showAlert("Update Error", "Invalid Input", "Invalid date format.", Alert.AlertType.ERROR);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Update Error", "Invalid Input", "Invalid date format.", Alert.AlertType.ERROR);
             return false;
         }
         int edition, quantity, remaining;
@@ -74,13 +77,13 @@ public class UpdateBooksController extends SceneController {
             quantity = Integer.parseInt(quantityStr);
             remaining = Integer.parseInt(remainingStr);
         } catch (NumberFormatException e) {
-            alertSoundPlay();
-            showAlert("Update Error", "Invalid Input", "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Update Error", "Invalid Input", "Edition, Quantity, and Remaining must be valid integers.", Alert.AlertType.ERROR);
             return false;
         } // Check if remaining is greater than quantity
         if (remaining > quantity) {
-            alertSoundPlay();
-            showAlert("Update Error", "Invalid Input", "Remaining cannot be greater than Quantity.", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Update Error", "Invalid Input", "Remaining cannot be greater than Quantity.", Alert.AlertType.WARNING);
             return false;
         } // Automatically set the state based on remaining
         Book.BookState state;
@@ -105,20 +108,20 @@ public class UpdateBooksController extends SceneController {
 
             if (rowsUpdated > 0) {
                 System.out.println("Book updated successfully!");
-                showAlert("Update Success", "Book Updated Successfully", "The book was updated successfully", Alert.AlertType.INFORMATION);
+                alertShowing.showAlert("Update Success", "Book Updated Successfully", "The book was updated successfully", Alert.AlertType.INFORMATION);
                 if (booksController != null) {
                     booksController.loadBooks();
                 }
                 return true;
             } else {
-                alertSoundPlay();
-                showAlert("Update Failed", "No Book Updated", "Please check the input.", Alert.AlertType.ERROR);
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert("Update Failed", "No Book Updated", "Please check the input.", Alert.AlertType.ERROR);
                 return false;
             }
         }catch(Exception e){
             e.printStackTrace();
-            alertSoundPlay();
-            showAlert("Update Error", "Error Updating Book", "Please check the input.", Alert.AlertType.ERROR);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Update Error", "Error Updating Book", "Please check the input.", Alert.AlertType.ERROR);
             return false;
         }
     }

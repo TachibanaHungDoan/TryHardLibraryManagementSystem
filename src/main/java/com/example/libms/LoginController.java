@@ -32,6 +32,10 @@ public class LoginController extends SceneController {
     @FXML
     private AnchorPane sideForm;
 
+    private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+
     @FXML
     void initialize() {}
 
@@ -41,8 +45,8 @@ public class LoginController extends SceneController {
         String password = loginPassWordPassWordField.getText();
 
         if (username.isBlank() || password.isBlank()) {
-            alertSoundPlay();
-            showAlert(null,
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null,
                     null,
                     "Please enter your username and password",
                     Alert.AlertType.WARNING
@@ -52,8 +56,8 @@ public class LoginController extends SceneController {
         } else if (validateLogin(username, password)) {
             handleReaderLogin(username);
         } else {
-            alertSoundPlay();
-            showAlert(null,
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null,
                     null,
                     "Invalid username or password",
                     Alert.AlertType.WARNING
@@ -65,7 +69,7 @@ public class LoginController extends SceneController {
     void switchForm(ActionEvent event) {
         TranslateTransition slider = new TranslateTransition();
         if (event.getSource() == sideSignUpButton) {
-            playButtonClickSound1();
+            soundButtonController.playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(350);
             slider.setDuration(Duration.seconds(.5));
@@ -76,7 +80,7 @@ public class LoginController extends SceneController {
             });
             slider.play();
         } else if (event.getSource() == alrButton) {
-            playButtonClickSound1();
+            soundButtonController.playButtonClickSound1();
             slider.setNode(sideForm);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
@@ -104,8 +108,8 @@ public class LoginController extends SceneController {
     }
 
     private void handleAdminLogin() throws IOException {
-        playButtonClickSound1();
-        showAlert(null,
+        soundButtonController.playButtonClickSound1();
+        alertShowing.showAlert(null,
                 null,
                 "Admin login successful",
                 Alert.AlertType.CONFIRMATION
@@ -117,16 +121,19 @@ public class LoginController extends SceneController {
         backgroundMusic.playBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3");
     }
 
-    private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
     private void handleReaderLogin(String username) throws IOException {
-        playButtonClickSound1();
+        soundButtonController.playButtonClickSound1();
         LoggedInUser.setUsername(username);
-        showAlert(null,
+        alertShowing.showAlert(null,
                 null,
                 "login successful",
                 Alert.AlertType.CONFIRMATION
         );
         switchScene("ReaderView/rDashBoard-view.fxml", signInButton);
+        if (backgroundMusic.isPlaying()) {
+            backgroundMusic.stopBackgroundMusic();
+        }
+        backgroundMusic.playBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3");
     }
 
     private String hashPassword(String password) {
@@ -149,16 +156,16 @@ public class LoginController extends SceneController {
             if (informationFillController.processForm(username, password)) {
                 handleReaderRegistrationSuccessful(username);
             } else {
-                alertSoundPlay();
-                showAlert(null,
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert(null,
                         null,
                         "Registration failed. Try again!",
                         Alert.AlertType.WARNING
                 );
             }
         } else {
-            alertSoundPlay();
-            showAlert(null,
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null,
                     null,
                     "Information form was canceled.",
                     Alert.AlertType.WARNING
@@ -167,9 +174,9 @@ public class LoginController extends SceneController {
     }
 
     private void handleReaderRegistrationSuccessful(String username) throws IOException {
-        playButtonClickSound1();
+        soundButtonController.playButtonClickSound1();
         LoggedInUser.setUsername(username);
-        showAlert(null,
+        alertShowing.showAlert(null,
                 null,
                 "Registration successful",
                 Alert.AlertType.CONFIRMATION
@@ -178,8 +185,8 @@ public class LoginController extends SceneController {
 
     private boolean validateRegistration(String username, String password, String confirmPassword) {
         if (username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-            alertSoundPlay();
-            showAlert(null,
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null,
                     null,
                     "Please enter your username and password!",
                     Alert.AlertType.WARNING
@@ -187,8 +194,8 @@ public class LoginController extends SceneController {
             return false;
         }
         if (!password.equals(confirmPassword)) {
-            alertSoundPlay();
-            showAlert(null,
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null,
                     null,
                     "Your passwords do not match!",
                     Alert.AlertType.WARNING

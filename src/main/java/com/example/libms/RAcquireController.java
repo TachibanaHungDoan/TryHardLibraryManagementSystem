@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
-public class RAcquireController extends SceneController {
+public class RAcquireController {
     @FXML
     private Button cancelButton, confirmButton, dFCButton;
     @FXML
@@ -34,6 +34,9 @@ public class RAcquireController extends SceneController {
     @FXML
     private TableColumn<Book, String> bookISBNColumn;
 
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+
     @FXML
     void initialize() {
         bookIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -48,7 +51,7 @@ public class RAcquireController extends SceneController {
 
     @FXML
     void cancelButtonClicked(ActionEvent Event) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         /*switchScene("ReaderView/rAllBooks-view.fxml", cancelButton);*/
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -66,8 +69,8 @@ public class RAcquireController extends SceneController {
     void confirmButtonClicked(ActionEvent event) {
         List<Book> booksInCart = Cart.getBooksInCart();
         if (booksInCart.isEmpty()) {
-            alertSoundPlay();
-            showAlert("Cart is empty", "No books to confirm", "Please add books to the cart before confirming.", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Cart is empty", "No books to confirm", "Please add books to the cart before confirming.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -89,8 +92,8 @@ public class RAcquireController extends SceneController {
                         String state = rs.getString("state");
                         int remaining = rs.getInt("remaining");
                         if ("unvailable".equals(state) || remaining <= 0) {
-                            alertSoundPlay();
-                            showAlert("Book Unavailable","Book Not Available","The book " + book.getTitle() + " is not available for borrowing.",Alert.AlertType.WARNING);
+                            soundButtonController.alertSoundPlay();
+                            alertShowing.showAlert("Book Unavailable","Book Not Available","The book " + book.getTitle() + " is not available for borrowing.",Alert.AlertType.WARNING);
                             return;
                         }
                     }
@@ -98,8 +101,8 @@ public class RAcquireController extends SceneController {
                     pstmCheckBorrowed.setInt(2,LoggedInUser.getReaderID());
                     ResultSet rsBorrowed = pstmCheckBorrowed.executeQuery();
                     if (rsBorrowed.next() && rsBorrowed.getInt(1) > 0) {
-                        alertSoundPlay();
-                        showAlert("Duplicate Borrowing","Book Already Borrowed","You have already borrowed the book " + book.getTitle() + ".", Alert.AlertType.WARNING);
+                        soundButtonController.alertSoundPlay();
+                        alertShowing.showAlert("Duplicate Borrowing","Book Already Borrowed","You have already borrowed the book " + book.getTitle() + ".", Alert.AlertType.WARNING);
                         Cart.removeBookFromCart(book);
                         cartTable.setItems(Cart.getBooksInCart());
                         totalBooksLabel.setText(String.valueOf(Cart.getBooksInCart().size()));
@@ -129,15 +132,15 @@ public class RAcquireController extends SceneController {
             Cart.clearCart();
             cartTable.setItems(Cart.getBooksInCart());
             totalBooksLabel.setText(String.valueOf(Cart.getBooksInCart().size()));
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             Stage stage = (Stage) confirmButton.getScene().getWindow();
             stage.close();
-            showAlert("Success", "Books Borrowed", "Books have been successfully borrowed.", Alert.AlertType.INFORMATION);
+            alertShowing.showAlert("Success", "Books Borrowed", "Books have been successfully borrowed.", Alert.AlertType.INFORMATION);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            alertSoundPlay();
-            showAlert("Database Error", "Error Borrowing Books", "There was an error borrowing the books. Please try again.", Alert.AlertType.ERROR);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("Database Error", "Error Borrowing Books", "There was an error borrowing the books. Please try again.", Alert.AlertType.ERROR);
         }
     }
 
@@ -145,13 +148,13 @@ public class RAcquireController extends SceneController {
     void deleteFromCartButtonClicked(ActionEvent event) {
         Book selectedBook = cartTable.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
-            playButtonClickSound2();
+            soundButtonController.playButtonClickSound2();
             Cart.removeBookFromCart(selectedBook);
             cartTable.setItems(Cart.getBooksInCart());
             totalBooksLabel.setText(String.valueOf(Cart.getBooksInCart().size()));
         } else {
-            alertSoundPlay();
-            showAlert("No selection", "No Book Selected", "Please select a book to remove from the cart.", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No selection", "No Book Selected", "Please select a book to remove from the cart.", Alert.AlertType.WARNING);
         }
     }
 

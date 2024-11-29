@@ -33,6 +33,8 @@ public class RGameController extends ReaderTemplateController {
     @FXML
     private Text text, hintText;
 
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+
     private int mistakeCounts;
     private int correctCounts;
     private String authorWordToGuess;
@@ -92,7 +94,7 @@ public class RGameController extends ReaderTemplateController {
             text.setText(String.join(" ", answer)); // Cập nhật từ hiện tại
             if (correctCounts == myLetters.size()) {
                 buttons.getChildren().forEach(node -> node.setDisable(true)); // Tắt các nút khi thắng
-                winGameSound();
+                soundButtonController.winGameSound();
                 Alert winAlert = new Alert(Alert.AlertType.INFORMATION);
                 winAlert.setHeaderText("Congratulations!\nYou have won the game by guessing the correct author who is " + authorWord + ".");
                 winAlert.setContentText("Do you want to play again?");
@@ -115,7 +117,7 @@ public class RGameController extends ReaderTemplateController {
             updateHangmanImage(); // Cập nhật hình ảnh
             if (mistakeCounts >= images.size()) {
                 buttons.getChildren().forEach(node -> node.setDisable(true)); // Tắt các nút khi thua
-                loseGameSound();
+                soundButtonController.loseGameSound();
                 Alert loseAlert = new Alert(Alert.AlertType.INFORMATION);
                 loseAlert.setHeaderText("Sorry! You have lost this game\nThe author you have to guess is " + authorWord + ".");
                 loseAlert.setContentText("Do you want to play again?");

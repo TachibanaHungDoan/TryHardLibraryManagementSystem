@@ -20,13 +20,15 @@ import java.util.Date;
 
 import static com.example.libms.LoggedInUser.getReaderID;
 
-public class RDashBoardController extends SceneController {
+public class RDashBoardController extends ReaderTemplateController {
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
     private Button allBooksButton, booksInventoryButton, gamesButton, logOutButton;
     @FXML
     private Button bybrButton, mbrButton, settingButton;
+    @FXML
+    private ToggleButton toggleMusicButton;
     @FXML
     private Label mbbLabel, bybrLabel;
     @FXML
@@ -36,6 +38,7 @@ public class RDashBoardController extends SceneController {
     @FXML
     private PieChart pieChart;
 
+    private final BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
     private final List<Quote> quotes = new ArrayList<>();
     private int currentQuoteIndex = 0;
     private final String mostBorrowedBookQuery = "SELECT * FROM books WHERE title = "
@@ -47,8 +50,12 @@ public class RDashBoardController extends SceneController {
     private final String totalReturnedBooksQuery = "SELECT COUNT(*) AS total FROM readerreturnedbooks WHERE readerID = "
             + "'" + LoggedInUser.getReaderID() +"'";
 
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+
     @FXML
     void initialize() {
+        toggleMusicButton.setOnAction(e -> backgroundMusic.toggleBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3"));
         setUpScene(usernameLabel, timeLabel);
         URL resourceUrl = RDashBoardController.class.getResource("/com/example/libms/Quote/Quotes.txt");
         if (resourceUrl != null) {
@@ -65,36 +72,32 @@ public class RDashBoardController extends SceneController {
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
+        backgroundMusic.stopBackgroundMusic();
     }
 
     @FXML
     void rAllBooksButtonClicked(ActionEvent event) throws IOException {
-        bookFlipSound();
-        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
+        switchToAllBooksView(allBooksButton);
     }
 
     @FXML
     void rBooksInventoryButtonClicked(ActionEvent event) throws IOException {
-        bookshelfSound();
-        switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
+        switchToBooksInventoryView(booksInventoryButton);
     }
 
     @FXML
     void rGamesButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rGame-view.fxml", gamesButton);
+        switchToGameView(gamesButton);
     }
 
     @FXML
     void rMBRButtonClicked(ActionEvent event) throws IOException {
         if (getMostBorrowedBookTitleFromDatabase().isEmpty()) {
-            alertSoundPlay();
-            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
         } else {
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -115,10 +118,10 @@ public class RDashBoardController extends SceneController {
     @FXML
     void rBYBRButtonClicked(ActionEvent event) throws IOException {
         if (getBookTitleYouRecentlyBorrowedFromDatabase().isEmpty()) {
-            alertSoundPlay();
-            showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, "No book to view", null, Alert.AlertType.WARNING);
         } else {
-            bookFlipSound();
+            soundButtonController.bookFlipSound();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/viewBooks-view.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -138,7 +141,7 @@ public class RDashBoardController extends SceneController {
 
     @FXML
     void settingButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReaderView/rAccountSettings-view.fxml"));
         DialogPane dialogPane = loader.load();
 

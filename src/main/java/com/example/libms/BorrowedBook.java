@@ -2,10 +2,7 @@ package com.example.libms;
 
 import java.util.Date;
 
-public class BorrowedBook {
-    private int id;
-    private String title;
-    private String isbn;
+public class BorrowedBook extends Book{
     private int readerID;
     private String readerName;
     private Date borrowedDate;
@@ -15,9 +12,7 @@ public class BorrowedBook {
 
     public BorrowedBook(int id, String isbn, String title, int readerID, String readerName,
                         Date borrowedDate, java.sql.Date returnDate, int borrowedDay, double lateFee) {
-        this.id = id;
-        this.title = title;
-        this.isbn = isbn;
+        super(id, isbn, title);
         this.readerID = readerID;
         this.readerName = readerName;
         this.borrowedDate = borrowedDate;
@@ -25,43 +20,16 @@ public class BorrowedBook {
         this.borrowedDay = borrowedDay;
         this.lateFee = lateFee;
     }
+
     public BorrowedBook(int id, String title , String isbn, java.sql.Date borrowedDate) {
-        this.id = id;
-        this.title = title;
-        this.isbn =  isbn;
+        super(id, isbn, title);
         this.borrowedDate = borrowedDate;
     }
+
     public BorrowedBook(int id , String title , String isbn, java.sql.Date returnDate, long lateFee) {
-        this.id = id;
-        this.title = title;
-        this.isbn =  isbn;
+        super(id, isbn, title);
         this.returnDate = returnDate;
         this.lateFee = lateFee;
-    }
-
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public int getReaderID() {

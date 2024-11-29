@@ -13,11 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-public class RBooksInventoryBorrowController extends SceneController {
+public class RBooksInventoryBorrowController extends ReaderTemplateController {
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
@@ -25,23 +24,25 @@ public class RBooksInventoryBorrowController extends SceneController {
     @FXML
     private Button returnedBooksSceneSwitchButton, returnBookButton;
     @FXML
-    private TableView<BorrowedBookEx> borrowedBooksTable;
+    private TableView<RBorrowedBook> borrowedBooksTable;
     @FXML
-    private TableColumn<BorrowedBookEx, Integer> bookIDColumn;
+    private TableColumn<RBorrowedBook, Integer> bookIDColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, String> titleColumn;
+    private TableColumn<RBorrowedBook, String> titleColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, String> authorColumn;
+    private TableColumn<RBorrowedBook, String> authorColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, String> publisherColumn;
+    private TableColumn<RBorrowedBook, String> publisherColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, String> isbnColumn;
+    private TableColumn<RBorrowedBook, String> isbnColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, Date> publishedDateColumn;
+    private TableColumn<RBorrowedBook, Date> publishedDateColumn;
     @FXML
-    private TableColumn<BorrowedBookEx, Date> borrowedDateColumn;
+    private TableColumn<RBorrowedBook, Date> borrowedDateColumn;
 
-    private ObservableList<BorrowedBookEx> borrowedBooksList = FXCollections.observableArrayList();
+    private ObservableList<RBorrowedBook> borrowedBooksList = FXCollections.observableArrayList();
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
 
     @FXML
     void initialize() {
@@ -58,45 +59,40 @@ public class RBooksInventoryBorrowController extends SceneController {
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
     }
 
     @FXML
     void rAllBooksButtonClicked(ActionEvent event) throws IOException {
-        bookFlipSound();
-        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
+        switchToAllBooksView(allBooksButton);
     }
 
     @FXML
     void rGamesButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rGame-view.fxml", gamesButton);
+        switchToGameView(gamesButton);
     }
 
     @FXML
     void rHomeButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound1();
-        switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
+        switchToDashBoardView(dashBoardButton);
     }
 
     @FXML
     void returnBookButtonClicked(ActionEvent event) {
-        BorrowedBookEx selectedBook = borrowedBooksTable.getSelectionModel().getSelectedItem();
+        RBorrowedBook selectedBook = borrowedBooksTable.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
             returnBook(selectedBook);
             loadBorrowedBooksDataFromDatabase();
         } else {
-            alertSoundPlay();
-            showAlert("No Selection", "No Book Selected",
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert("No Selection", "No Book Selected",
                     "Please select a book to return.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
     void returnedBooksSwitchSceneButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         switchScene("ReaderView/rBooksInventoryReturn-view.fxml", returnedBooksSceneSwitchButton);
     }
 
@@ -118,7 +114,7 @@ public class RBooksInventoryBorrowController extends SceneController {
                 String publisher = resultSet.getString("publisher");
                 Date publishedDate = resultSet.getDate("publishedDate");
                 java.sql.Date borrowedDate = resultSet.getDate("borrowedDate");
-                BorrowedBookEx book = new BorrowedBookEx(id,title,isbn,author,publisher,publishedDate,borrowedDate);
+                RBorrowedBook book = new RBorrowedBook(id,title,isbn,author,publisher,publishedDate,borrowedDate);
                 borrowedBooksList.add(book);
             }
             borrowedBooksTable.setItems(borrowedBooksList);
@@ -127,7 +123,7 @@ public class RBooksInventoryBorrowController extends SceneController {
         }
     }
 
-    private void returnBook(BorrowedBookEx book) {
+    private void returnBook(RBorrowedBook book) {
         String deleteSQL = "DELETE FROM borrowedBooks WHERE isbn = ? AND readerID = ?";
         String updateSQL = "UPDATE books SET remaining = remaining + 1, state = 'available' WHERE isbn = ?";
         String insertReturnSQL = "INSERT INTO readerReturnedBooks " +
@@ -154,11 +150,11 @@ public class RBooksInventoryBorrowController extends SceneController {
                 pstmtDelete.setString(1, book.getIsbn());
                 pstmtDelete.setInt(2, LoggedInUser.getReaderID());
                 pstmtDelete.executeUpdate();
-                showAlert("Success", "Book Returned", "You have successfully returned the book.", Alert.AlertType.INFORMATION);
+                alertShowing.showAlert("Success", "Book Returned", "You have successfully returned the book.", Alert.AlertType.INFORMATION);
             }catch (SQLException e) {
                 e.printStackTrace();
-                alertSoundPlay();
-                showAlert("Database Error", "Error Returning Book",
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert("Database Error", "Error Returning Book",
                     "There was an error returning the book. Please try again.", Alert.AlertType.ERROR);
             }
     }

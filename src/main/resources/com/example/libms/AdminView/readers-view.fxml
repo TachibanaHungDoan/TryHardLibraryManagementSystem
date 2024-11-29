@@ -151,7 +151,6 @@
                               </AnchorPane>
                               <Label layoutX="541.0" layoutY="139.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="ReaderID:" />
                               <Button fx:id="clearInformationButton" layoutX="584.0" layoutY="441.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" styleClass="content-btn" stylesheets="@../des/readers-des.css" text="Clear" />
-                              <TextField fx:id="readerIDTextField" layoutX="659.0" layoutY="137.0" prefHeight="32.0" prefWidth="242.0" />
                               <Label alignment="TOP_LEFT" layoutX="541.0" layoutY="196.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Name:" />
                               <TextField fx:id="readerNameTextField" layoutX="659.0" layoutY="194.0" prefHeight="32.0" prefWidth="242.0" />
                               <Label alignment="TOP_LEFT" layoutX="541.0" layoutY="253.0" prefHeight="32.0" prefWidth="100.0" styleClass="smallText-label" stylesheets="@../des/readers-des.css" text="Gender:" />
@@ -167,6 +166,7 @@
                                     <Image url="@../Icon/AdminIcon/readersIcon/knowMore.png" />
                                  </image>
                               </ImageView>
+                              <Label fx:id="readerIDLabel" layoutX="659.0" layoutY="139.0" prefHeight="32.0" prefWidth="139.0" styleClass="smallLeftText-label" stylesheets="@../des/readers-des.css" />
                            </children>
                         </AnchorPane>
                      </children>

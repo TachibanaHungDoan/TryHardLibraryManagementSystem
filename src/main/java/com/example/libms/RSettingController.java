@@ -12,11 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RSettingController extends SceneController {
+public class RSettingController {
     @FXML
     private Button confirmButton, cancelButton;
     @FXML
     private TextField currentPassWordTextField, newPassWordTextField, confirmNewPassWordTextField;
+
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
 
     @FXML
     void cancelButtonClicked(ActionEvent event) {
@@ -31,22 +34,22 @@ public class RSettingController extends SceneController {
         String confirmNewPassWord = confirmNewPassWordTextField.getText();
 
         if (currentPassWord.isEmpty() || newPassWord.isEmpty() || confirmNewPassWord.isEmpty()) {
-            alertSoundPlay();
-            showAlert(null, "All fields must be filled!", null, Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, "All fields must be filled!", null, Alert.AlertType.WARNING);
             return;
         }
 
         if (!newPassWord.equals(confirmNewPassWord)) {
-            alertSoundPlay();
-            showAlert(null, "Passwords do not match!", null, Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, "Passwords do not match!", null, Alert.AlertType.WARNING);
             return;
         }
 
         if (isCurrentPassWordValid(currentPassWord)) {
             changePassWord(currentPassWord, newPassWord);
         } else {
-            alertSoundPlay();
-            showAlert(null, "Your current password is not right!", null, Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, "Your current password is not right!", null, Alert.AlertType.WARNING);
         }
     }
 
@@ -86,21 +89,21 @@ public class RSettingController extends SceneController {
                     int rowsUpdated = preparedStatement.executeUpdate();
 
                     if (rowsUpdated > 0) {
-                        playButtonClickSound2();
-                        showAlert(null, "Password changed successfully!", null, Alert.AlertType.INFORMATION);
+                        soundButtonController.playButtonClickSound2();
+                        alertShowing.showAlert(null, "Password changed successfully!", null, Alert.AlertType.INFORMATION);
                     } else {
-                        alertSoundPlay();
-                        showAlert(null, "Failed to change password. Please check your current password.", null, Alert.AlertType.WARNING);
+                        soundButtonController.alertSoundPlay();
+                        alertShowing.showAlert(null, "Failed to change password. Please check your current password.", null, Alert.AlertType.WARNING);
                     }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    alertSoundPlay();
-                    showAlert(null, "An error occurred while changing the password. Please try again later.", null, Alert.AlertType.ERROR);
+                    soundButtonController.alertSoundPlay();
+                    alertShowing.showAlert(null, "An error occurred while changing the password. Please try again later.", null, Alert.AlertType.ERROR);
                 }
             } else {
-                alertSoundPlay();
-                showAlert(null, "Password change canceled.", null, Alert.AlertType.INFORMATION);
+                soundButtonController.alertSoundPlay();
+                alertShowing.showAlert(null, "Password change canceled.", null, Alert.AlertType.INFORMATION);
             }
         });
     }

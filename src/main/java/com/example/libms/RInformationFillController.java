@@ -10,11 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class RInformationFillController extends SceneController {
+public class RInformationFillController {
     @FXML
     private TextField readerNameTextField, readerPhoneTextField, readerEmailTextField;
     @FXML
     private ChoiceBox<Reader.ReaderGender> readerGenderChoiceBox;
+
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
 
     @FXML
     void initialize() {
@@ -31,8 +34,8 @@ public class RInformationFillController extends SceneController {
         String email = readerEmailTextField.getText();
 
         if (name.isBlank() || phone.isBlank() || email.isBlank() || gender == null) {
-            alertSoundPlay();
-            showAlert(null, null, "Please fill in all fields!", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, null, "Please fill in all fields!", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -58,13 +61,13 @@ public class RInformationFillController extends SceneController {
             }
 
         } catch (NumberFormatException e) {
-            alertSoundPlay();
-            showAlert(null, null, "Phone number must be numeric!", Alert.AlertType.WARNING);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, null, "Phone number must be numeric!", Alert.AlertType.WARNING);
             return false;
         } catch (Exception e) {
             e.printStackTrace();
-            alertSoundPlay();
-            showAlert(null, null, "An error occurred while saving the data.", Alert.AlertType.ERROR);
+            soundButtonController.alertSoundPlay();
+            alertShowing.showAlert(null, null, "An error occurred while saving the data.", Alert.AlertType.ERROR);
             return false;
         }
     }

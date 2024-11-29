@@ -11,7 +11,9 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 
+import javax.swing.text.html.ImageView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,8 +35,6 @@ public class DashBoardController extends AdminTemplateController {
     @FXML
     private NumberAxis yAxis;
 
-    private final String TOTAL_BOOKS_QUERY = "SELECT COUNT(bookID) AS total FROM books";
-    private final String TOTAL_READERS_QUERY = "SELECT COUNT(readerID) AS total FROM readers";
     private final String TOTAL_BORROWEDBOOKS_QUERY = "SELECT COUNT(id) AS total FROM borrowedbooks";
 
     private BackgroundMusic backgroundMusic = BackgroundMusic.getInstance();
@@ -42,14 +42,12 @@ public class DashBoardController extends AdminTemplateController {
     @FXML
     void initialize() {
         toggleMusicButton.setOnAction(e -> backgroundMusic.toggleBackgroundMusic("/com/example/libms/Sound/perfectBackgroundSound.mp3"));
-        int totalBooks = getTotalCategoryFromDatabase(TOTAL_BOOKS_QUERY);
-        int totalReaders = getTotalCategoryFromDatabase(TOTAL_READERS_QUERY);
         int totalBooksBorrowed = getTotalCategoryFromDatabase(TOTAL_BORROWEDBOOKS_QUERY);
         setUpScene(usernameLabel, timeLabel);
-        totalBooksLabel.setText(String.valueOf(totalBooks));
-        totalReadersLabel.setText(String.valueOf(totalReaders));
+        totalBooksLabel.setText(String.valueOf(getTotalBooksFromDatabase()));
+        totalReadersLabel.setText(String.valueOf(getTotalReadersFromDatabase()));
         borrowedBooksLabel.setText(String.valueOf(totalBooksBorrowed));
-        initializeBarChart(totalBooks, totalReaders, totalBooksBorrowed);
+        initializeBarChart(getTotalBooksFromDatabase(), getTotalReadersFromDatabase(), totalBooksBorrowed);
     }
 
     @FXML
@@ -70,7 +68,6 @@ public class DashBoardController extends AdminTemplateController {
     @FXML
     void logOutButtonClicked() throws IOException {
         switchToLoginView(logOutButton);
-        backgroundMusic.stopBackgroundMusic();
     }
 
     private void initializeBarChart(int totalBooks, int totalReaders, int totalBooksBorrowed) {
@@ -101,6 +98,16 @@ public class DashBoardController extends AdminTemplateController {
                 booksBorrowedNode.getStyleClass().add("thirdChart-bar");
             }
         });
+    }
+
+    private int getTotalBooksFromDatabase() {
+        BookDAO bookDAO = new BookDAO();
+        return bookDAO.getTotalItems();
+    }
+
+    private int getTotalReadersFromDatabase() {
+        ReaderDAO readerDAO = new ReaderDAO();
+        return readerDAO.getTotalItems();
     }
 
     private int getTotalCategoryFromDatabase(String query) {

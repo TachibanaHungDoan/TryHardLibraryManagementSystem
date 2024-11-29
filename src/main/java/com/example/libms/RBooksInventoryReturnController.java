@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.*;
 
-public class RBooksInventoryReturnController extends SceneController {
+public class RBooksInventoryReturnController extends ReaderTemplateController {
     @FXML
     private Label usernameLabel, timeLabel;
     @FXML
@@ -35,6 +35,9 @@ public class RBooksInventoryReturnController extends SceneController {
     private TableColumn<ReturnedBook, Integer> lateFeeColumn;
 
     private final ObservableList<ReturnedBook> returnedBooksList = FXCollections.observableArrayList();
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+    private AlertShowing alertShowing = new AlertShowing();
+
     @FXML
     void initialize() {
         setUpScene(usernameLabel, timeLabel);
@@ -52,7 +55,7 @@ public class RBooksInventoryReturnController extends SceneController {
         String query = "SELECT r.rtBooksID, r.title, r.isbn, "
                 + "r.returnedDate, r.borrowedDay, r.lateFee, r.readerID, b.author, b.publisher "
                 + "FROM readerReturnedBooks r " + "JOIN books b ON r.isbn = b.isbn " + "WHERE r.readerID = "
-                + " " + LoggedInUser.getReaderID() + "'";
+                + "'" + LoggedInUser.getReaderID() + "'";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
@@ -76,58 +79,27 @@ public class RBooksInventoryReturnController extends SceneController {
 
     @FXML
     void borrowedBooksSwitchScenehButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", borrowedBooksScreenSwitchButton);
     }
 
     @FXML
     void logOutButtonClicked(ActionEvent event) throws IOException {
-        switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
-                null, null,"Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        switchToLoginView(logOutButton);
     }
 
     @FXML
     void rAllBooksButtonClicked(ActionEvent event) throws IOException {
-        bookFlipSound();
-        switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
+        switchToAllBooksView(allBooksButton);
     }
 
     @FXML
     void rGamesButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound2();
-        switchScene("ReaderView/rGame-view.fxml", gamesButton);
+        switchToGameView(gamesButton);
     }
 
     @FXML
     void rHomeButtonClicked(ActionEvent event) throws IOException {
-        playButtonClickSound1();
-        switchScene("ReaderView/rDashBoard-view.fxml",dashBoardButton);
-    }
-
-    private void loadReturnedBooksDataFromDatabase() {
-        String query = "SELECT r.rtBooksID, r.title, r.isbn, "
-                + "r.returnedDate, r.borrowedDay, r.lateFee, r.readerID, b.author, b.publisher "
-                + "FROM readerReturnedBooks r " + "JOIN books b ON r.isbn = b.isbn"
-                + " WHERE r.readerID = " + "'" + LoggedInUser.getReaderID() + "'";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            ResultSet resultSet = statement.executeQuery();
-            returnedBooksList.clear();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("rtBooksID");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String publisher = resultSet.getString("publisher");
-                String isbn = resultSet.getString("isbn");
-                Date returnedDate = resultSet.getDate("returnedDate");
-                int lateFee = resultSet.getInt("lateFee");
-                ReturnedBook rbook = new ReturnedBook(id,title ,author, publisher,isbn, returnedDate, lateFee);
-                returnedBooksList.add(rbook);
-            }
-            returnedBooksTable.setItems(returnedBooksList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        switchToDashBoardView(dashBoardButton);
     }
 }

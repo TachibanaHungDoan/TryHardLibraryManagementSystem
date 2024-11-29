@@ -43,10 +43,10 @@ public class BookDAO implements DAOInterface <Book> {
 
     @Override
     public int update(Book book) {
-        String sql = "UPDATE books SET title = ?, author = ?, publisher = ?, isbn = ?, publishedDate = ?, edition = ?, " +
+        String updateQuery = "UPDATE books SET title = ?, author = ?, publisher = ?, isbn = ?, publishedDate = ?, edition = ?, " +
                 "quantity = ?, state = ?, remaining = ? WHERE bookID = ?";
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement st = con.prepareStatement(sql)) {
+             PreparedStatement st = con.prepareStatement(updateQuery)) {
 
             st.setString(1, book.getTitle());
             st.setString(2, book.getAuthor());
@@ -69,9 +69,9 @@ public class BookDAO implements DAOInterface <Book> {
 
     @Override
     public int delete(Book book) {
-        String sql = "DELETE FROM books WHERE bookID = ?";
+        String deleteQuery = "DELETE FROM books WHERE bookID = ?";
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement st = con.prepareStatement(sql)) {
+             PreparedStatement st = con.prepareStatement(deleteQuery)) {
 
             st.setInt(1, book.getId()); // Assuming 'id' is the primary key for identifying the book record
 
@@ -84,7 +84,7 @@ public class BookDAO implements DAOInterface <Book> {
     }
 
     @Override
-    public List<Book> getAllBooks() {
+    public List<Book> getAllItems() {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM books"; // Replace 'books' with your actual table name
 
@@ -127,22 +127,21 @@ public class BookDAO implements DAOInterface <Book> {
     public ArrayList<Book> selectByCondition(String condition) {
         return null;
     }
-    public int deleteBookById(int bookID) {
-        Connection conn = null;
-        PreparedStatement deleteStmt = null;
-        try {
-            conn = DatabaseConnection.getConnection();
-            String deleteQuery = "DELETE FROM books WHERE bookID = ?";
-            deleteStmt = conn.prepareStatement(deleteQuery);
-            deleteStmt.setInt(1, bookID);
-            return deleteStmt.executeUpdate();
+
+    @Override
+    public int getTotalItems() {
+        String getTotalQuery = "SELECT COUNT(*) FROM books";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement st = con.prepareStatement(getTotalQuery);
+             ResultSet rs = st.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
-        } finally {
-            DatabaseConnection.closeStatement(deleteStmt);
-            DatabaseConnection.closeConnection(conn);
         }
+        return 0;
     }
 
 }

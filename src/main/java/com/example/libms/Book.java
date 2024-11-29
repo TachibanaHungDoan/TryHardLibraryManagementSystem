@@ -14,10 +14,10 @@ public class Book {
 
     protected int id;
     protected String title;
-    private String author;
-    private String publisher;
+    protected String author;
+    protected String publisher;
     protected String isbn;
-    private Date publishedDate;
+    protected Date publishedDate;
     private int edition;
     private int quantity;
     private BookState state;
@@ -34,6 +34,27 @@ public class Book {
         this.quantity = quantity;
         this.state = state;
         this.remaining = remaining;
+    }
+
+    public Book(String title, String author, String publisher, Date publishedDate, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
+        this.isbn = isbn;
+    }
+
+    public Book(int id, String isbn, String title) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+    }
+
+    public Book(int id, String title, String author, String publisher, String isbn) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
     }
 
     public int getId() {

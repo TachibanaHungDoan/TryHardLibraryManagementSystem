@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 
 public class ReaderTemplateController extends SceneController {
+    private SoundButtonController soundButtonController = SoundButtonController.getInstance();
+
     @Override
     protected void setUpScene(Label usernameLabel, Label timeLabel) {
         String username = LoggedInUser.getUsername();
@@ -14,28 +16,28 @@ public class ReaderTemplateController extends SceneController {
     }
 
     protected void switchToDashBoardView(Button dashBoardButton) throws IOException {
-        playButtonClickSound1();
+        soundButtonController.playButtonClickSound1();
         switchScene("ReaderView/rDashBoard-view.fxml", dashBoardButton);
     }
 
     protected void switchToGameView(Button gamesButton) throws IOException {
-        playButtonClickSound2();
+        soundButtonController.playButtonClickSound2();
         switchScene("ReaderView/rGame-view.fxml", gamesButton);
     }
 
     protected void switchToLoginView(Button logOutButton) throws IOException {
         switchSceneWithAlert("LoginView/login-view.fxml", logOutButton,
                 null, null, "Do you want to log out?", Alert.AlertType.CONFIRMATION);
-        logOutSound();
+        soundButtonController.logOutSound();
     }
 
     protected void switchToAllBooksView(Button allBooksButton) throws IOException {
-        bookFlipSound();
+        soundButtonController.bookFlipSound();
         switchScene("ReaderView/rALlBooks-view.fxml", allBooksButton);
     }
 
     protected void switchToBooksInventoryView(Button booksInventoryButton) throws IOException {
-        bookshelfSound();
+        soundButtonController.bookshelfSound();
         switchScene("ReaderView/rBooksInventoryBorrow-view.fxml", booksInventoryButton);
     }
 }

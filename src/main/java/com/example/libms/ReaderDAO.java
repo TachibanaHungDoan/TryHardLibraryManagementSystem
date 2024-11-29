@@ -40,17 +40,56 @@ public class ReaderDAO implements DAOInterface <Reader>{
 
     @Override
     public int update(Reader reader) {
-        return 0;
+        String updateQuery = "UPDATE readers SET readerName = ?, gender = ?, phoneNumber = ?, email = ? WHERE readerID = ?";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement st = con.prepareStatement(updateQuery)) {
+            st.setString(1, reader.getReaderName());
+            st.setString(2, reader.getGender().name());
+            st.setInt(3, reader.getPhoneNumber());
+            st.setString(4, reader.getEmail());
+            st.setInt(5, reader.getReaderID());
+            return st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
     public int delete(Reader reader) {
-        return 0;
+        String deleteQuery = "DELETE FROM readers WHERE readerID = ?";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement deleteStmt = con.prepareStatement(deleteQuery)) {
+            deleteStmt.setInt(1, reader.getReaderID());
+            return deleteStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
-    public List<Reader> getAllBooks() {
-        return null;
+    public List<Reader> getAllItems() {
+        List<Reader> readers = new ArrayList<>();
+        String getQuery = "SELECT * FROM readers";
+        try (Connection con = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(getQuery);
+            ResultSet rs = preparedStatement.executeQuery()) {
+            while (rs.next()) {
+                int readerID = rs.getInt("readerID");
+                String readerName = rs.getString("readerName");
+                String genderString = rs.getString("Gender");
+                Reader.ReaderGender gender = Reader.ReaderGender.valueOf(genderString.toLowerCase());
+                int phoneNumber = rs.getInt("PhoneNumber");
+                String email = rs.getString("Email");
+
+                Reader reader = new Reader(readerID, readerName, gender, phoneNumber, email);
+                readers.add(reader);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return readers;
     }
 
     @Override
@@ -61,5 +100,21 @@ public class ReaderDAO implements DAOInterface <Reader>{
     @Override
     public ArrayList<Reader> selectByCondition(String condition) {
         return null;
+    }
+
+    @Override
+    public int getTotalItems() {
+        String getTotalQuery = "SELECT COUNT(*) FROM readers";
+        try (Connection con = DatabaseConnection.getConnection();
+             PreparedStatement st = con.prepareStatement(getTotalQuery);
+             ResultSet rs = st.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return 0;
     }
 }
