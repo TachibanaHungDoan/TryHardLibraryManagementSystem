@@ -2,9 +2,9 @@
 
 ## Author
 Group 13
-1. Doan Thai Hung - 23021565
-2. Nguyen Huu Luu - 23021617
-3. Bui Quang Linh - 23021605
+1. [Doan Thai Hung](https://github.com/TachibanaHungDoan) - 23021565
+2. [Nguyen Huu Luu](https://github.com/legendy05) - 23021617
+3. [Bui Quang Linh](https://github.com/MILKPLZ) - 23021605
 
 ## Description
 The application is designed to manage various aspects of a library. The application is written in Java and mostly use 
