@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,13 +56,14 @@ public class RSettingController {
     }
 
     private boolean isCurrentPassWordValid(String currentPassWord) {
-        String querry = "SELECT * FROM readers WHERE password = ?";
+        String querry = "SELECT password FROM readers WHERE username = ?";
         try (Connection connection = DatabaseConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(querry)) {
-            preparedStatement.setString(1, currentPassWord);
+            preparedStatement.setString(1, LoggedInUser.getUsername());
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return true;
+                String storedHashedPassword = resultSet.getString("password");
+                return BCrypt.checkpw(currentPassWord, storedHashedPassword);
             }
 
         } catch (Exception e) {
@@ -71,7 +74,7 @@ public class RSettingController {
 
     private void changePassWord(String currentPassWord,String newPassWord) {
         String username = LoggedInUser.getUsername();
-        String updateQuery = "UPDATE readers SET password = ? WHERE username = ? AND password = ?";
+        String updateQuery = "UPDATE readers SET password = ? WHERE username = ?";
 
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Confirm Password Change");
@@ -82,9 +85,8 @@ public class RSettingController {
                 try (Connection connection = DatabaseConnection.getConnection();
                      PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
 
-                    preparedStatement.setString(1, newPassWord);
+                    preparedStatement.setString(1, hashPassword(newPassWord));
                     preparedStatement.setString(2, username);
-                    preparedStatement.setString(3, currentPassWord);
 
                     int rowsUpdated = preparedStatement.executeUpdate();
 
@@ -106,5 +108,8 @@ public class RSettingController {
                 alertShowing.showAlert(null, "Password change canceled.", null, Alert.AlertType.INFORMATION);
             }
         });
+    }
+    private String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 }
