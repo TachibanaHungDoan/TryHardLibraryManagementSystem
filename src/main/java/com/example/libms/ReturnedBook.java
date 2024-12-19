@@ -2,15 +2,7 @@ package com.example.libms;
 
 import java.util.Date;
 
-public class ReturnedBook extends Book{
-    private Date returnedDate;
-    private int lateFee;
-
-    public ReturnedBook(int id, String title, String author, String publisher, String isbn, Date returnedDate, int lateFee) {
-        super(id, title, author, publisher, isbn);
-        this.returnedDate = returnedDate;
-        this.lateFee = lateFee;
-    }
+public class ReturnedBook /*extends Book*/ {
 
     public int getId() {
         return id;
@@ -18,14 +10,6 @@ public class ReturnedBook extends Book{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -52,6 +36,14 @@ public class ReturnedBook extends Book{
         this.publisher = publisher;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     public Date getReturnedDate() {
         return returnedDate;
     }
@@ -67,4 +59,23 @@ public class ReturnedBook extends Book{
     public void setLateFee(int lateFee) {
         this.lateFee = lateFee;
     }
+
+    private int id;
+    private String title;
+    private String author;
+    private String publisher;
+    private String isbn;
+    private Date returnedDate;
+    private int lateFee;
+
+    public ReturnedBook(int id, String title, String author, String publisher, String isbn, Date returnedDate, int lateFee) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.returnedDate = returnedDate;
+        this.lateFee = lateFee;
+    }
+
 }
